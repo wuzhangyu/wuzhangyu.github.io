@@ -26,12 +26,30 @@
 
 <!-- ══════════ PRELOADER · boot splash ══════════ -->
 <div class="preloader" id="preloader" role="status" aria-label="loading">
-  <div class="preloader-inner">
-    <div class="boot-brand">Colorai · Power-On Self Test</div>
+  <div class="boot-box">
+    <div class="boot-header">
+      <div class="boot-dots"><span></span><span></span><span></span></div>
+      <span class="boot-title">COLORAI-PWR-STAGE :: BIOS v2.7</span>
+      <span class="boot-bus">[60V DC BUS]</span>
+    </div>
+    <div class="boot-scope">
+      <svg viewBox="0 0 480 76" width="100%" height="100%" preserveAspectRatio="none">
+        <g stroke="rgba(255,255,255,0.05)" stroke-width="1">
+          <line x1="0" y1="19" x2="480" y2="19"/><line x1="0" y1="38" x2="480" y2="38"/><line x1="0" y1="57" x2="480" y2="57"/>
+          <line x1="120" y1="0" x2="120" y2="76"/><line x1="240" y1="0" x2="240" y2="76"/><line x1="360" y1="0" x2="360" y2="76"/>
+        </g>
+        <path class="scope-wave" d="M 0 68 Q 60 66, 110 42 T 230 18 T 360 16 L 480 16" fill="none" stroke="#22d3ee" stroke-width="2"/>
+        <path class="scope-wave" d="M 0 38 C 30 10, 60 66, 90 38 C 120 10, 150 66, 180 38 C 210 10, 240 66, 270 38 C 300 10, 330 66, 360 38 C 390 10, 420 66, 450 38 L 480 22" fill="none" stroke="#7170ff" stroke-width="1.5" opacity="0.75"/>
+      </svg>
+    </div>
     <div class="boot-term" id="boot-term"></div>
+    <div class="boot-meter">
+      <span>DC_BUS_VOLTAGE</span>
+      <span class="boot-voltage" id="boot-voltage">0.0 V (0%)</span>
+    </div>
     <div class="boot-bar-wrap"><div id="boot-bar"></div></div>
-    <div class="boot-hint">click / press any key to skip</div>
   </div>
+  <div class="boot-hint">click / press any key to skip</div>
 </div>
 
 <a class="skip" href="#main">跳到正文</a>
@@ -47,6 +65,7 @@
       <a href="#contact">Contact</a>
     </nav>
     <div class="nav-right">
+      <button class="nav-replay" id="replay-boot" type="button" title="重播开机动画" aria-label="重播开机动画">↻ Boot</button>
       <a class="nav-gh" href="https://github.com/wuzhangyu" aria-label="GitHub">
         <svg width="18" height="18" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/></svg>
       </a>
@@ -59,21 +78,47 @@
 
   <!-- ══════════ HERO ══════════ -->
   <section class="hero">
-    <div class="hero-inner reveal-stagger">
-      <p class="hero-label">Hunan University · Electrical Engineering · Class of 2027</p>
-      <h1 class="hero-title"><span class="zh">从仿真，</span><br><span class="en">to silicon.</span></h1>
-      <p class="hero-alias">Colorai · 木纹刀 / 岉雨</p>
-      <p class="hero-sub zh">我是 Colorai，湖南大学电气工程及其自动化本科生，专注电力电子与硬件。习惯走完整链路——Simulink 建模、原理图与 PCB、焊接调试，直到板子真正跑起来。</p>
-      <p class="hero-sub en">An EE undergrad who takes power converters from a Simulink model to a soldered, running board.</p>
-      <div class="hero-status"><span class="dot"></span> Incoming Engineer @ Dongguan Power Supply Bureau, Guangdong Power Grid · 2027 届</div>
-      <div class="hero-tags">
-        <span>电力电子</span><span>硬件</span><span>PCB</span><span>嵌入式</span><span>DSP</span>
+    <div class="hero-inner hero-grid">
+      <div class="hero-left reveal-stagger">
+        <p class="hero-label">Hunan University · Electrical Engineering · Class of 2027</p>
+        <h1 class="hero-title"><span class="zh">从仿真，</span><br><span class="en">to silicon.</span></h1>
+        <p class="hero-alias">Colorai · 木纹刀 / 岉雨</p>
+        <p class="hero-sub zh">我是 Colorai，湖南大学电气工程及其自动化本科生，专注电力电子与硬件。习惯走完整链路——Simulink 建模、原理图与 PCB、焊接调试，直到板子真正跑起来。</p>
+        <p class="hero-sub en">An EE undergrad who takes power converters from a Simulink model to a soldered, running board.</p>
+        <div class="hero-status"><span class="dot"></span> Incoming Engineer @ Guangdong Power Grid · 2027 届</div>
+        <div class="hero-tags">
+          <span>电力电子</span><span>硬件</span><span>PCB</span><span>嵌入式</span><span>DSP</span>
+        </div>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#projects">查看项目 <span class="arrow">→</span></a>
+          <a class="btn btn-ghost" href="https://github.com/wuzhangyu">GitHub</a>
+          <button class="btn btn-ghost" type="button" id="copy-email">复制邮箱</button>
+        </div>
       </div>
-      <div class="hero-actions">
-        <a class="btn btn-primary" href="#projects">查看项目 <span class="arrow">→</span></a>
-        <a class="btn btn-ghost" href="https://github.com/wuzhangyu">GitHub</a>
-        <a class="btn btn-ghost" href="mailto:colorai@hnu.edu.cn">Email</a>
-      </div>
+      <aside class="hero-telemetry reveal-stagger">
+        <div class="telemetry-top">
+          <span>BENCH_TELEMETRY :: ACTIVE</span>
+          <span class="telemetry-badge">THD &lt; 0.3%</span>
+        </div>
+        <svg viewBox="0 0 360 150" class="fig" aria-label="三相逆变波形">
+          <rect width="360" height="150" fill="#07080b" rx="8"/>
+          <g stroke="#1a1d24" stroke-width="1">
+            <line x1="0" y1="37" x2="360" y2="37"/><line x1="0" y1="75" x2="360" y2="75"/><line x1="0" y1="112" x2="360" y2="112"/>
+            <line x1="90" y1="0" x2="90" y2="150"/><line x1="180" y1="0" x2="180" y2="150"/><line x1="270" y1="0" x2="270" y2="150"/>
+          </g>
+          <path d="M 0 75 Q 45 15, 90 75 T 180 75 T 270 75 T 360 75" fill="none" stroke="#7170ff" stroke-width="2"/>
+          <path d="M 0 115 Q 45 140, 90 75 T 180 35 T 270 115 T 360 75" fill="none" stroke="#22d3ee" stroke-width="1.8" opacity="0.85"/>
+          <path d="M 0 35 Q 45 10, 90 75 T 180 115 T 270 35 T 360 75" fill="none" stroke="#10b981" stroke-width="1.6" opacity="0.75"/>
+          <text x="12" y="22" fill="#9ba3b0" font-size="10" font-family="monospace">3φ 50Hz / 32Vrms / 2A</text>
+          <text x="255" y="140" fill="#22d3ee" font-size="10" font-family="monospace">f_sw = 10 kHz</text>
+        </svg>
+        <div class="telemetry-metrics">
+          <div class="t-metric"><span class="k">IDENTITY / ALIAS</span><span class="v">Colorai · 木纹刀</span></div>
+          <div class="t-metric"><span class="k">BASE</span><span class="v">长沙 · 梅州 · 大湾区</span></div>
+          <div class="t-metric"><span class="k">FLAGSHIP</span><span class="v">能量回馈变流器</span></div>
+          <div class="t-metric"><span class="k">NEXT</span><span class="v" style="color: var(--green)">广东电网</span></div>
+        </div>
+      </aside>
     </div>
   </section>
 
@@ -105,7 +150,7 @@
           <div class="edu-stat"><b>CET-6</b><span>508 · 口语通过</span></div>
           <div class="edu-stat"><b>方向</b><span>电力电子 · 硬件 · PCB</span></div>
         </div>
-        <p class="bento-note zh">本科毕业直接就业，已签约广东电网东莞供电局（2026.10），是一名准电力/硬件工程师。</p>
+        <p class="bento-note zh">本科毕业直接就业，已签约广东电网（2026.10），是一名准电力/硬件工程师。</p>
         <p class="bento-award">获奖：湖南大学奖学金 · 校数学竞赛一等奖 · 挑战杯校赛银奖</p>
       </div>
 
@@ -180,7 +225,7 @@
       <div class="journey-item">
         <span class="journey-year">2026</span>
         <h4 class="journey-title">签约 · 面向电网</h4>
-        <p class="journey-desc">惠州供电局一线生产实习，秋招签约广东电网东莞供电局（2026.10）。</p>
+        <p class="journey-desc">惠州供电局一线生产实习，秋招签约广东电网（2026.10）。</p>
       </div>
     </div>
   </section>
@@ -195,8 +240,15 @@
       <p class="sec-note">项目代码与报告大多未公开，可邮件索取详情。</p>
     </div>
 
+    <div class="project-filters reveal-stagger">
+      <button class="filter-btn active" data-filter="all">全部 All</button>
+      <button class="filter-btn" data-filter="power">电力电子 Power</button>
+      <button class="filter-btn" data-filter="embedded">嵌入式 Embedded</button>
+      <button class="filter-btn" data-filter="industrial">工业 / 算法 Industrial</button>
+    </div>
+
     <!-- 电赛 featured -->
-    <article class="project-featured reveal-stagger">
+    <article class="project-featured reveal-stagger" data-cat="power">
       <div class="project-media">
         <svg viewBox="0 0 480 260" class="fig" role="img" aria-label="三相逆变器拓扑示意">
           <rect x="0" y="0" width="480" height="260" fill="#0c0d0f"/>
@@ -258,7 +310,7 @@
     <div class="project-grid reveal-stagger">
 
       <!-- 02 SST -->
-      <article class="project-card">
+      <article class="project-card" data-cat="power">
         <div class="project-media">
           <svg viewBox="0 0 320 170" class="fig" role="img" aria-label="级联多电平拓扑示意">
             <rect x="0" y="0" width="320" height="170" fill="#0c0d0f"/>
@@ -288,7 +340,7 @@
       </article>
 
       <!-- 03 PLC -->
-      <article class="project-card">
+      <article class="project-card" data-cat="industrial">
         <div class="project-media">
           <svg viewBox="0 0 320 170" class="fig" role="img" aria-label="梯形图示意">
             <rect x="0" y="0" width="320" height="170" fill="#0c0d0f"/>
@@ -317,7 +369,7 @@ X1 电机反转 ──|/|── Y0 正转线圈
       </article>
 
       <!-- 04 MCM -->
-      <article class="project-card">
+      <article class="project-card" data-cat="industrial">
         <div class="project-media">
           <svg viewBox="0 0 320 170" class="fig" role="img" aria-label="网球势头预测曲线">
             <rect x="0" y="0" width="320" height="170" fill="#0c0d0f"/>
@@ -350,7 +402,7 @@ importance = model.feature_importances_</pre>
       </article>
 
       <!-- 05 FPGA -->
-      <article class="project-card">
+      <article class="project-card" data-cat="embedded">
         <div class="project-media">
           <svg viewBox="0 0 320 170" class="fig" role="img" aria-label="贪吃蛇网格">
             <rect x="0" y="0" width="320" height="170" fill="#0c0d0f"/>
@@ -388,7 +440,7 @@ importance = model.feature_importances_</pre>
       </article>
 
       <!-- 06 STC15 汇编 -->
-      <article class="project-card">
+      <article class="project-card" data-cat="embedded">
         <div class="project-media">
           <svg viewBox="0 0 320 170" class="fig" role="img" aria-label="8051 中断体系示意">
             <rect x="0" y="0" width="320" height="170" fill="#0c0d0f"/>
@@ -496,7 +548,7 @@ MAIN:   <span class="k">MOV</span>  SP, <span class="n">#60H</span>
           <span class="contact-k">GitHub</span><span class="contact-v">@wuzhangyu</span>
         </a>
         <div class="contact-link">
-          <span class="contact-k">Location</span><span class="contact-v">梅州 · 长沙 · 大湾区（深圳 · 东莞）</span>
+          <span class="contact-k">Location</span><span class="contact-v">梅州 · 长沙 · 大湾区</span>
         </div>
       </div>
     </div>
@@ -522,6 +574,8 @@ MAIN:   <span class="k">MOV</span>  SP, <span class="n">#60H</span>
     </div>
   </div>
 </footer>
+
+<div class="toast" id="toast">已复制邮箱：colorai@hnu.edu.cn</div>
 
 </body>
 </html>

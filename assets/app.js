@@ -26,19 +26,22 @@
   var bootDone = false;
 
   var bootLines = [
-    { t: "$ boot --target silicon", c: "p" },
-    { t: "▸ DC Bus Charging ... 0V → 60V", c: "ok" },
-    { t: "▸ Gate Driver UCC21520 ... [OK]", c: "ok" },
-    { t: "▸ Simulink Model Compiled ... [OK]", c: "ok" },
-    { t: "▸ ADC & PWM ... [OK]", c: "ok" },
-    { t: "✓ Silicon Ready.", c: "done" }
+    { t: "[0.00s] Initializing Power Stage & STC15/DSP Interrupts...", c: "ok" },
+    { t: "[0.32s] DC Bus Soft-Start Pre-charging: 0V \u2192 60.0V", c: "hl" },
+    { t: "[0.68s] Simulink PI + Quasi-PR Loop \u00b7 THD < 0.3% Verified", c: "ok" },
+    { t: "[1.05s] From Simulation to Silicon. Welcome, Colorai.", c: "done" }
   ];
+  var bootDelays = [80, 360, 720, 1050];
+
+  function revealGroup(group) {
+    if (!group || group.classList.contains("in")) return;
+    var kids = group.children;
+    for (var i = 0; i < kids.length; i++) kids[i].style.transitionDelay = (i * 80) + "ms";
+    group.classList.add("in");
+  }
 
   function revealHero() {
-    document.querySelectorAll(".hero .reveal-stagger > *").forEach(function (el, i) {
-      el.classList.add("in");
-      el.style.transitionDelay = (i * 90) + "ms";
-    });
+    document.querySelectorAll(".hero .reveal-stagger").forEach(revealGroup);
   }
 
   function finishBoot() {
@@ -47,18 +50,27 @@
     pre.classList.add("done");
     body.classList.remove("locked");
     revealHero();
-    setTimeout(function () { if (pre.parentNode) pre.parentNode.removeChild(pre); }, 900);
+  }
+
+  function resetBoot() {
+    var term = document.getElementById("boot-term");
+    var bar = document.getElementById("boot-bar");
+    var volt = document.getElementById("boot-voltage");
+    if (term) term.innerHTML = "";
+    if (bar) bar.style.width = "0";
+    if (volt) volt.textContent = "0.0 V (0%)";
   }
 
   function runBoot() {
     var term = document.getElementById("boot-term");
     var bar = document.getElementById("boot-bar");
+    var volt = document.getElementById("boot-voltage");
     if (reduced) { finishBoot(); return; }
     var start = performance.now();
-    // progress 0→100% over 1.25s
     function tick(now) {
       var p = Math.min(1, (now - start) / 1250);
       bar.style.width = (p * 100).toFixed(1) + "%";
+      if (volt) volt.textContent = (p * 60).toFixed(1) + " V (" + Math.round(p * 100) + "%)";
       if (p < 1) requestAnimationFrame(tick);
     }
     requestAnimationFrame(tick);
@@ -69,10 +81,9 @@
         d.textContent = line.t;
         term.appendChild(d);
         if (i === bootLines.length - 1) finishBoot();
-      }, i * 210 + 60);
+      }, bootDelays[i]);
     });
-    // hard cap: force finish at 1.5s in case anything hangs
-    setTimeout(finishBoot, 1500);
+    setTimeout(finishBoot, 1500); // hard cap
   }
 
   if (pre) {
@@ -86,22 +97,31 @@
       window.addEventListener("keydown", function (e) { if (e.key === "Escape" || e.key === " ") skip(); });
     }
     sessionStorage.setItem("colorai-booted", "1");
+    var replayBtn = document.getElementById("replay-boot");
+    if (replayBtn) replayBtn.addEventListener("click", function () {
+      bootDone = false;
+      pre.classList.remove("done");
+      body.classList.add("locked");
+      resetBoot();
+      runBoot();
+    });
   } else {
     revealHero();
   }
 
   /* ═══════════ REVEAL · staggered on scroll ═══════════ */
   function setupReveal() {
-    var groups = document.querySelectorAll(".reveal-stagger");
+    var groups = Array.prototype.filter.call(
+      document.querySelectorAll(".reveal-stagger"),
+      function (g) { return !g.closest(".hero"); }
+    );
     if (!("IntersectionObserver" in window)) {
-      groups.forEach(function (g) { g.classList.add("in"); });
+      groups.forEach(revealGroup);
       return;
     }
     var obs = new IntersectionObserver(function (entries) {
       entries.forEach(function (entry) {
-        if (!entry.isIntersecting) return;
-        entry.target.classList.add("in");
-        obs.unobserve(entry.target);
+        if (entry.isIntersecting) { revealGroup(entry.target); obs.unobserve(entry.target); }
       });
     }, { threshold: 0.12, rootMargin: "0px 0px -8% 0px" });
     groups.forEach(function (g) { obs.observe(g); });
@@ -110,7 +130,7 @@
   /* ═══════════ SPOTLIGHT · mouse-follow radial glow ═══════════ */
   function setupSpotlight() {
     if (reduced) return;
-    var cards = document.querySelectorAll(".bento-card, .project, .travel-card");
+    var cards = document.querySelectorAll(".bento-card, .project-featured, .project-card, .travel-card, .hero-telemetry");
     cards.forEach(function (card) {
       card.addEventListener("mousemove", function (e) {
         var r = card.getBoundingClientRect();
@@ -136,8 +156,7 @@
       indicator.style.width = link.offsetWidth + "px";
     }
 
-    var sections = links.map(function (a) { return document.querySelector(a.getAttribute("href")); })
-                       .filter(Boolean);
+    var sections = links.map(function (a) { return document.querySelector(a.getAttribute("href")); }).filter(Boolean);
     if ("IntersectionObserver" in window) {
       var spy = new IntersectionObserver(function (entries) {
         entries.forEach(function (entry) {
@@ -148,11 +167,59 @@
       }, { rootMargin: "-45% 0px -50% 0px" });
       sections.forEach(function (s) { spy.observe(s); });
     }
-    // initial
     if (sections.length) activate(links[0]);
     window.addEventListener("resize", function () {
       var cur = links.filter(function (a) { return a.classList.contains("active"); })[0];
       if (cur) activate(cur);
+    });
+  }
+
+  /* ═══════════ PROJECT FILTER ═══════════ */
+  function setupFilter() {
+    var btns = document.querySelectorAll(".filter-btn");
+    var projs = document.querySelectorAll("[data-cat]");
+    if (!btns.length) return;
+    btns.forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        btns.forEach(function (b) { b.classList.remove("active"); });
+        btn.classList.add("active");
+        var cat = btn.getAttribute("data-filter");
+        projs.forEach(function (p) {
+          p.classList.toggle("is-filtered-out", cat !== "all" && p.getAttribute("data-cat") !== cat);
+        });
+      });
+    });
+  }
+
+  /* ═══════════ COPY EMAIL + TOAST ═══════════ */
+  function setupCopy() {
+    var btn = document.getElementById("copy-email");
+    var toast = document.getElementById("toast");
+    if (!btn || !toast) return;
+    var timer;
+    btn.addEventListener("click", function () {
+      var email = "colorai@hnu.edu.cn";
+      function done() {
+        toast.classList.add("show");
+        clearTimeout(timer);
+        timer = setTimeout(function () { toast.classList.remove("show"); }, 2600);
+      }
+      function fallback() {
+        var ta = document.createElement("textarea");
+        ta.value = email;
+        ta.style.position = "fixed";
+        ta.style.opacity = "0";
+        document.body.appendChild(ta);
+        ta.select();
+        try { document.execCommand("copy"); } catch (e) {}
+        document.body.removeChild(ta);
+        done();
+      }
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(email).then(done, fallback);
+      } else {
+        fallback();
+      }
     });
   }
 
@@ -161,4 +228,6 @@
   setupReveal();
   setupSpotlight();
   setupScrollSpy();
+  setupFilter();
+  setupCopy();
 })();
