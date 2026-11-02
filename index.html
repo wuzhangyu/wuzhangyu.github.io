@@ -1,240 +1,408 @@
 <!doctype html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Colorai — Power Electronics &amp; Hardware</title>
-<meta name="description" content="Colorai — electrical engineering undergrad at Hunan University, focused on power electronics and hardware. From simulation to silicon.">
+<title>Colorai — 电力电子与硬件 · Power Electronics &amp; Hardware</title>
+<meta name="description" content="Colorai — 湖南大学电气工程本科生，专注电力电子与硬件，从仿真做到实物。Electrical engineering undergrad at Hunan University. From simulation to silicon.">
 <meta name="author" content="Colorai">
-<meta name="theme-color" content="#08080a">
+<meta name="theme-color" content="#08090a">
 <meta name="color-scheme" content="dark">
 <link rel="canonical" href="https://wuzhangyu.github.io/">
-<meta property="og:title" content="Colorai — Power Electronics &amp; Hardware">
-<meta property="og:description" content="Electrical engineering undergrad at Hunan University (Class of 2027). From simulation to silicon.">
+<meta property="og:title" content="Colorai — 电力电子与硬件">
+<meta property="og:description" content="湖南大学电气工程本科生（2027 届），专注电力电子与硬件。From simulation to silicon.">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Colorai">
-<meta property="og:locale" content="en_US">
+<meta property="og:locale" content="zh_CN">
 <meta name="twitter:card" content="summary">
 <link rel="icon" href="assets/icon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Noto+Sans+SC:wght@400;500;700&family=LXGW+WenKai+TC:wght@400;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/style.css">
 <script src="assets/app.js" defer></script>
 </head>
 <body>
 
-<a class="skip" href="#main">skip to content</a>
+<a class="skip" href="#main">跳到正文</a>
 
-<header>
-  <div class="bar">
-    <a class="brand" href="./">COLORAI <span>— power electronics · hardware</span></a>
-    <nav>
-      <a class="keep" href="#about">about</a>
-      <a href="#focus">focus</a>
-      <a href="#projects">projects</a>
-      <a href="#skills">skills</a>
-      <a href="#experience">experience</a>
-      <a href="#awards">awards</a>
-      <a href="#contact">contact</a>
-      <a class="keep" href="https://github.com/wuzhangyu">github</a>
+<header class="nav">
+  <div class="nav-inner">
+    <a class="brand" href="./">Colorai<span class="brand-dot">.</span></a>
+    <nav class="nav-links">
+      <a href="#about">About</a>
+      <a href="#projects">Projects</a>
+      <a href="#contact">Contact</a>
     </nav>
+    <div class="nav-right">
+      <a class="nav-gh" href="https://github.com/wuzhangyu" aria-label="GitHub">
+        <svg width="18" height="18" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/></svg>
+      </a>
+      <a class="nav-cta" href="mailto:colorai@hnu.edu.cn">联系我</a>
+    </div>
   </div>
 </header>
 
-<main class="wrap" id="main">
+<main id="main">
 
+  <!-- ══════════ HERO ══════════ -->
   <section class="hero">
-    <pre class="logo" role="img" aria-label="COLORAI">██████╗ ██████╗ ██╗      ██████╗ ██████╗  █████╗ ██╗
-██╔════╝██╔═══██╗██║     ██╔═══██╗██╔══██╗██╔══██╗██║
-██║     ██║   ██║██║     ██║   ██║██████╔╝███████║██║
-██║     ██║   ██║██║     ██║   ██║██╔══██╗██╔══██║██║
-╚██████╗╚██████╔╝███████╗╚██████╔╝██║  ██║██║  ██║██║
- ╚═════╝ ╚═════╝ ╚══════╝ ╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═╝╚═╝</pre>
+    <div class="hero-inner">
+      <p class="hero-label">Hunan University · Electrical Engineering · Class of 2027</p>
+      <h1 class="hero-title">
+        <span class="zh">从仿真，</span><br>
+        <span class="en">to silicon.</span>
+      </h1>
+      <p class="hero-sub zh">
+        我是 Colorai，湖南大学电气工程及其自动化本科生，专注电力电子与硬件。习惯走完整链路——Simulink 建模、原理图与 PCB、焊接调试，直到板子真正跑起来。
+      </p>
+      <p class="hero-sub en">
+        An EE undergrad who takes power converters from a Simulink model to a soldered, running board.
+      </p>
 
-    <p class="kicker">Hunan University · Electrical Engineering &amp; Automation · Class of 2027</p>
-
-    <h1>From simulation<br>to silicon.</h1>
-
-    <p class="lede">
-      Colorai — an electrical engineering undergrad focused on power electronics and hardware.
-      I take converters from Simulink to a soldered board: modeling, schematic &amp; PCB,
-      then debugging until it actually runs.
-    </p>
-    <p class="cn" lang="zh">湖南大学电气工程本科生，专注电力电子与硬件，从仿真做到实物。</p>
-
-    <div class="cta">
-      <a class="btn primary" href="#projects">View projects</a>
-      <a class="btn" href="#contact">Get in touch</a>
-      <a class="btn" href="https://github.com/wuzhangyu">GitHub</a>
-    </div>
-
-    <pre class="term"><span class="p">$</span> colorai --about
-  name     Colorai
-  school   Hunan University · EE &amp; Automation · 2027
-  gpa      3.6/4.0 · top 33%
-  focus    Power electronics · Power · Hardware · PCB
-  status   Open to hardware roles · Class of 2027<span class="caret"></span></pre>
-
-    <div class="scroll-cue" aria-hidden="true"><span>scroll</span><i></i></div>
-  </section>
-
-  <section class="reveal" id="about">
-    <p class="sec-label">01 / About</p>
-    <h2>An EE undergrad, building boards.</h2>
-
-    <div class="stats">
-      <div class="stat"><span class="n">Hunan Univ.</span><span class="v">985 · Double First-Class</span></div>
-      <div class="stat"><span class="n">GPA</span><span class="v">3.6 / 4.0 · top 33%</span></div>
-      <div class="stat"><span class="n">CET-6</span><span class="v">508 · oral passed</span></div>
-      <div class="stat"><span class="n">Status</span><span class="v">Employment · Class of 2027</span></div>
-    </div>
-
-    <div class="rows">
-      <div class="row"><span class="n">01</span><span class="t"><b>Hunan University</b> (985 · Double First-Class) — Electrical Engineering &amp; Automation, Class of 2027.</span></div>
-      <div class="row"><span class="n">02</span><span class="t"><b>Straight into industry</b> after the bachelor's — targeting hardware, power electronics and electrical roles.</span></div>
-      <div class="row"><span class="n">03</span><span class="t"><b>Simulation to silicon</b>: Simulink modeling → schematic / PCB → soldering &amp; bring-up.</span></div>
-    </div>
-
-    <p class="sub-label">Coursework</p>
-    <div class="chips">
-      <span>Power Electronics</span><span>Electric Machines</span><span>Automatic Control</span>
-      <span>Circuits</span><span>Analog Electronics</span><span>Digital Electronics</span>
-      <span>MCU Principles</span><span>FPGA Design</span><span>Signals &amp; Systems</span>
-    </div>
-  </section>
-
-  <section class="reveal" id="focus">
-    <p class="sec-label">02 / Focus</p>
-    <h2>Where I'm heading.</h2>
-
-    <div class="grid">
-      <div class="card"><div class="k">HARDWARE</div><h3>Board-level design</h3><p>Single-board hardware: schematic, layout, bring-up and debugging. 单板硬件方向。</p></div>
-      <div class="card"><div class="k">POWER</div><h3>Power electronics</h3><p>DC-AC / AC-DC converters, multi-level topologies, gate drive and switching. 电源与电力电子方向。</p></div>
-      <div class="card"><div class="k">ELECTRICAL</div><h3>Electrical engineering</h3><p>Electrical design and strong-current systems. 电气设计方向。</p></div>
-      <div class="card"><div class="k">INDUSTRIAL</div><h3>Industrial control</h3><p>PLC (Mitsubishi Q-series) and robotics. 工控与 PLC 方向。</p></div>
-    </div>
-  </section>
-
-  <section class="reveal" id="projects">
-    <p class="sec-label">03 / Projects</p>
-    <h2>Things I've built that run.</h2>
-
-    <div class="featured">
-      <div class="featured-head">
-        <span class="k">FEATURED · 2025 全国大学生电子设计竞赛 · A题</span>
-        <span class="year">2025</span>
+      <div class="hero-tags">
+        <span>电力电子</span><span>电源</span><span>硬件</span><span>PCB</span><span>嵌入式</span>
       </div>
-      <h3>能量回馈变流器 · Regenerative Converter</h3>
-      <p>DC-AC inverter + AC-DC rectifier with energy feedback. Built the three boards (inverter, EMI, control) and brought up real hardware.</p>
-      <div class="specs">
-        <div class="spec"><b>Output</b><span>3-phase · 50Hz · 32V · 2A</span></div>
-        <div class="spec"><b>THD</b><span>&lt; 0.3%</span></div>
-        <div class="spec"><b>Supply power</b><span>&lt; 5W</span></div>
-        <div class="spec"><b>DC bus</b><span>60V</span></div>
-        <div class="spec"><b>Switching</b><span>10kHz</span></div>
-        <div class="spec"><b>Filter</b><span>470µH + 2.2µF</span></div>
-      </div>
-      <div class="tags">
-        <span>Power Electronics</span><span>Simulink</span><span>PCB</span><span>Embedded</span>
+
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="#projects">查看项目 <span class="arrow">→</span></a>
+        <a class="btn btn-ghost" href="https://github.com/wuzhangyu">
+          <svg width="15" height="15" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/></svg>
+          GitHub
+        </a>
+        <a class="btn btn-ghost" href="mailto:colorai@hnu.edu.cn">Email</a>
       </div>
     </div>
-
-    <div class="grid">
-      <div class="card"><div class="card-head"><span class="k">HARDWARE · PCB</span><span class="year">2025</span></div><h3>3-phase inverter · EMI · gate drive</h3><p>Gate drive resistors 22Ω/6.8Ω, SS34 / RS1JG + 2.2Ω, bus-voltage sensing CKSR15. Dead-time and switching-sequence tuning.</p><div class="tags"><span>PCB</span><span>Gate Drive</span><span>EMI</span></div></div>
-      <div class="card"><div class="card-head"><span class="k">RESEARCH · SST</span><span class="year">2025</span></div><h3>Cascaded multilevel SST front-end</h3><p>Power-electronics-transformer front-end topology simulation: 17-level, T-NPC 3-level, quasi-NPC 4-level. Team member, responsible for Simulink modeling.</p><div class="tags"><span>Simulink</span><span>Multilevel</span><span>Topology</span></div></div>
-      <div class="card"><div class="card-head"><span class="k">INDUSTRIAL · PLC</span><span class="year">2024</span></div><h3>Mitsubishi Q-series line programs</h3><p>Wrote 13 types of PLC line programs (motor forward/reverse, conveyor indexing) plus KUKA robot teaching — and fixed a program interlock bug.</p><div class="tags"><span>PLC</span><span>KUKA</span><span>Ladder</span></div></div>
-      <div class="card"><div class="card-head"><span class="k">DATA · MCM 2024</span><span class="year">2024</span></div><h3>Tennis momentum prediction</h3><p>Team lead — EDA plus random forest + LSTM for Q3. Python + TensorFlow, pipelined 1–5.</p><div class="tags"><span>Python</span><span>TensorFlow</span><span>ML</span></div></div>
-      <div class="card"><div class="card-head"><span class="k">COURSEWORK · FPGA</span><span class="year">2024</span></div><h3>VGA Snake</h3><p>DE2-115 board, Verilog, ~2800 logic elements.</p><div class="tags"><span>Verilog</span><span>FPGA</span></div></div>
-      <div class="card"><div class="card-head"><span class="k">EMBEDDED · 8051</span><span class="year">2024</span></div><h3>STC15 peripheral drivers</h3><p>7-segment display, keys, I2C-EEPROM, IR, LCD1602 — Keil C51.</p><div class="tags"><span>C51</span><span>8051</span><span>Embedded</span></div></div>
-    </div>
   </section>
 
-  <section class="reveal" id="skills">
-    <p class="sec-label">04 / Skills</p>
-    <h2>What I work with.</h2>
-
-    <div class="grid">
-      <div class="card"><div class="k">POWER</div><h3>Power electronics</h3><p>Inverter / rectifier topologies, SPWM, dead-time, gate drive.</p></div>
-      <div class="card"><div class="k">SIMULATION</div><h3>MATLAB / Simulink</h3><p>Converter and multilevel modeling, waveform and THD analysis.</p></div>
-      <div class="card"><div class="k">HARDWARE</div><h3>Schematic · PCB · debug</h3><p>Schematic and 2-layer PCB, soldering, oscilloscope, component selection.</p></div>
-      <div class="card"><div class="k">CODE</div><h3>C / C++ · Python · Verilog</h3><p>8051 C51 drivers, data scripts, FPGA logic. C2000 platform — familiar.</p></div>
-      <div class="card"><div class="k">INDUSTRIAL</div><h3>Mitsubishi Q-series PLC</h3><p>Line-program writing and interlock logic; KUKA robot teaching.</p></div>
-      <div class="card"><div class="k">DATA</div><h3>EDA · machine learning</h3><p>Data cleaning &amp; visualization, random forest / LSTM (Python + TensorFlow).</p></div>
+  <!-- ══════════ ABOUT · BENTO ══════════ -->
+  <section class="section" id="about">
+    <div class="section-head">
+      <p class="sec-label">01 · About Me</p>
+      <h2 class="sec-title">关于我 <span class="en">— who I am</span></h2>
     </div>
-  </section>
 
-  <section class="reveal" id="experience">
-    <p class="sec-label">05 / Experience</p>
-    <h2>Real code, on a real line.</h2>
+    <div class="bento">
+      <!-- 教育背景 -->
+      <div class="bento-card bento-edu">
+        <span class="bento-k">Education</span>
+        <h3 class="bento-title">湖南大学 · 电气工程及其自动化</h3>
+        <p class="bento-sub">Hunan University (985 · 双一流) · Class of 2027</p>
+        <div class="edu-stats">
+          <div class="edu-stat"><b>GPA</b><span>3.6 / 4.0 · 前 33%</span></div>
+          <div class="edu-stat"><b>CET-6</b><span>508 · 口语通过</span></div>
+          <div class="edu-stat"><b>方向</b><span>电力电子 · 硬件 · PCB</span></div>
+        </div>
+        <p class="bento-note zh">本科毕业直接就业，不考研。目标岗位：电力电子、电源、单板硬件、电气设计。</p>
+        <p class="bento-award">获奖：湖南大学奖学金 · 校数学竞赛一等奖 · 挑战杯校赛银奖</p>
+      </div>
 
-    <div class="timeline">
-      <div class="tl-item">
-        <span class="tl-dot"></span>
-        <div class="tl-body">
-          <div class="tl-head"><h3>GAC AION · Intelligent manufacturing</h3><span class="year">Internship</span></div>
-          <ul>
-            <li>Wrote 13 types of Mitsubishi Q-series PLC line programs — motor forward/reverse, conveyor indexing.</li>
-            <li>KUKA robot teaching and debugging, integrated with the PLC on the line.</li>
-            <li>Found and fixed a program interlock bug, preventing machine mis-operation.</li>
-          </ul>
+      <!-- 技术栈 -->
+      <div class="bento-card bento-stack">
+        <span class="bento-k">Tech Stack</span>
+        <h3 class="bento-title">技术栈</h3>
+        <div class="chips">
+          <span>电力电子</span><span>Simulink</span><span>PCB</span><span>C / C++</span>
+          <span>Python</span><span>Verilog</span><span>8051</span><span>PLC</span>
+          <span>TensorFlow</span><span>KUKA</span>
         </div>
       </div>
-      <div class="tl-item">
-        <span class="tl-dot"></span>
-        <div class="tl-body">
-          <div class="tl-head"><h3>Hunan University · Electrical Engineering &amp; Automation</h3><span class="year">2023 – 2027</span></div>
-          <ul>
-            <li>GPA 3.6/4.0 (top 33%).</li>
-            <li>CET-6 508, oral passed.</li>
-          </ul>
-        </div>
+
+      <!-- 经历 -->
+      <div class="bento-card bento-exp">
+        <span class="bento-k">Experience</span>
+        <h3 class="bento-title">广汽埃安 · 智能制造实习</h3>
+        <p class="bento-sub">GAC AION · Internship</p>
+        <p class="bento-desc zh">独立编写 13 类三菱 Q 系列 PLC 产线程序，KUKA 机器人示教调试，并定位修复产线程序互锁 Bug。</p>
+      </div>
+
+      <!-- 兴趣 -->
+      <div class="bento-card bento-interest">
+        <span class="bento-k">Interests</span>
+        <h3 class="bento-title">兴趣与关注</h3>
+        <p class="bento-desc zh">电力电子拓扑、多电平变换器、嵌入式硬件、开源工具链，以及「从仿真到实物」的完整工程链路。</p>
+      </div>
+
+      <!-- 探索中 -->
+      <div class="bento-card bento-explore">
+        <span class="bento-k">Exploring</span>
+        <h3 class="bento-title">正在探索</h3>
+        <p class="bento-desc zh">数字电源控制（C2000 平台）、更高功率等级、多电平拓扑仿真与硬件实现。</p>
       </div>
     </div>
   </section>
 
-  <section class="reveal" id="awards">
-    <p class="sec-label">06 / Awards</p>
-    <h2>Defensible honors.</h2>
+  <!-- ══════════ FEATURED PROJECTS ══════════ -->
+  <section class="section" id="projects">
+    <div class="section-head">
+      <p class="sec-label">02 · Featured Projects</p>
+      <h2 class="sec-title">精选项目 <span class="en">— things I built</span></h2>
+    </div>
 
-    <ul class="limits">
-      <li>Hunan University · Scholarship</li>
-      <li>Hunan University Math Competition · First Prize</li>
-      <li>Challenge Cup · University-level Silver</li>
-    </ul>
+    <!-- 项目 1 · 电赛（旗舰，全宽） -->
+    <article class="project project-featured">
+      <div class="project-media">
+        <svg viewBox="0 0 480 260" class="fig" role="img" aria-label="三相逆变器拓扑示意">
+          <rect x="0" y="0" width="480" height="260" fill="#0c0d0f"/>
+          <g stroke="#2c2f36" stroke-width="1">
+            <line x1="0" y1="65" x2="480" y2="65"/><line x1="0" y1="130" x2="480" y2="130"/><line x1="0" y1="195" x2="480" y2="195"/>
+          </g>
+          <!-- 直流源 -->
+          <g transform="translate(30,50)">
+            <rect x="0" y="30" width="26" height="70" fill="none" stroke="#7170ff" stroke-width="2"/>
+            <text x="13" y="68" fill="#7170ff" font-size="12" text-anchor="middle" font-family="monospace">DC</text>
+            <text x="13" y="120" fill="#8a8f98" font-size="10" text-anchor="middle" font-family="monospace">60V</text>
+          </g>
+          <!-- H桥 -->
+          <g transform="translate(120,30)">
+            <rect x="0" y="0" width="60" height="34" rx="4" fill="#17181b" stroke="#5e6ad2" stroke-width="1.5"/>
+            <rect x="0" y="66" width="60" height="34" rx="4" fill="#17181b" stroke="#5e6ad2" stroke-width="1.5"/>
+            <rect x="0" y="132" width="60" height="34" rx="4" fill="#17181b" stroke="#5e6ad2" stroke-width="1.5"/>
+            <text x="30" y="21" fill="#d0d6e0" font-size="11" text-anchor="middle" font-family="monospace">S1</text>
+            <text x="30" y="87" fill="#d0d6e0" font-size="11" text-anchor="middle" font-family="monospace">S2</text>
+            <text x="30" y="153" fill="#d0d6e0" font-size="11" text-anchor="middle" font-family="monospace">S3</text>
+          </g>
+          <!-- 滤波 -->
+          <g transform="translate(280,110)">
+            <rect x="0" y="-20" width="46" height="10" fill="#17181b" stroke="#22d3ee" stroke-width="1.5"/>
+            <text x="23" y="-12" fill="#22d3ee" font-size="10" text-anchor="middle" font-family="monospace">L·C</text>
+          </g>
+          <!-- 输出 -->
+          <g transform="translate(390,55)">
+            <text x="0" y="60" fill="#f7f8f8" font-size="12" text-anchor="middle" font-family="monospace">AC</text>
+            <text x="0" y="78" fill="#8a8f98" font-size="10" text-anchor="middle" font-family="monospace">3φ 50Hz</text>
+          </g>
+          <!-- 连线 -->
+          <g stroke="#3e4046" stroke-width="1.5" fill="none">
+            <path d="M56 82 L120 47 M56 148 L120 113"/>
+            <path d="M180 47 L280 100 M180 113 L280 100 M180 179 L280 100"/>
+            <path d="M326 100 L390 100"/>
+          </g>
+        </svg>
+      </div>
+      <div class="project-body">
+        <div class="project-top">
+          <span class="project-idx">01</span>
+          <span class="project-tagline">2025 · 全国大学生电子设计竞赛 · A 题</span>
+        </div>
+        <h3 class="project-title">能量回馈变流器 <span class="en">Regenerative Converter</span></h3>
+        <p class="project-desc zh">
+          DC-AC 逆变 + AC-DC 整流回馈，三相 50Hz / 32V / 2A，THD 低于 0.3%，电源功率低于 5W。完成三相逆变板、EMI 板与控制板，调出实物硬件。母线 60V、开关频率 10kHz。
+        </p>
+        <div class="tags">
+          <span>Power Electronics</span><span>Simulink</span><span>PCB</span><span>Embedded</span>
+        </div>
+        <pre class="code"><span class="c"># 能量回馈变流器 · 硬件规格</span>
+<span class="k">topology</span>  = DC-AC 逆变 + AC-DC 整流回馈
+<span class="k">output</span>    = 三相 · 50Hz · 32V · 2A
+<span class="k">thd</span>       = &lt; 0.3%
+<span class="k">bus</span>       = 60V · 开关 10kHz
+<span class="k">filter</span>    = 470µH + 2.2µF
+<span class="k">boards</span>    = 三相逆变板 + EMI 板 + 控制板</pre>
+        <div class="project-links">
+          <a class="btn btn-primary btn-sm" href="https://github.com/wuzhangyu">GitHub →</a>
+          <a class="btn btn-ghost btn-sm" href="#contact">Demo</a>
+        </div>
+      </div>
+    </article>
+
+    <!-- 项目网格 -->
+    <div class="project-grid">
+
+      <!-- 项目 2 · SST -->
+      <article class="project project-card">
+        <div class="project-media">
+          <svg viewBox="0 0 320 170" class="fig" role="img" aria-label="级联多电平拓扑示意">
+            <rect x="0" y="0" width="320" height="170" fill="#0c0d0f"/>
+            <g fill="#17181b" stroke="#5e6ad2" stroke-width="1.5">
+              <rect x="24" y="28" width="52" height="30" rx="3"/><rect x="24" y="70" width="52" height="30" rx="3"/><rect x="24" y="112" width="52" height="30" rx="3"/>
+              <rect x="136" y="28" width="52" height="30" rx="3"/><rect x="136" y="70" width="52" height="30" rx="3"/><rect x="136" y="112" width="52" height="30" rx="3"/>
+              <rect x="248" y="28" width="52" height="30" rx="3"/><rect x="248" y="70" width="52" height="30" rx="3"/><rect x="248" y="112" width="52" height="30" rx="3"/>
+            </g>
+            <text x="50" y="48" fill="#d0d6e0" font-size="10" text-anchor="middle" font-family="monospace">17L</text>
+            <text x="162" y="48" fill="#d0d6e0" font-size="10" text-anchor="middle" font-family="monospace">T-NPC</text>
+            <text x="274" y="48" fill="#d0d6e0" font-size="10" text-anchor="middle" font-family="monospace">QuNPC</text>
+            <g stroke="#3e4046" stroke-width="1" fill="none"><path d="M76 43 H136 M188 43 H248 M76 85 H136 M188 85 H248 M76 127 H136 M188 127 H248"/></g>
+          </svg>
+        </div>
+        <div class="project-body">
+          <div class="project-top"><span class="project-idx">02</span><span class="project-tagline">Research · 电力电子变压器</span></div>
+          <h3 class="project-title">混合级联多电平 SST 前级预研</h3>
+          <p class="project-desc zh">电力电子变压器前级拓扑仿真：17 电平、T-NPC 三电平、准 NPC 四电平。课题组成员，负责 Simulink 仿真建模。</p>
+          <div class="tags"><span>Simulink</span><span>Multilevel</span><span>Topology</span></div>
+          <pre class="code"><span class="c"># 拓扑仿真对象</span>
+<span class="k">17-level</span>   每相 4×5 电平子模块
+<span class="k">T-NPC</span>      三电平 · 1200V + 600V
+<span class="k">QuNPC</span>      四电平 · 2.2kV → 3.3kV</pre>
+          <div class="project-links"><a class="btn btn-ghost btn-sm" href="https://github.com/wuzhangyu">GitHub →</a></div>
+        </div>
+      </article>
+
+      <!-- 项目 3 · PLC -->
+      <article class="project project-card">
+        <div class="project-media">
+          <svg viewBox="0 0 320 170" class="fig" role="img" aria-label="梯形图示意">
+            <rect x="0" y="0" width="320" height="170" fill="#0c0d0f"/>
+            <g stroke="#3e4046" stroke-width="1.5" fill="none"><path d="M30 40 V120"/><path d="M290 40 V120"/></g>
+            <g>
+              <rect x="60" y="44" width="22" height="26" rx="2" fill="#17181b" stroke="#22d3ee" stroke-width="1.5"/>
+              <text x="71" y="61" fill="#22d3ee" font-size="10" text-anchor="middle" font-family="monospace">X0</text>
+              <rect x="110" y="44" width="22" height="26" rx="2" fill="#17181b" stroke="#22d3ee" stroke-width="1.5"/>
+              <text x="121" y="61" fill="#22d3ee" font-size="10" text-anchor="middle" font-family="monospace">X1</text>
+              <circle cx="180" cy="57" r="13" fill="#17181b" stroke="#7170ff" stroke-width="1.5"/>
+              <text x="180" y="61" fill="#7170ff" font-size="10" text-anchor="middle" font-family="monospace">Y0</text>
+            </g>
+            <g stroke="#3e4046" stroke-width="1.5" fill="none"><path d="M30 57 H60 M82 57 H110 M132 57 H167 M193 57 H290"/></g>
+            <text x="160" y="140" fill="#8a8f98" font-size="10" text-anchor="middle" font-family="monospace">梯形图 · Ladder Logic</text>
+          </svg>
+        </div>
+        <div class="project-body">
+          <div class="project-top"><span class="project-idx">03</span><span class="project-tagline">Industrial · 实习项目</span></div>
+          <h3 class="project-title">三菱 Q 系列 PLC 产线程序</h3>
+          <p class="project-desc zh">独立编写 13 类产线程序（电机正反转、传送带分点控制等），KUKA 机器人示教联调，并修复程序互锁 Bug。</p>
+          <div class="tags"><span>PLC</span><span>KUKA</span><span>Ladder</span></div>
+          <pre class="code"><span class="c">; 互锁逻辑（示意）</span>
+X0 电机正转 ──|/|── Y1 反转线圈
+X1 电机反转 ──|/|── Y0 正转线圈
+<span class="c">; 正反转互锁，防止误动作</span></pre>
+          <div class="project-links"><a class="btn btn-ghost btn-sm" href="https://github.com/wuzhangyu">GitHub →</a></div>
+        </div>
+      </article>
+
+      <!-- 项目 4 · MCM -->
+      <article class="project project-card">
+        <div class="project-media">
+          <svg viewBox="0 0 320 170" class="fig" role="img" aria-label="网球势头预测曲线">
+            <rect x="0" y="0" width="320" height="170" fill="#0c0d0f"/>
+            <g stroke="#2c2f36" stroke-width="1"><line x1="30" y1="140" x2="290" y2="140"/><line x1="30" y1="30" x2="30" y2="140"/></g>
+            <polyline points="40,120 80,100 110,108 150,72 190,80 230,50 270,40" fill="none" stroke="#7170ff" stroke-width="2"/>
+            <circle cx="230" cy="50" r="4" fill="#22d3ee"/>
+            <text x="250" y="44" fill="#22d3ee" font-size="9" font-family="monospace">pred</text>
+            <text x="150" y="158" fill="#8a8f98" font-size="10" text-anchor="middle" font-family="monospace">势头曲线 · momentum</text>
+          </svg>
+        </div>
+        <div class="project-body">
+          <div class="project-top"><span class="project-idx">04</span><span class="project-tagline">MCM 2024 · 美赛 C 题</span></div>
+          <h3 class="project-title">网球势头预测</h3>
+          <p class="project-desc zh">队长，负责 EDA 与随机森林 + LSTM 预测（第三问）。Python + TensorFlow，代码整理为 1–5 流水线。</p>
+          <div class="tags"><span>Python</span><span>TensorFlow</span><span>ML</span></div>
+          <pre class="code"><span class="c"># 网球势头预测 · 随机森林</span>
+<span class="k">from</span> sklearn.ensemble <span class="k">import</span> <span class="f">RandomForestRegressor</span>
+<span class="k">from</span> sklearn.model_selection <span class="k">import</span> train_test_split
+
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y, test_size=<span class="n">0.2</span>, random_state=<span class="n">42</span>)
+
+model = <span class="f">RandomForestRegressor</span>(
+    n_estimators=<span class="n">300</span>, max_depth=<span class="n">12</span>)
+model.<span class="f">fit</span>(X_train, y_train)
+importance = model.feature_importances_</pre>
+          <div class="project-links"><a class="btn btn-ghost btn-sm" href="https://github.com/wuzhangyu">GitHub →</a></div>
+        </div>
+      </article>
+
+      <!-- 项目 5 · FPGA -->
+      <article class="project project-card">
+        <div class="project-media">
+          <svg viewBox="0 0 320 170" class="fig" role="img" aria-label="贪吃蛇网格">
+            <rect x="0" y="0" width="320" height="170" fill="#0c0d0f"/>
+            <g stroke="#26282d" stroke-width="1">
+              <line x1="40" y1="40" x2="280" y2="40"/><line x1="40" y1="70" x2="280" y2="70"/><line x1="40" y1="100" x2="280" y2="100"/><line x1="40" y1="130" x2="280" y2="130"/>
+              <line x1="40" y1="40" x2="40" y2="130"/><line x1="100" y1="40" x2="100" y2="130"/><line x1="160" y1="40" x2="160" y2="130"/><line x1="220" y1="40" x2="220" y2="130"/><line x1="280" y1="40" x2="280" y2="130"/>
+            </g>
+            <g fill="#7170ff">
+              <rect x="70" y="55" width="30" height="30"/><rect x="100" y="55" width="30" height="30"/><rect x="130" y="55" width="30" height="30"/>
+            </g>
+            <circle cx="205" cy="70" r="7" fill="#22d3ee"/>
+          </svg>
+        </div>
+        <div class="project-body">
+          <div class="project-top"><span class="project-idx">05</span><span class="project-tagline">Coursework · FPGA</span></div>
+          <h3 class="project-title">VGA 贪吃蛇</h3>
+          <p class="project-desc zh">DE2-115 开发板，Verilog 实现，约 2800 逻辑单元。</p>
+          <div class="tags"><span>Verilog</span><span>FPGA</span></div>
+          <pre class="code"><span class="c">// VGA 贪吃蛇 · 移动与碰撞（示意）</span>
+<span class="k">always</span> @(<span class="k">posedge</span> clk) <span class="k">begin</span>
+    <span class="k">if</span> (frame_tick) <span class="k">begin</span>
+        head &lt;= next_head;
+        <span class="k">if</span> (next_head == food) <span class="k">begin</span>
+            len &lt;= len + <span class="n">1</span>;  food &lt;= random_cell();
+        <span class="k">end else if</span> (is_body(next_head)) <span class="k">begin</span>
+            state &lt;= DEAD;  <span class="c">// 撞到自己</span>
+        <span class="k">end</span>
+    <span class="k">end</span>
+<span class="k">end</span></pre>
+          <div class="project-links"><a class="btn btn-ghost btn-sm" href="https://github.com/wuzhangyu">GitHub →</a></div>
+        </div>
+      </article>
+
+      <!-- 项目 6 · STC15 -->
+      <article class="project project-card">
+        <div class="project-media">
+          <svg viewBox="0 0 320 170" class="fig" role="img" aria-label="8051 外设示意">
+            <rect x="0" y="0" width="320" height="170" fill="#0c0d0f"/>
+            <rect x="120" y="50" width="80" height="70" rx="6" fill="#17181b" stroke="#5e6ad2" stroke-width="1.5"/>
+            <text x="160" y="80" fill="#f7f8f8" font-size="11" text-anchor="middle" font-family="monospace">STC15</text>
+            <text x="160" y="96" fill="#8a8f98" font-size="9" text-anchor="middle" font-family="monospace">8051 MCU</text>
+            <g stroke="#3e4046" stroke-width="1.2" fill="none">
+              <path d="M120 60 H70 M120 80 H40 M120 100 H70 M200 60 H250 M200 80 H280 M200 100 H250"/>
+            </g>
+            <g fill="#22d3ee" font-size="8" font-family="monospace">
+              <text x="30" y="78" text-anchor="end">I2C</text><text x="30" y="98" text-anchor="end">LCD</text>
+              <text x="290" y="78" text-anchor="start">IR</text><text x="290" y="98" text-anchor="start">Key</text>
+            </g>
+          </svg>
+        </div>
+        <div class="project-body">
+          <div class="project-top"><span class="project-idx">06</span><span class="project-tagline">Embedded · 8051</span></div>
+          <h3 class="project-title">STC15 外设驱动</h3>
+          <p class="project-desc zh">数码管、按键、I2C-EEPROM、红外、LCD1602，Keil C51 开发。</p>
+          <div class="tags"><span>C51</span><span>8051</span><span>Embedded</span></div>
+          <pre class="code"><span class="c">/* STC15 · I2C EEPROM 写入（示意） */</span>
+<span class="k">void</span> <span class="f">eeprom_write</span>(<span class="k">uint8_t</span> addr, <span class="k">uint8_t</span> dat) {
+    <span class="f">i2c_start</span>();
+    <span class="f">i2c_byte</span>(<span class="n">0xA0</span>);      <span class="c">// 器件地址 + 写</span>
+    <span class="f">i2c_byte</span>(addr);
+    <span class="f">i2c_byte</span>(dat);
+    <span class="f">i2c_stop</span>();
+}</pre>
+          <div class="project-links"><a class="btn btn-ghost btn-sm" href="https://github.com/wuzhangyu">GitHub →</a></div>
+        </div>
+      </article>
+
+    </div>
   </section>
 
-  <section class="reveal" id="contact">
-    <p class="sec-label">07 / Contact</p>
-    <h2>Reach me.</h2>
-    <p>Open to hardware, power electronics and electrical roles — or just a chat about converters. Email is fastest.</p>
-
-    <div class="contact">
-      <a class="contact-row" href="https://github.com/wuzhangyu">
-        <span class="k">github</span><span class="v">@wuzhangyu</span><span class="d">code · projects · follow</span>
-      </a>
-      <a class="contact-row" id="email-link" href="#contact">
-        <span class="k">email</span><span class="v" id="email-text">…</span><span class="d">roles · projects · chat</span>
-      </a>
-      <a class="contact-row" href="#contact">
-        <span class="k">location</span><span class="v">Guangzhou · Shenzhen</span><span class="d">available · Class of 2027</span>
-      </a>
+  <!-- ══════════ CONTACT / FOOTER ══════════ -->
+  <section class="section section-contact" id="contact">
+    <div class="contact-inner">
+      <p class="sec-label">03 · Contact</p>
+      <h2 class="sec-title contact-title">保持联系 <span class="en">— say hi</span></h2>
+      <p class="contact-desc zh">对硬件、电力电子或电气岗位开放，也欢迎聊聊变换器。邮件最快。</p>
+      <div class="contact-links">
+        <a class="contact-link" href="mailto:colorai@hnu.edu.cn">
+          <span class="contact-k">Email</span><span class="contact-v">colorai@hnu.edu.cn</span>
+        </a>
+        <a class="contact-link" href="https://github.com/wuzhangyu">
+          <span class="contact-k">GitHub</span><span class="contact-v">@wuzhangyu</span>
+        </a>
+        <div class="contact-link">
+          <span class="contact-k">Location</span><span class="contact-v">广州 · 深圳 · 2027 届</span>
+        </div>
+      </div>
     </div>
   </section>
 
 </main>
 
-<footer>
-  <div class="wrap">
-    <div class="links">
-      <a href="#about">about</a>
-      <a href="#focus">focus</a>
-      <a href="#projects">projects</a>
-      <a href="#skills">skills</a>
-      <a href="https://github.com/wuzhangyu">github</a>
-      <a href="#contact">contact</a>
+<footer class="footer">
+  <div class="footer-inner">
+    <span>© 2026 Colorai</span>
+    <span class="footer-note">湖南大学 · 电气工程 · 无追踪 · 无 cookie</span>
+    <div class="footer-links">
+      <a href="https://github.com/wuzhangyu">GitHub</a>
+      <a href="mailto:colorai@hnu.edu.cn">Email</a>
     </div>
-    <div>Colorai · Hunan University · Electrical Engineering · Class of 2027 · no tracking · no cookies</div>
   </div>
 </footer>
 
