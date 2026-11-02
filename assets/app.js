@@ -223,30 +223,6 @@
     });
   }
 
-  /* ═══════════ WORLD MAP TOOLTIP ═══════════ */
-  function setupMapTip() {
-    var tip = document.getElementById("map-tip");
-    var cities = document.querySelectorAll("#world-map .city");
-    if (!tip || !cities.length) return;
-    cities.forEach(function (c) {
-      c.addEventListener("mouseenter", function () {
-        var name = c.getAttribute("data-name");
-        var lat = parseFloat(c.getAttribute("data-lat"));
-        var lng = parseFloat(c.getAttribute("data-lng"));
-        var ns = lat >= 0 ? "N" : "S";
-        var ew = lng >= 0 ? "E" : "W";
-        tip.innerHTML = '<span class="n">' + name + '</span><span class="c">' +
-          Math.abs(lat).toFixed(2) + '\u00b0' + ns + ', ' + Math.abs(lng).toFixed(2) + '\u00b0' + ew + '</span>';
-        tip.classList.add("show");
-      });
-      c.addEventListener("mousemove", function (e) {
-        tip.style.left = (e.clientX + 16) + "px";
-        tip.style.top = (e.clientY + 16) + "px";
-      });
-      c.addEventListener("mouseleave", function () { tip.classList.remove("show"); });
-    });
-  }
-
   /* run everything */
   pangu(document.body);
   setupReveal();
@@ -254,5 +230,4 @@
   setupScrollSpy();
   setupFilter();
   setupCopy();
-  setupMapTip();
 })();
