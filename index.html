@@ -130,7 +130,7 @@
       <div class="bento-card bento-interest">
         <span class="bento-k">Interests</span>
         <h3 class="bento-title">兴趣与关注</h3>
-        <p class="bento-desc zh">电力电子拓扑、多电平变换器、嵌入式硬件、开源工具链，以及「从仿真到实物」的完整工程链路。</p>
+        <p class="bento-desc zh">电力电子拓扑、多电平变换器、嵌入式硬件、开源工具链，以及「从仿真到实物」的完整工程链路。业余自学日语（JLPT N2）。</p>
       </div>
 
       <!-- 探索中 -->
@@ -364,21 +364,25 @@ importance = model.feature_importances_</pre>
         </div>
         <div class="project-body">
           <div class="project-top"><span class="project-idx">05</span><span class="project-tagline">Coursework · FPGA</span><span class="project-status alt">课程设计</span></div>
-          <div class="project-meta">独立完成 · Verilog · ~2800 逻辑单元</div>
+          <div class="project-meta">独立完成 · Verilog · DE2-115 · ~2800 LE</div>
           <h3 class="project-title">VGA 贪吃蛇</h3>
-          <p class="project-desc zh">DE2-115 开发板，Verilog 实现，约 2800 逻辑单元。</p>
+          <p class="project-desc zh">DE2-115 开发板，Verilog 实现。640×480@60Hz VGA 显示，分四个模块（游戏主逻辑 / VGA 时序驱动 / 屏幕分数显示 / 七段译码），蛇身最长 128 节、吃豆自动加速、伪随机生成与碰撞检测。</p>
           <div class="tags"><span>Verilog</span><span>FPGA</span></div>
-          <pre class="code"><span class="c">// VGA 贪吃蛇 · 移动与碰撞（示意）</span>
-<span class="k">always</span> @(<span class="k">posedge</span> clk) <span class="k">begin</span>
-    <span class="k">if</span> (frame_tick) <span class="k">begin</span>
-        head &lt;= next_head;
-        <span class="k">if</span> (next_head == food) <span class="k">begin</span>
-            len &lt;= len + <span class="n">1</span>;  food &lt;= random_cell();
-        <span class="k">end else if</span> (is_body(next_head)) <span class="k">begin</span>
-            state &lt;= DEAD;  <span class="c">// 撞到自己</span>
-        <span class="k">end</span>
-    <span class="k">end</span>
-<span class="k">end</span></pre>
+          <pre class="code"><span class="c">// VGA 驱动 · 640×480@60Hz 时序（真实代码）</span>
+<span class="k">module</span> vga_driver(<span class="k">input</span> clk_25m, <span class="k">input</span> rst_n,
+                  <span class="k">output</span> vga_hs, <span class="k">output</span> vga_vs,
+                  <span class="k">output</span> [<span class="n">9</span>:<span class="n">0</span>] pos_x, pos_y);
+    <span class="k">parameter</span> H_ACTIVE=<span class="n">640</span>, H_SYNC=<span class="n">96</span>, H_TOTAL=<span class="n">800</span>;
+    <span class="k">parameter</span> V_ACTIVE=<span class="n">480</span>, V_SYNC=<span class="n">2</span>,  V_TOTAL=<span class="n">525</span>;
+    <span class="k">reg</span> [<span class="n">9</span>:<span class="n">0</span>] h_cnt, v_cnt;
+    <span class="k">always</span> @(<span class="k">posedge</span> clk_25m <span class="k">or negedge</span> rst_n)
+        <span class="k">if</span>(!rst_n) h_cnt &lt;= <span class="n">0</span>;
+        <span class="k">else if</span>(h_cnt == H_TOTAL-<span class="n">1</span>) h_cnt &lt;= <span class="n">0</span>;
+        <span class="k">else</span> h_cnt &lt;= h_cnt + <span class="n">1</span>;
+    <span class="k">assign</span> vga_hs = !(h_cnt &gt;= H_ACTIVE+H_FRONT
+        &amp;&amp; h_cnt &lt; H_ACTIVE+H_FRONT+H_SYNC);
+    <span class="k">assign</span> pos_x = (h_cnt &lt; H_ACTIVE) ? h_cnt : <span class="n">10</span>'d0;
+<span class="k">endmodule</span></pre>
           <div class="project-links"><a class="btn btn-ghost btn-sm" href="mailto:colorai@hnu.edu.cn">详情 →</a></div>
         </div>
       </article>
