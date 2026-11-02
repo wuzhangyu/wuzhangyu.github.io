@@ -63,6 +63,7 @@
       <div class="hero-tags">
         <span>电力电子</span><span>电源</span><span>硬件</span><span>PCB</span><span>嵌入式</span>
       </div>
+      <div class="hero-status"><span class="dot"></span> Open to hardware &amp; power electronics roles · 2027 届</div>
 
       <div class="hero-actions">
         <a class="btn btn-primary" href="#projects">查看项目 <span class="arrow">→</span></a>
@@ -137,6 +138,7 @@
     <div class="section-head">
       <p class="sec-label">02 · Featured Projects</p>
       <h2 class="sec-title">精选项目 <span class="en">— things I built</span></h2>
+      <p class="sec-note">项目代码与报告大多未公开，可邮件索取详情。</p>
     </div>
 
     <!-- 项目 1 · 电赛（旗舰，全宽） -->
@@ -184,7 +186,9 @@
         <div class="project-top">
           <span class="project-idx">01</span>
           <span class="project-tagline">2025 · 全国大学生电子设计竞赛 · A 题</span>
+          <span class="project-status">实物 · 已调通</span>
         </div>
+        <div class="project-meta">硬件 · 三相逆变板 + EMI 板 + 控制板 · 独立完成</div>
         <h3 class="project-title">能量回馈变流器 <span class="en">Regenerative Converter</span></h3>
         <p class="project-desc zh">
           DC-AC 逆变 + AC-DC 整流回馈，三相 50Hz / 32V / 2A，THD 低于 0.3%，电源功率低于 5W。完成三相逆变板、EMI 板与控制板，调出实物硬件。母线 60V、开关频率 10kHz。
@@ -200,8 +204,7 @@
 <span class="k">filter</span>    = 470µH + 2.2µF
 <span class="k">boards</span>    = 三相逆变板 + EMI 板 + 控制板</pre>
         <div class="project-links">
-          <a class="btn btn-primary btn-sm" href="https://github.com/wuzhangyu">GitHub →</a>
-          <a class="btn btn-ghost btn-sm" href="#contact">Demo</a>
+          <a class="btn btn-primary btn-sm" href="mailto:colorai@hnu.edu.cn">详情咨询 →</a>
         </div>
       </div>
     </article>
@@ -226,7 +229,8 @@
           </svg>
         </div>
         <div class="project-body">
-          <div class="project-top"><span class="project-idx">02</span><span class="project-tagline">Research · 电力电子变压器</span></div>
+          <div class="project-top"><span class="project-idx">02</span><span class="project-tagline">Research · 电力电子变压器</span><span class="project-status alt">仿真</span></div>
+          <div class="project-meta">课题组成员 · 负责 Simulink 仿真建模</div>
           <h3 class="project-title">混合级联多电平 SST 前级预研</h3>
           <p class="project-desc zh">电力电子变压器前级拓扑仿真：17 电平、T-NPC 三电平、准 NPC 四电平。课题组成员，负责 Simulink 仿真建模。</p>
           <div class="tags"><span>Simulink</span><span>Multilevel</span><span>Topology</span></div>
@@ -234,7 +238,7 @@
 <span class="k">17-level</span>   每相 4×5 电平子模块
 <span class="k">T-NPC</span>      三电平 · 1200V + 600V
 <span class="k">QuNPC</span>      四电平 · 2.2kV → 3.3kV</pre>
-          <div class="project-links"><a class="btn btn-ghost btn-sm" href="https://github.com/wuzhangyu">GitHub →</a></div>
+          <div class="project-links"><a class="btn btn-ghost btn-sm" href="mailto:colorai@hnu.edu.cn">详情 →</a></div>
         </div>
       </article>
 
@@ -257,7 +261,8 @@
           </svg>
         </div>
         <div class="project-body">
-          <div class="project-top"><span class="project-idx">03</span><span class="project-tagline">Industrial · 实习项目</span></div>
+          <div class="project-top"><span class="project-idx">03</span><span class="project-tagline">Industrial · 实习项目</span><span class="project-status">已落地</span></div>
+          <div class="project-meta">独立完成 · 13 类产线程序 + KUKA 联调</div>
           <h3 class="project-title">三菱 Q 系列 PLC 产线程序</h3>
           <p class="project-desc zh">独立编写 13 类产线程序（电机正反转、传送带分点控制等），KUKA 机器人示教联调，并修复程序互锁 Bug。</p>
           <div class="tags"><span>PLC</span><span>KUKA</span><span>Ladder</span></div>
@@ -265,7 +270,7 @@
 X0 电机正转 ──|/|── Y1 反转线圈
 X1 电机反转 ──|/|── Y0 正转线圈
 <span class="c">; 正反转互锁，防止误动作</span></pre>
-          <div class="project-links"><a class="btn btn-ghost btn-sm" href="https://github.com/wuzhangyu">GitHub →</a></div>
+          <div class="project-links"><a class="btn btn-ghost btn-sm" href="mailto:colorai@hnu.edu.cn">详情 →</a></div>
         </div>
       </article>
 
@@ -282,7 +287,8 @@ X1 电机反转 ──|/|── Y0 正转线圈
           </svg>
         </div>
         <div class="project-body">
-          <div class="project-top"><span class="project-idx">04</span><span class="project-tagline">MCM 2024 · 美赛 C 题</span></div>
+          <div class="project-top"><span class="project-idx">04</span><span class="project-tagline">MCM 2024 · 美赛 C 题</span><span class="project-status alt">竞赛</span></div>
+          <div class="project-meta">队长 · 负责 EDA 与随机森林 + LSTM（第三问）</div>
           <h3 class="project-title">网球势头预测</h3>
           <p class="project-desc zh">队长，负责 EDA 与随机森林 + LSTM 预测（第三问）。Python + TensorFlow，代码整理为 1–5 流水线。</p>
           <div class="tags"><span>Python</span><span>TensorFlow</span><span>ML</span></div>
@@ -297,7 +303,7 @@ model = <span class="f">RandomForestRegressor</span>(
     n_estimators=<span class="n">300</span>, max_depth=<span class="n">12</span>)
 model.<span class="f">fit</span>(X_train, y_train)
 importance = model.feature_importances_</pre>
-          <div class="project-links"><a class="btn btn-ghost btn-sm" href="https://github.com/wuzhangyu">GitHub →</a></div>
+          <div class="project-links"><a class="btn btn-ghost btn-sm" href="mailto:colorai@hnu.edu.cn">详情 →</a></div>
         </div>
       </article>
 
@@ -317,7 +323,8 @@ importance = model.feature_importances_</pre>
           </svg>
         </div>
         <div class="project-body">
-          <div class="project-top"><span class="project-idx">05</span><span class="project-tagline">Coursework · FPGA</span></div>
+          <div class="project-top"><span class="project-idx">05</span><span class="project-tagline">Coursework · FPGA</span><span class="project-status alt">课程设计</span></div>
+          <div class="project-meta">独立完成 · Verilog · ~2800 逻辑单元</div>
           <h3 class="project-title">VGA 贪吃蛇</h3>
           <p class="project-desc zh">DE2-115 开发板，Verilog 实现，约 2800 逻辑单元。</p>
           <div class="tags"><span>Verilog</span><span>FPGA</span></div>
@@ -332,7 +339,7 @@ importance = model.feature_importances_</pre>
         <span class="k">end</span>
     <span class="k">end</span>
 <span class="k">end</span></pre>
-          <div class="project-links"><a class="btn btn-ghost btn-sm" href="https://github.com/wuzhangyu">GitHub →</a></div>
+          <div class="project-links"><a class="btn btn-ghost btn-sm" href="mailto:colorai@hnu.edu.cn">详情 →</a></div>
         </div>
       </article>
 
@@ -354,7 +361,8 @@ importance = model.feature_importances_</pre>
           </svg>
         </div>
         <div class="project-body">
-          <div class="project-top"><span class="project-idx">06</span><span class="project-tagline">Embedded · 8051</span></div>
+          <div class="project-top"><span class="project-idx">06</span><span class="project-tagline">Embedded · 8051</span><span class="project-status alt">课程设计</span></div>
+          <div class="project-meta">独立完成 · Keil C51</div>
           <h3 class="project-title">STC15 外设驱动</h3>
           <p class="project-desc zh">数码管、按键、I2C-EEPROM、红外、LCD1602，Keil C51 开发。</p>
           <div class="tags"><span>C51</span><span>8051</span><span>Embedded</span></div>
@@ -366,7 +374,7 @@ importance = model.feature_importances_</pre>
     <span class="f">i2c_byte</span>(dat);
     <span class="f">i2c_stop</span>();
 }</pre>
-          <div class="project-links"><a class="btn btn-ghost btn-sm" href="https://github.com/wuzhangyu">GitHub →</a></div>
+          <div class="project-links"><a class="btn btn-ghost btn-sm" href="mailto:colorai@hnu.edu.cn">详情 →</a></div>
         </div>
       </article>
 
@@ -378,7 +386,7 @@ importance = model.feature_importances_</pre>
     <div class="contact-inner">
       <p class="sec-label">03 · Contact</p>
       <h2 class="sec-title contact-title">保持联系 <span class="en">— say hi</span></h2>
-      <p class="contact-desc zh">对硬件、电力电子或电气岗位开放，也欢迎聊聊变换器。邮件最快。</p>
+      <p class="contact-desc zh">对硬件、电力电子或电气岗位开放，也欢迎聊聊变换器。邮件最快；项目报告与代码可邮件索取。</p>
       <div class="contact-links">
         <a class="contact-link" href="mailto:colorai@hnu.edu.cn">
           <span class="contact-k">Email</span><span class="contact-v">colorai@hnu.edu.cn</span>
