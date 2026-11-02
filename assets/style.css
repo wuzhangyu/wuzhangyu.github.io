@@ -274,6 +274,23 @@ a { color: inherit; text-decoration: none; }
 .travel-dest { font-family: var(--display); font-size: 21px; font-weight: 600; letter-spacing: -0.02em; color: var(--text); margin: 0 0 6px; }
 .travel-desc { font-size: 13px; color: var(--text-3); margin: 0; line-height: 1.7; }
 
+/* ══════════ WORLD MAP · city lights ══════════ */
+.map-wrap { max-width: 960px; margin: 0 auto 34px; }
+.map-card { position: relative; background: radial-gradient(ellipse at 50% 35%, #0a1424 0%, #05080f 72%); border: 1px solid var(--border-subtle); border-radius: 14px; overflow: hidden; }
+#world-map { display: block; width: 100%; height: auto; }
+#world-map .land circle { fill: rgba(140,160,205,0.11); }
+.route { fill: none; stroke: rgba(34,211,238,.28); stroke-width: 1.2; stroke-dasharray: 3 6; }
+.city { cursor: pointer; }
+.city-halo { fill: rgba(34,211,238,.14); }
+.city-core { fill: #6ee7f9; transition: fill .15s ease; }
+.city:hover .city-halo { fill: rgba(34,211,238,.4); }
+.city:hover .city-core { fill: #fff; }
+.map-caption { font-family: var(--font-mono); font-size: 12px; color: var(--text-4); text-align: center; margin: 14px 0 0; letter-spacing: .03em; }
+.map-tip { position: fixed; z-index: 60; pointer-events: none; background: rgba(12,14,18,.96); border: 1px solid rgba(113,112,255,.35); border-radius: 8px; padding: 8px 13px; font-family: var(--font-mono); font-size: 12px; color: var(--text); box-shadow: 0 8px 24px rgba(0,0,0,.55); opacity: 0; transform: translateY(4px); transition: opacity .15s ease, transform .15s ease; white-space: nowrap; }
+.map-tip.show { opacity: 1; transform: none; }
+.map-tip .n { color: var(--cyan); font-weight: 600; }
+.map-tip .c { color: var(--text-3); margin-left: 7px; }
+
 /* ══════════ PROJECTS ══════════ */
 #projects { overflow: hidden; }
 #projects::before {
