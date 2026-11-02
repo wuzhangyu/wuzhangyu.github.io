@@ -227,21 +227,22 @@
           <span class="project-tagline">2025 · 全国大学生电子设计竞赛 · A 题</span>
           <span class="project-status">实物 · 已调通</span>
         </div>
-        <div class="project-meta">硬件 · 三相逆变板 + EMI 板 + 控制板 · 独立完成</div>
+        <div class="project-meta">硬件 · EMI 板 + 三相逆变主板 · PCB 设计与板级调试</div>
         <h3 class="project-title">能量回馈变流器 <span class="en">Regenerative Converter</span></h3>
         <p class="project-desc zh">
-          DC-AC 逆变 + AC-DC 整流回馈，三相 50Hz / 32V / 2A，THD 低于 0.3%，电源功率低于 5W。完成三相逆变板、EMI 板与控制板，调出实物硬件。母线 60V、开关频率 10kHz。
+          能量回馈变流器（DC-AC 逆变 + AC-DC 整流回馈），三相 50Hz / 32V / 2A，THD 低于 0.3%，回馈时电源功率低于 5W。母线 60V、开关 10kHz、470µH + 2.2µF 滤波（截止频率约 5kHz）。我负责 EMI 板与三相逆变主板的 PCB 设计与板级调试。
         </p>
         <div class="tags">
           <span>Power Electronics</span><span>Simulink</span><span>PCB</span><span>Embedded</span>
         </div>
-        <pre class="code"><span class="c"># 能量回馈变流器 · 硬件规格</span>
-<span class="k">topology</span>  = DC-AC 逆变 + AC-DC 整流回馈
-<span class="k">output</span>    = 三相 · 50Hz · 32V · 2A
-<span class="k">thd</span>       = &lt; 0.3%
-<span class="k">bus</span>       = 60V · 开关 10kHz
-<span class="k">filter</span>    = 470µH + 2.2µF
-<span class="k">boards</span>    = 三相逆变板 + EMI 板 + 控制板</pre>
+        <pre class="code"><span class="c"># 关键器件 · 位号级</span>
+<span class="k">power</span>    Q1~Q6  100V / 4.2mΩ MOSFET
+<span class="k">driver</span>   U1~U3  UCC21520 · 隔离双通道
+<span class="k">gate</span>     6.8Ω 门极 + SS34A 关断 + RS1JG 自举
+<span class="k">current</span>  CT1/2  CKSR15 霍尔 · 15A（7 倍裕量）
+<span class="k">voltage</span>  PT1/2  ZMPT101B · 33k / 660Ω
+<span class="k">aux</span>      U4     LM5017 · 母线自供电
+<span class="k">emi</span>      三相共模电感 + X2 安规电容</pre>
         <div class="project-links">
           <a class="btn btn-primary btn-sm" href="mailto:colorai@hnu.edu.cn">详情咨询 →</a>
         </div>
@@ -271,12 +272,12 @@
           <div class="project-top"><span class="project-idx">02</span><span class="project-tagline">Research · 电力电子变压器</span><span class="project-status alt">仿真</span></div>
           <div class="project-meta">课题组成员 · 负责 Simulink 仿真建模</div>
           <h3 class="project-title">混合级联多电平 SST 前级预研</h3>
-          <p class="project-desc zh">电力电子变压器前级拓扑仿真：17 电平、T-NPC 三电平、准 NPC 四电平。课题组成员，负责 Simulink 仿真建模。</p>
+          <p class="project-desc zh">固态变压器（SST）前级预研。级联多电平的 cell 一路升级：H 桥 17 电平（约 144 IGBT 选型做不下来）→ T-NPC 三电平（上下管不均）→ 准 NPC 四电平（3300V + 1700V）。我负责 Simulink 建模与仿真：PI 电压外环 + 准 PR 电流内环 + 层叠载波 PWM。</p>
           <div class="tags"><span>Simulink</span><span>Multilevel</span><span>Topology</span></div>
-          <pre class="code"><span class="c"># 拓扑仿真对象</span>
-<span class="k">17-level</span>   每相 4×5 电平子模块
-<span class="k">T-NPC</span>      三电平 · 1200V + 600V
-<span class="k">QuNPC</span>      四电平 · 2.2kV → 3.3kV</pre>
+          <pre class="code"><span class="c"># cell 演进 · 为什么换</span>
+<span class="k">H桥</span>     17 电平 · ~144 IGBT · 选型做不下
+<span class="k">T-NPC</span>   三电平 · 1200V+600V · 上下管不均
+<span class="k">QuNPC</span>   四电平 · 3300V+1700V · 浮地驱动 8→3 套</pre>
           <div class="project-links"><a class="btn btn-ghost btn-sm" href="mailto:colorai@hnu.edu.cn">详情 →</a></div>
         </div>
       </article>
