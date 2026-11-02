@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Colorai — 电力电子与硬件 · Power Electronics &amp; Hardware</title>
-<meta name="description" content="Colorai — 湖南大学电气工程本科生，专注电力电子与硬件，从仿真做到实物。Electrical engineering undergrad at Hunan University. From simulation to silicon.">
+<title>Colorai · 电力电子与硬件 · Power Electronics &amp; Hardware</title>
+<meta name="description" content="Colorai（木纹刀 / 岉雨）— 湖南大学电气工程本科生，准电力/硬件工程师，专注电力电子与硬件。从仿真到实物。">
 <meta name="author" content="Colorai">
 <meta name="theme-color" content="#08090a">
 <meta name="color-scheme" content="dark">
 <link rel="canonical" href="https://wuzhangyu.github.io/">
-<meta property="og:title" content="Colorai — 电力电子与硬件">
-<meta property="og:description" content="湖南大学电气工程本科生（2027 届），专注电力电子与硬件。From simulation to silicon.">
+<meta property="og:title" content="Colorai · 电力电子与硬件">
+<meta property="og:description" content="湖南大学电气工程本科生（2027 届），准电力/硬件工程师。From simulation to silicon.">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Colorai">
 <meta property="og:locale" content="zh_CN">
@@ -23,6 +23,16 @@
 <script src="assets/app.js" defer></script>
 </head>
 <body>
+
+<!-- ══════════ PRELOADER · boot splash ══════════ -->
+<div class="preloader" id="preloader" role="status" aria-label="loading">
+  <div class="preloader-inner">
+    <div class="boot-brand">Colorai · Power-On Self Test</div>
+    <div class="boot-term" id="boot-term"></div>
+    <div class="boot-bar-wrap"><div id="boot-bar"></div></div>
+    <div class="boot-hint">click / press any key to skip</div>
+  </div>
+</div>
 
 <a class="skip" href="#main">跳到正文</a>
 
@@ -49,52 +59,43 @@
 
   <!-- ══════════ HERO ══════════ -->
   <section class="hero">
-    <div class="hero-inner">
+    <div class="hero-inner reveal-stagger">
       <p class="hero-label">Hunan University · Electrical Engineering · Class of 2027</p>
-      <h1 class="hero-title">
-        <span class="zh">从仿真，</span><br>
-        <span class="en">to silicon.</span>
-      </h1>
-      <p class="hero-sub zh">
-        我是 Colorai，湖南大学电气工程及其自动化本科生，专注电力电子与硬件。习惯走完整链路——Simulink 建模、原理图与 PCB、焊接调试，直到板子真正跑起来。
-      </p>
-      <p class="hero-sub en">
-        An EE undergrad who takes power converters from a Simulink model to a soldered, running board.
-      </p>
-
+      <h1 class="hero-title"><span class="zh">从仿真，</span><br><span class="en">to silicon.</span></h1>
+      <p class="hero-alias">Colorai · 木纹刀 / 岉雨</p>
+      <p class="hero-sub zh">我是 Colorai，湖南大学电气工程及其自动化本科生，专注电力电子与硬件。习惯走完整链路——Simulink 建模、原理图与 PCB、焊接调试，直到板子真正跑起来。</p>
+      <p class="hero-sub en">An EE undergrad who takes power converters from a Simulink model to a soldered, running board.</p>
+      <div class="hero-status"><span class="dot"></span> Incoming Engineer @ Dongguan Power Supply Bureau, Guangdong Power Grid · 2027 届</div>
       <div class="hero-tags">
-        <span>电力电子</span><span>电源</span><span>硬件</span><span>PCB</span><span>嵌入式</span>
+        <span>电力电子</span><span>硬件</span><span>PCB</span><span>嵌入式</span><span>DSP</span>
       </div>
-      <div class="hero-status"><span class="dot"></span> Open to hardware &amp; power electronics roles · 2027 届</div>
-
       <div class="hero-actions">
         <a class="btn btn-primary" href="#projects">查看项目 <span class="arrow">→</span></a>
-        <a class="btn btn-ghost" href="https://github.com/wuzhangyu">
-          <svg width="15" height="15" viewBox="0 0 16 16" fill="currentColor"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/></svg>
-          GitHub
-        </a>
+        <a class="btn btn-ghost" href="https://github.com/wuzhangyu">GitHub</a>
         <a class="btn btn-ghost" href="mailto:colorai@hnu.edu.cn">Email</a>
       </div>
     </div>
   </section>
 
-  <!-- ══════════ 序 · PROLOGUE ══════════ -->
-  <div class="prologue">
+  <!-- ══════════ 序 ══════════ -->
+  <div class="prologue reveal-stagger">
     <div class="prologue-inner">
       <span class="prologue-mark">序 · Prologue</span>
       <p>学电气工程之后我逐渐明白：把拓扑画在纸上、在 Simulink 里跑通，和在真实板子上让电流动起来，是完全不同的两回事。我偏爱后者——把仿真，变成一块能跑的板子。</p>
     </div>
   </div>
 
-  <!-- ══════════ ABOUT · BENTO ══════════ -->
+  <!-- ══════════ 01 · ABOUT ══════════ -->
   <section class="section" id="about">
-    <div class="section-head">
-      <p class="sec-label">01 · About Me</p>
+    <div class="section-divider"></div>
+    <div class="section-head reveal-stagger">
+      <span class="sec-label">01 · About Me</span>
+      <span class="sec-watermark">01</span>
       <h2 class="sec-title">关于我 <span class="en">— who I am</span></h2>
     </div>
 
-    <div class="bento">
-      <!-- 教育背景 -->
+    <div class="bento reveal-stagger">
+      <!-- 教育 -->
       <div class="bento-card bento-edu">
         <span class="bento-k">Education</span>
         <h3 class="bento-title">湖南大学 · 电气工程及其自动化</h3>
@@ -104,7 +105,7 @@
           <div class="edu-stat"><b>CET-6</b><span>508 · 口语通过</span></div>
           <div class="edu-stat"><b>方向</b><span>电力电子 · 硬件 · PCB</span></div>
         </div>
-        <p class="bento-note zh">本科毕业直接就业，不考研。目标岗位：电力电子、电源、单板硬件、电气设计。</p>
+        <p class="bento-note zh">本科毕业直接就业，已签约广东电网东莞供电局（2026.10），是一名准电力/硬件工程师。</p>
         <p class="bento-award">获奖：湖南大学奖学金 · 校数学竞赛一等奖 · 挑战杯校赛银奖</p>
       </div>
 
@@ -113,43 +114,54 @@
         <span class="bento-k">Tech Stack</span>
         <h3 class="bento-title">技术栈</h3>
         <div class="chips">
-          <span>电力电子</span><span>Simulink</span><span>PCB</span><span>C / C++</span>
-          <span>Python</span><span>Verilog</span><span>8051</span><span>PLC</span>
-          <span>TensorFlow</span><span>KUKA</span>
+          <span>MATLAB / Simulink</span><span>PSIM</span><span>TI C2000 DSP</span>
+          <span>嘉立创 EDA · PCB</span><span>STC15F2K60S2 汇编</span><span>C / Python</span>
+          <span>Cursor / Ollama</span><span>Verilog</span><span>PLC</span>
         </div>
       </div>
 
-      <!-- 经历 -->
+      <!-- 实习 -->
       <div class="bento-card bento-exp">
         <span class="bento-k">Experience</span>
-        <h3 class="bento-title">广汽埃安 · 智能制造实习</h3>
-        <p class="bento-sub">GAC AION · Internship</p>
-        <p class="bento-desc zh">独立编写 13 类三菱 Q 系列 PLC 产线程序，KUKA 机器人示教调试，并定位修复产线程序互锁 Bug。</p>
+        <h3 class="bento-title">实习与实践</h3>
+        <ul class="bento-list">
+          <li><b>广汽埃安</b> · 智能制造实习 — 三菱 Q 系列 PLC + KUKA 机器人联调</li>
+          <li><b>广东电网惠州供电局</b> · 一线生产实习（2026.08）</li>
+        </ul>
       </div>
 
-      <!-- 兴趣 -->
-      <div class="bento-card bento-interest">
-        <span class="bento-k">Interests</span>
-        <h3 class="bento-title">生活兴趣</h3>
-        <p class="bento-desc zh">摄影（Sony α7C II）· 音乐（CityPop / 爵士 / Live）· ACG 圣地巡礼 · 自学日语（JLPT N2）。</p>
+      <!-- 开源社团 -->
+      <div class="bento-card bento-oss">
+        <span class="bento-k">Community</span>
+        <h3 class="bento-title">开源社团</h3>
+        <p class="bento-desc zh">湖南大学「开放原子」开源社团核心干事，组织开源技术分享与赛事。</p>
       </div>
 
       <!-- 探索中 -->
       <div class="bento-card bento-explore">
         <span class="bento-k">Exploring</span>
         <h3 class="bento-title">正在探索</h3>
-        <p class="bento-desc zh">数字电源控制（C2000 平台）、更高功率等级、多电平拓扑仿真与硬件实现。</p>
+        <p class="bento-desc zh">数字电源控制（C2000）、更高功率等级、多电平拓扑仿真与硬件实现。</p>
+      </div>
+
+      <!-- Gear & Life（全宽） -->
+      <div class="bento-card bento-gear">
+        <span class="bento-k">Gear &amp; Life · 数字装备与日常</span>
+        <h3 class="bento-title">生活切面</h3>
+        <p class="bento-desc zh">喜欢骑电动车穿梭长沙吹风、在后湖散步；闲暇写中文书法练字静心、玩拓竹 3D 打印、研究立直麻将与 Switch 游戏。听歌偏爱 Sony Walkman / HiFi 耳机；饮食偏爱沿海海鲜的清淡口味——广东梅州人，游走于长沙与大湾区之间。</p>
       </div>
     </div>
   </section>
 
-  <!-- ══════════ JOURNEY · TIMELINE ══════════ -->
-  <section class="section" id="journey">
-    <div class="section-head">
-      <p class="sec-label">02 · Journey</p>
+  <!-- ══════════ 02 · JOURNEY ══════════ -->
+  <section class="section alt" id="journey">
+    <div class="section-divider"></div>
+    <div class="section-head reveal-stagger">
+      <span class="sec-label">02 · Journey</span>
+      <span class="sec-watermark">02</span>
       <h2 class="sec-title">我的轨迹 <span class="en">— how I got here</span></h2>
     </div>
-    <div class="journey">
+    <div class="journey reveal-stagger">
       <div class="journey-item">
         <span class="journey-year">2023</span>
         <h4 class="journey-title">入学 · 湖南大学</h4>
@@ -167,35 +179,35 @@
       </div>
       <div class="journey-item">
         <span class="journey-year">2026</span>
-        <h4 class="journey-title">求职 · 面向硬件</h4>
-        <p class="journey-desc">秋招，专注电力电子 / 电源 / 单板硬件方向。</p>
+        <h4 class="journey-title">签约 · 面向电网</h4>
+        <p class="journey-desc">惠州供电局一线生产实习，秋招签约广东电网东莞供电局（2026.10）。</p>
       </div>
     </div>
   </section>
 
-  <!-- ══════════ FEATURED PROJECTS ══════════ -->
+  <!-- ══════════ 03 · PROJECTS ══════════ -->
   <section class="section" id="projects">
-    <div class="section-head">
-      <p class="sec-label">03 · Featured Projects</p>
+    <div class="section-divider"></div>
+    <div class="section-head reveal-stagger">
+      <span class="sec-label">03 · Featured Projects</span>
+      <span class="sec-watermark">03</span>
       <h2 class="sec-title">精选项目 <span class="en">— things I built</span></h2>
       <p class="sec-note">项目代码与报告大多未公开，可邮件索取详情。</p>
     </div>
 
-    <!-- 项目 1 · 电赛（旗舰，全宽） -->
-    <article class="project project-featured">
+    <!-- 电赛 featured -->
+    <article class="project-featured reveal-stagger">
       <div class="project-media">
         <svg viewBox="0 0 480 260" class="fig" role="img" aria-label="三相逆变器拓扑示意">
           <rect x="0" y="0" width="480" height="260" fill="#0c0d0f"/>
           <g stroke="#2c2f36" stroke-width="1">
             <line x1="0" y1="65" x2="480" y2="65"/><line x1="0" y1="130" x2="480" y2="130"/><line x1="0" y1="195" x2="480" y2="195"/>
           </g>
-          <!-- 直流源 -->
           <g transform="translate(30,50)">
             <rect x="0" y="30" width="26" height="70" fill="none" stroke="#7170ff" stroke-width="2"/>
             <text x="13" y="68" fill="#7170ff" font-size="12" text-anchor="middle" font-family="monospace">DC</text>
             <text x="13" y="120" fill="#8a8f98" font-size="10" text-anchor="middle" font-family="monospace">60V</text>
           </g>
-          <!-- H桥 -->
           <g transform="translate(120,30)">
             <rect x="0" y="0" width="60" height="34" rx="4" fill="#17181b" stroke="#5e6ad2" stroke-width="1.5"/>
             <rect x="0" y="66" width="60" height="34" rx="4" fill="#17181b" stroke="#5e6ad2" stroke-width="1.5"/>
@@ -204,21 +216,18 @@
             <text x="30" y="87" fill="#d0d6e0" font-size="11" text-anchor="middle" font-family="monospace">S2</text>
             <text x="30" y="153" fill="#d0d6e0" font-size="11" text-anchor="middle" font-family="monospace">S3</text>
           </g>
-          <!-- 滤波 -->
           <g transform="translate(280,110)">
             <rect x="0" y="-20" width="46" height="10" fill="#17181b" stroke="#22d3ee" stroke-width="1.5"/>
             <text x="23" y="-12" fill="#22d3ee" font-size="10" text-anchor="middle" font-family="monospace">L·C</text>
           </g>
-          <!-- 输出 -->
           <g transform="translate(390,55)">
             <text x="0" y="60" fill="#f7f8f8" font-size="12" text-anchor="middle" font-family="monospace">AC</text>
             <text x="0" y="78" fill="#8a8f98" font-size="10" text-anchor="middle" font-family="monospace">3φ 50Hz</text>
           </g>
-          <!-- 连线 -->
           <g stroke="#3e4046" stroke-width="1.5" fill="none">
-            <path d="M56 82 L120 47 M56 148 L120 113"/>
-            <path d="M180 47 L280 100 M180 113 L280 100 M180 179 L280 100"/>
-            <path d="M326 100 L390 100"/>
+            <path class="flow-path" d="M56 82 L120 47 M56 148 L120 113"/>
+            <path class="flow-path" d="M180 47 L280 100 M180 113 L280 100 M180 179 L280 100"/>
+            <path class="flow-path" d="M326 100 L390 100"/>
           </g>
         </svg>
       </div>
@@ -230,12 +239,8 @@
         </div>
         <div class="project-meta">硬件 · EMI 板 + 三相逆变主板 · PCB 设计与板级调试</div>
         <h3 class="project-title">能量回馈变流器 <span class="en">Regenerative Converter</span></h3>
-        <p class="project-desc zh">
-          能量回馈变流器（DC-AC 逆变 + AC-DC 整流回馈），三相 50Hz / 32V / 2A，THD 低于 0.3%，回馈时电源功率低于 5W。母线 60V、开关 10kHz、470µH + 2.2µF 滤波（截止频率约 5kHz）。我负责 EMI 板与三相逆变主板的 PCB 设计与板级调试。
-        </p>
-        <div class="tags">
-          <span>Power Electronics</span><span>Simulink</span><span>PCB</span><span>Embedded</span>
-        </div>
+        <p class="project-desc zh">能量回馈变流器（DC-AC 逆变 + AC-DC 整流回馈），三相 50Hz / 32V / 2A，THD 低于 0.3%，回馈时电源功率低于 5W。母线 60V、开关 10kHz、470µH + 2.2µF 滤波（截止频率约 5kHz）。我负责 EMI 板与三相逆变主板的 PCB 设计与板级调试。</p>
+        <div class="tags"><span>Power Electronics</span><span>Simulink</span><span>PCB</span><span>Embedded</span></div>
         <pre class="code"><span class="c"># 关键器件 · 位号级</span>
 <span class="k">power</span>    Q1~Q6  100V / 4.2mΩ MOSFET
 <span class="k">driver</span>   U1~U3  UCC21520 · 隔离双通道
@@ -250,11 +255,10 @@
       </div>
     </article>
 
-    <!-- 项目网格 -->
-    <div class="project-grid">
+    <div class="project-grid reveal-stagger">
 
-      <!-- 项目 2 · SST -->
-      <article class="project project-card">
+      <!-- 02 SST -->
+      <article class="project-card">
         <div class="project-media">
           <svg viewBox="0 0 320 170" class="fig" role="img" aria-label="级联多电平拓扑示意">
             <rect x="0" y="0" width="320" height="170" fill="#0c0d0f"/>
@@ -266,7 +270,7 @@
             <text x="50" y="48" fill="#d0d6e0" font-size="10" text-anchor="middle" font-family="monospace">17L</text>
             <text x="162" y="48" fill="#d0d6e0" font-size="10" text-anchor="middle" font-family="monospace">T-NPC</text>
             <text x="274" y="48" fill="#d0d6e0" font-size="10" text-anchor="middle" font-family="monospace">QuNPC</text>
-            <g stroke="#3e4046" stroke-width="1" fill="none"><path d="M76 43 H136 M188 43 H248 M76 85 H136 M188 85 H248 M76 127 H136 M188 127 H248"/></g>
+            <g stroke="#3e4046" stroke-width="1.2" fill="none" class="flow-path"><path d="M76 43 H136 M188 43 H248 M76 85 H136 M188 85 H248 M76 127 H136 M188 127 H248"/></g>
           </svg>
         </div>
         <div class="project-body">
@@ -283,21 +287,18 @@
         </div>
       </article>
 
-      <!-- 项目 3 · PLC -->
-      <article class="project project-card">
+      <!-- 03 PLC -->
+      <article class="project-card">
         <div class="project-media">
           <svg viewBox="0 0 320 170" class="fig" role="img" aria-label="梯形图示意">
             <rect x="0" y="0" width="320" height="170" fill="#0c0d0f"/>
             <g stroke="#3e4046" stroke-width="1.5" fill="none"><path d="M30 40 V120"/><path d="M290 40 V120"/></g>
             <g>
-              <rect x="60" y="44" width="22" height="26" rx="2" fill="#17181b" stroke="#22d3ee" stroke-width="1.5"/>
-              <text x="71" y="61" fill="#22d3ee" font-size="10" text-anchor="middle" font-family="monospace">X0</text>
-              <rect x="110" y="44" width="22" height="26" rx="2" fill="#17181b" stroke="#22d3ee" stroke-width="1.5"/>
-              <text x="121" y="61" fill="#22d3ee" font-size="10" text-anchor="middle" font-family="monospace">X1</text>
-              <circle cx="180" cy="57" r="13" fill="#17181b" stroke="#7170ff" stroke-width="1.5"/>
-              <text x="180" y="61" fill="#7170ff" font-size="10" text-anchor="middle" font-family="monospace">Y0</text>
+              <rect x="60" y="44" width="22" height="26" rx="2" fill="#17181b" stroke="#22d3ee" stroke-width="1.5"/><text x="71" y="61" fill="#22d3ee" font-size="10" text-anchor="middle" font-family="monospace">X0</text>
+              <rect x="110" y="44" width="22" height="26" rx="2" fill="#17181b" stroke="#22d3ee" stroke-width="1.5"/><text x="121" y="61" fill="#22d3ee" font-size="10" text-anchor="middle" font-family="monospace">X1</text>
+              <circle cx="180" cy="57" r="13" fill="#17181b" stroke="#7170ff" stroke-width="1.5"/><text x="180" y="61" fill="#7170ff" font-size="10" text-anchor="middle" font-family="monospace">Y0</text>
             </g>
-            <g stroke="#3e4046" stroke-width="1.5" fill="none"><path d="M30 57 H60 M82 57 H110 M132 57 H167 M193 57 H290"/></g>
+            <g stroke="#3e4046" stroke-width="1.5" fill="none" class="flow-path"><path d="M30 57 H60 M82 57 H110 M132 57 H167 M193 57 H290"/></g>
             <text x="160" y="140" fill="#8a8f98" font-size="10" text-anchor="middle" font-family="monospace">梯形图 · Ladder Logic</text>
           </svg>
         </div>
@@ -315,8 +316,8 @@ X1 电机反转 ──|/|── Y0 正转线圈
         </div>
       </article>
 
-      <!-- 项目 4 · MCM -->
-      <article class="project project-card">
+      <!-- 04 MCM -->
+      <article class="project-card">
         <div class="project-media">
           <svg viewBox="0 0 320 170" class="fig" role="img" aria-label="网球势头预测曲线">
             <rect x="0" y="0" width="320" height="170" fill="#0c0d0f"/>
@@ -348,8 +349,8 @@ importance = model.feature_importances_</pre>
         </div>
       </article>
 
-      <!-- 项目 5 · FPGA -->
-      <article class="project project-card">
+      <!-- 05 FPGA -->
+      <article class="project-card">
         <div class="project-media">
           <svg viewBox="0 0 320 170" class="fig" role="img" aria-label="贪吃蛇网格">
             <rect x="0" y="0" width="320" height="170" fill="#0c0d0f"/>
@@ -357,9 +358,7 @@ importance = model.feature_importances_</pre>
               <line x1="40" y1="40" x2="280" y2="40"/><line x1="40" y1="70" x2="280" y2="70"/><line x1="40" y1="100" x2="280" y2="100"/><line x1="40" y1="130" x2="280" y2="130"/>
               <line x1="40" y1="40" x2="40" y2="130"/><line x1="100" y1="40" x2="100" y2="130"/><line x1="160" y1="40" x2="160" y2="130"/><line x1="220" y1="40" x2="220" y2="130"/><line x1="280" y1="40" x2="280" y2="130"/>
             </g>
-            <g fill="#7170ff">
-              <rect x="70" y="55" width="30" height="30"/><rect x="100" y="55" width="30" height="30"/><rect x="130" y="55" width="30" height="30"/>
-            </g>
+            <g fill="#7170ff"><rect x="70" y="55" width="30" height="30"/><rect x="100" y="55" width="30" height="30"/><rect x="130" y="55" width="30" height="30"/></g>
             <circle cx="205" cy="70" r="7" fill="#22d3ee"/>
           </svg>
         </div>
@@ -388,14 +387,14 @@ importance = model.feature_importances_</pre>
         </div>
       </article>
 
-      <!-- 项目 6 · STC15 -->
-      <article class="project project-card">
+      <!-- 06 STC15 汇编 -->
+      <article class="project-card">
         <div class="project-media">
-          <svg viewBox="0 0 320 170" class="fig" role="img" aria-label="8051 外设示意">
+          <svg viewBox="0 0 320 170" class="fig" role="img" aria-label="8051 中断体系示意">
             <rect x="0" y="0" width="320" height="170" fill="#0c0d0f"/>
             <rect x="120" y="50" width="80" height="70" rx="6" fill="#17181b" stroke="#5e6ad2" stroke-width="1.5"/>
-            <text x="160" y="80" fill="#f7f8f8" font-size="11" text-anchor="middle" font-family="monospace">STC15</text>
-            <text x="160" y="96" fill="#8a8f98" font-size="9" text-anchor="middle" font-family="monospace">8051 MCU</text>
+            <text x="160" y="80" fill="#f7f8f8" font-size="11" text-anchor="middle" font-family="monospace">STC15F2K60S2</text>
+            <text x="160" y="96" fill="#8a8f98" font-size="9" text-anchor="middle" font-family="monospace">14 中断源 · 2 级优先</text>
             <g stroke="#3e4046" stroke-width="1.2" fill="none">
               <path d="M120 60 H70 M120 80 H40 M120 100 H70 M200 60 H250 M200 80 H280 M200 100 H250"/>
             </g>
@@ -406,19 +405,22 @@ importance = model.feature_importances_</pre>
           </svg>
         </div>
         <div class="project-body">
-          <div class="project-top"><span class="project-idx">06</span><span class="project-tagline">Embedded · 8051</span><span class="project-status alt">课程设计</span></div>
-          <div class="project-meta">独立完成 · Keil C51</div>
-          <h3 class="project-title">STC15 外设驱动</h3>
-          <p class="project-desc zh">数码管、按键、I2C-EEPROM、红外、LCD1602，Keil C51 开发。</p>
-          <div class="tags"><span>C51</span><span>8051</span><span>Embedded</span></div>
-          <pre class="code"><span class="c">/* STC15 · I2C EEPROM 写入（示意） */</span>
-<span class="k">void</span> <span class="f">eeprom_write</span>(<span class="k">uint8_t</span> addr, <span class="k">uint8_t</span> dat) {
-    <span class="f">i2c_start</span>();
-    <span class="f">i2c_byte</span>(<span class="n">0xA0</span>);      <span class="c">// 器件地址 + 写</span>
-    <span class="f">i2c_byte</span>(addr);
-    <span class="f">i2c_byte</span>(dat);
-    <span class="f">i2c_stop</span>();
-}</pre>
+          <div class="project-top"><span class="project-idx">06</span><span class="project-tagline">Embedded · 8051 汇编</span><span class="project-status alt">课程设计</span></div>
+          <div class="project-meta">独立完成 · STC15F2K60S2 · 纯汇编</div>
+          <h3 class="project-title">STC15 底层驱动（汇编）</h3>
+          <p class="project-desc zh">基于 STC15F2K60S2 的纯汇编底层开发：14 个中断源、2 级中断优先级嵌套，数码管、按键、I2C-EEPROM、红外、LCD1602 的外设时序驱动，掌握寄存器级底层控制。</p>
+          <div class="tags"><span>Assembly</span><span>8051</span><span>Interrupt</span></div>
+          <pre class="code"><span class="c">; STC15F2K60S2 汇编 · 中断向量 + 优先级</span>
+        <span class="k">ORG</span>  <span class="n">0000H</span>
+        <span class="k">LJMP</span> MAIN
+        <span class="k">ORG</span>  <span class="n">0003H</span>          <span class="c">; INT0 向量</span>
+        <span class="k">LJMP</span> INT0_ISR
+        <span class="k">ORG</span>  <span class="n">000BH</span>          <span class="c">; Timer0 向量</span>
+        <span class="k">LJMP</span> T0_ISR
+MAIN:   <span class="k">MOV</span>  SP, <span class="n">#60H</span>
+        <span class="k">MOV</span>  IP, <span class="n">#01H</span>     <span class="c">; INT0 置高优先级（2 级嵌套）</span>
+        <span class="k">MOV</span>  IE, <span class="n">#83H</span>     <span class="c">; EA + EX0 + ET0</span>
+        <span class="k">SJMP</span> $</pre>
           <div class="project-links"><a class="btn btn-ghost btn-sm" href="mailto:colorai@hnu.edu.cn">详情 →</a></div>
         </div>
       </article>
@@ -426,55 +428,66 @@ importance = model.feature_importances_</pre>
     </div>
   </section>
 
-  <!-- ══════════ TRAVEL & LIFE ══════════ -->
-  <section class="section" id="travel">
-    <div class="section-head">
-      <p class="sec-label">04 · Travel &amp; Life</p>
+  <!-- ══════════ 04 · TRAVEL ══════════ -->
+  <section class="section alt" id="travel">
+    <div class="section-divider"></div>
+    <div class="section-head reveal-stagger">
+      <span class="sec-label">04 · Travel &amp; Life</span>
+      <span class="sec-watermark">04</span>
       <h2 class="sec-title">旅途 <span class="en">— places &amp; reflections</span></h2>
     </div>
-    <div class="travel">
+    <div class="travel reveal-stagger">
       <blockquote class="travel-quote">2024 走过世界，2025 阅遍内心——见证世界的盛大，也见证心灵的浩瀚。</blockquote>
-      <div class="journey">
-        <div class="journey-item">
-          <span class="journey-year">2016</span>
-          <h4 class="journey-title">新加坡 · 马来西亚（吉隆坡）</h4>
-          <p class="journey-desc">东南亚，狮城与吉隆坡。</p>
-        </div>
-        <div class="journey-item">
-          <span class="journey-year">2018</span>
-          <h4 class="journey-title">俄罗斯 · 圣彼得堡 · 莫斯科</h4>
-          <p class="journey-desc">北国俄罗斯，圣彼得堡与莫斯科。</p>
-        </div>
-        <div class="journey-item">
-          <span class="journey-year">2024 夏</span>
-          <h4 class="journey-title">日本 · 东京 · 京都 · 大阪</h4>
-          <p class="journey-desc">两周旅程，第一次如此深刻地感受世界的盛大——秋叶原、下北泽、江之岛、岚山竹林、千本鸟居，还有人生第一场烟火大会。</p>
-        </div>
-        <div class="journey-item">
-          <span class="journey-year">2024</span>
-          <h4 class="journey-title">上海 · 广州 · 深圳 · 香港</h4>
-          <p class="journey-desc">上半年走过这几座城，在上海看了人生第一场演唱会。</p>
-        </div>
-        <div class="journey-item">
-          <span class="journey-year">2025</span>
-          <h4 class="journey-title">重庆 · 广州</h4>
-          <p class="journey-desc">独自探索重庆，去广州见朋友。</p>
-        </div>
-        <div class="journey-item">
-          <span class="journey-year">2026</span>
-          <h4 class="journey-title">深圳 · 惠州 · 长沙 · 香港</h4>
-          <p class="journey-desc">秋招路上在深圳、惠州、长沙来回奔波；期间去香港看了 TOGENASHI TOGEARI 的演唱会。</p>
-        </div>
+      <p class="travel-note">这些足迹从小到大跨越成长，不只是本科阶段的印记。</p>
+      <div class="travel-grid">
+        <article class="travel-card">
+          <span class="perf"></span>
+          <div class="travel-top"><span class="travel-code">SE ASIA</span><span class="travel-year">2016</span></div>
+          <h4 class="travel-dest">新加坡 · 吉隆坡</h4>
+          <p class="travel-desc">东南亚，狮城与吉隆坡。</p>
+        </article>
+        <article class="travel-card">
+          <span class="perf"></span>
+          <div class="travel-top"><span class="travel-code">RUSSIA</span><span class="travel-year">2018</span></div>
+          <h4 class="travel-dest">俄罗斯 · 圣彼得堡 · 莫斯科</h4>
+          <p class="travel-desc">北国俄罗斯，圣彼得堡与莫斯科。</p>
+        </article>
+        <article class="travel-card">
+          <span class="perf"></span>
+          <div class="travel-top"><span class="travel-code">JAPAN</span><span class="travel-year">2024 夏</span></div>
+          <h4 class="travel-dest">日本 · 东京 · 京都 · 大阪</h4>
+          <p class="travel-desc">两周旅程，秋叶原、下北泽、江之岛、岚山竹林、千本鸟居，还有人生第一场烟火大会。</p>
+        </article>
+        <article class="travel-card">
+          <span class="perf"></span>
+          <div class="travel-top"><span class="travel-code">CN EAST</span><span class="travel-year">2024</span></div>
+          <h4 class="travel-dest">上海 · 广州 · 深圳 · 香港</h4>
+          <p class="travel-desc">上半年走过这几座城，在上海看了人生第一场演唱会。</p>
+        </article>
+        <article class="travel-card">
+          <span class="perf"></span>
+          <div class="travel-top"><span class="travel-code">CN WEST</span><span class="travel-year">2025</span></div>
+          <h4 class="travel-dest">重庆 · 广州</h4>
+          <p class="travel-desc">独自探索重庆，去广州见朋友。</p>
+        </article>
+        <article class="travel-card">
+          <span class="perf"></span>
+          <div class="travel-top"><span class="travel-code">GBA</span><span class="travel-year">2026</span></div>
+          <h4 class="travel-dest">深圳 · 惠州 · 长沙 · 香港</h4>
+          <p class="travel-desc">秋招路上在深圳、惠州、长沙来回奔波；期间去香港看了 TOGENASHI TOGEARI 的演唱会。</p>
+        </article>
       </div>
     </div>
   </section>
 
-  <!-- ══════════ CONTACT / FOOTER ══════════ -->
+  <!-- ══════════ 05 · CONTACT ══════════ -->
   <section class="section section-contact" id="contact">
-    <div class="contact-inner">
-      <p class="sec-label">05 · Contact</p>
+    <div class="section-divider"></div>
+    <div class="contact-inner reveal-stagger">
+      <span class="sec-label">05 · Contact</span>
+      <span class="sec-watermark">05</span>
       <h2 class="sec-title contact-title">保持联系 <span class="en">— say hi</span></h2>
-      <p class="contact-desc zh">对硬件、电力电子或电气岗位开放，也欢迎聊聊变换器。邮件最快；项目报告与代码可邮件索取。</p>
+      <p class="contact-desc zh">对硬件、电力电子或电气岗位开放，也欢迎聊聊变换器、聊聊旅途。邮件最快；项目报告与代码可邮件索取。</p>
       <div class="contact-links">
         <a class="contact-link" href="mailto:colorai@hnu.edu.cn">
           <span class="contact-k">Email</span><span class="contact-v">colorai@hnu.edu.cn</span>
@@ -489,11 +502,11 @@ importance = model.feature_importances_</pre>
     </div>
   </section>
 
-  <!-- ══════════ 尾语 · EPILOGUE ══════════ -->
-  <div class="epilogue">
+  <!-- ══════════ 尾语 ══════════ -->
+  <div class="epilogue reveal-stagger">
     <div class="epilogue-inner">
       <span class="epilogue-mark">尾语 · Epilogue</span>
-      <p>路还长，我还想做更多能跑起来的板子。如果你也在做硬件或电力电子，或对某个项目感兴趣，欢迎来信聊聊。</p>
+      <p>路还长，我还想做更多能跑起来的板子，也还想看更大的世界。如果你也在做硬件或电力电子，或对某个项目、某段旅途感兴趣，欢迎来信聊聊。</p>
     </div>
   </div>
 
@@ -501,7 +514,7 @@ importance = model.feature_importances_</pre>
 
 <footer class="footer">
   <div class="footer-inner">
-    <span>© 2026 Colorai</span>
+    <span>© 2026 Colorai · 木纹刀 / 岉雨</span>
     <span class="footer-note">湖南大学 · 电气工程 · 无追踪 · 无 cookie</span>
     <div class="footer-links">
       <a href="https://github.com/wuzhangyu">GitHub</a>
