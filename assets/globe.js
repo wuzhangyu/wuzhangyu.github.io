@@ -86,8 +86,8 @@
       var sx = cx + Rz * p.x, sy = cy - Rz * p.y;
       var dx = sx - cx, dy = sy - cy;
       if (dx * dx + dy * dy > R2) continue;
-      ctx.globalAlpha = 0.08 + 0.22 * p.z;
-      var r = 1.0 + 1.2 * p.z;
+      ctx.globalAlpha = 0.09 + 0.21 * p.z;
+      var r = 0.9 + 0.9 * p.z;
       ctx.fillRect(sx - r * 0.5, sy - r * 0.5, r, r);
     }
 
