@@ -33,7 +33,7 @@ export async function onRequestPatch({ request, env, params }) {
     "UPDATE messages SET name = ?, text = ?, reply = ?, hidden = ?, updated = ? WHERE id = ? RETURNING *"
   ).bind(next.name, next.text, next.reply, next.hidden, next.updated, row.id).first();
   return json({
-    message: { id: r.id, name: r.name, text: r.text, reply: r.reply, created: r.created, updated: r.updated, ...(admin ? { hidden: !!r.hidden } : {}) },
+    message: { id: r.id, name: r.name, text: r.text, reply: r.reply, place: r.place || null, created: r.created, updated: r.updated, ...(admin ? { hidden: !!r.hidden } : {}) },
   });
 }
 

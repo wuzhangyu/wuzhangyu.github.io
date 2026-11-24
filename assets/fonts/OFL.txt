@@ -1,5 +1,5 @@
 Copyright 2017 The Barlow Project Authors (https://github.com/jpt/barlow)
-Copyright 2020 The Jost Project Authors (https://github.com/indestructible-type/Jost)  (jost-200.woff2, subset to the letters of "Colorai")
+Copyright 2021 The Outfit Project Authors (https://github.com/Outfitio/Outfit-Fonts)  (outfit-500.woff2, subset to the letters of "Colorai"; outfit-300-num.woff2, subset to digits and "/"; outfit-400-sub.woff2, subset to the letters of "Every day, in color" in both cases plus ",. ")
 
 This Font Software is licensed under the SIL Open Font License, Version 1.1.
 This license is copied below, and is also available with a FAQ at:

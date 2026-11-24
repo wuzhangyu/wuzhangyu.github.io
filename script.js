@@ -1,19 +1,26 @@
 const EMAIL = "colorai@hnu.edu.cn";
 
 const QUOTES = [
-  { text: "极高明而道中庸，此间极道也。", src: "碎碎念 · 2026.11.18" },
-  { text: "以唯一之我，守不灭之心，行前进之道。", src: "《唯一性·不灭性·前进性》· 2026.11" },
-  { text: "我会等待我自己。", src: "碎碎念 · 2025.11.22" },
-  { text: "人在一瞬间，真的会突然理解几年前的自己。", src: "碎碎念 · 2025.09.30" },
   { text: "在静滞中随波逐流，\n在微动中厚积薄发，\n在浪潮中尽显本色。", src: "碎碎念 · 2025.09.04" },
-  { text: "大学是我人生的大基建时代。", src: "碎碎念 · 2026.03.29" },
-  { text: "岁月悠悠如醇酒，留贮彼时方醉觉。", src: "碎碎念 · 2026.10.23" },
   { text: "湖灯铺湿径，\n缓步偶随人影过，\n心闲步自轻。", src: "后湖散步 · 2026.05" },
-  { text: "我本就是从国际慢城而来，\n自然拥有从容而行的底气。", src: "白云机场 · 2025.09" },
-  { text: "很多想不明白的事情，反而是在路上想通的。", src: "碎碎念 · 2026.06" },
-  { text: "人生是一万次的春和景明。", src: "复临舍 · 2026.05" },
-  { text: "我们都是从微末中爬到这高度，\n就算摔下去，也见过这高度的风景。", src: "摘自《轮回乐园》" },
   { text: "请务必日复一日地相信自己。", src: "碎碎念 · 2026.10" },
+  { text: "一直在玩 jrpg 的寒假。", src: "碎碎念 · 2025.02.10" },
+  { text: "时间越来越不够用了。。。", src: "碎碎念 · 2025.02.17" },
+  { text: "今天可能算虚度了一天吧。", src: "碎碎念 · 2025.02.18" },
+  { text: "自从开学以来坚持不熬夜，才发现不熬夜的好处（）", src: "碎碎念 · 2025.02.22" },
+  { text: "自由总是伴随一种背叛现实的余韵。", src: "长文 · 2024" },
+  { text: "第一次如此深刻地感受世界的盛大。", src: "长文 · 2024" },
+  { text: "看完演唱会后的激动久久难以忘怀。", src: "长文 · 2024" },
+  { text: "不论是哭是笑，夏秋总会来临。", src: "长文 · 2024" },
+  { text: "季节自顾自地回旋。", src: "长文 · 2024" },
+];
+
+// Countdown rows on the about page, in Beijing time. kind "year" / "day" are built in.
+// Other rows count down to `to` ("YYYY-MM-DD" or "YYYY-MM-DD HH:MM"); `from` adds a progress bar; `done` is shown once `to` has passed.
+const COUNTDOWNS = [
+  { kind: "year" },
+  { kind: "day" },
+  { label: "距离 2027 届毕业", from: "2023-09-01", to: "2027-06-30", done: "已毕业" },
 ];
 
 // NetEase Cloud Music song ids: [id, title, artist, seconds]
@@ -77,6 +84,31 @@ const CITIES = [
   ["Moscow", 55.76, 37.62], ["Saint Petersburg", 59.93, 30.34],
 ];
 const HOME = "长沙";
+// Globe city cards: [Chinese name for Baidu Baike, when, one line, photo under assets/photos or ""]
+const CITY_INFO = {
+  "长沙": ["长沙", "2023 —", "在湖大读书，晚上常去后湖散步。", ""],
+  "梅州": ["梅州", "", "粤东的山城。", ""],
+  "广州": ["广州", "2024 · 2025 · 2026", "去了好几次，沙面和珠江夜景。", "gz-cantontower.webp"],
+  "深圳": ["深圳", "2024 · 2026", "秋招路上来回跑的城市。", "sz-night.webp"],
+  "惠州": ["惠州", "2026.08", "实习的一个月，西湖和东江。", "hz-westlake.webp"],
+  "东莞": ["东莞", "2026", "秋招路过。", ""],
+  "香港": ["香港", "2024 · 2026.10", "国庆听了 TOGENASHI TOGEARI，第二天去 M+ 看海。", "hk-ferry.webp"],
+  "潮州": ["潮州", "", "", ""],
+  "厦门": ["厦门", "2025", "中山路和海边。", "xm-harbour.webp"],
+  "上海": ["上海", "2024.05 · 2024.09", "上了上海之巅；九月听了人生第一场演唱会。", "sh-pearl.webp"],
+  "北京": ["北京", "2026.07", "五天：故宫、颐和园、国贸和天安门。", "bj-taihe.webp"],
+  "武汉": ["武汉", "2024", "暑假登了黄鹤楼。", "wh-yellowcrane.webp"],
+  "重庆": ["重庆", "2025", "一个人探索山城：坡道、轻轨与江边的夜色。", "cq-night.webp"],
+  "東京": ["东京", "2024.08", "巡礼的一周：下北泽、御茶水、须贺神社的台阶。", "t-shibuya-sky.webp"],
+  "江ノ島": ["江之岛", "2024.08", "坐江之电到镰仓高校前，七里滨的海。", "e-enoden.webp"],
+  "横浜": ["横滨", "2024.08", "人生第一场烟火大会。", "y-fireworks.webp"],
+  "京都": ["京都", "2024.08", "伏见稻荷和岚山。", "j-inari-path.webp"],
+  "大阪": ["大阪", "2024.08", "道顿堀和环球影城。", "o-dotonbori.webp"],
+  "Singapore": ["新加坡", "2016", "第一次出国，赤道边潮湿的热。", ""],
+  "Kuala Lumpur": ["吉隆坡", "2016", "第一次出国的第二站。", ""],
+  "Moscow": ["莫斯科", "2018", "红场。", ""],
+  "Saint Petersburg": ["圣彼得堡", "2018", "涅瓦河。", ""],
+};
 
 // Posts: add a new file under posts/ and one line here. date "YYYY" or "YYYY.MM" or "YYYY.MM.DD".
 const POSTS = [
@@ -405,6 +437,107 @@ async function start(withSplash) {
   await pixels.boot(withSplash);
   document.body.classList.remove("booting");
   $(".hero")?.classList.add("in");
+  welcome(withSplash);
+}
+
+/* ───── home: a greeting in three languages that fades out after a few seconds; once per visit, again on Replay intro ───── */
+function welcome(force) {
+  const top = $("#top");
+  if (!top || (!force && sessionStorage.getItem("colorai-welcome"))) return;
+  sessionStorage.setItem("colorai-welcome", "1");
+  const h = Number(new Intl.DateTimeFormat("en-GB", { hour: "numeric", hourCycle: "h23", timeZone: "Asia/Shanghai" }).format(new Date()));
+  const [zh, en, ja, big] = h < 5 ? ["夜深了，欢迎来坐坐", "Still up? Welcome.", "夜更かしですね、ようこそ", "STILL UP"]
+    : h < 11 ? ["早上好，欢迎光临", "Good morning, welcome.", "おはよう、ようこそ", "GOOD MORNING"]
+    : h < 18 ? ["下午好，欢迎光临", "Good afternoon, welcome.", "こんにちは、ようこそ", "GOOD AFTERNOON"]
+    : ["晚上好，欢迎光临", "Good evening, welcome.", "こんばんは、ようこそ", "GOOD EVENING"];
+  const now = new Date(), tz = { timeZone: "Asia/Shanghai" };
+  const date = `${new Intl.DateTimeFormat("en-US", { ...tz, month: "2-digit", day: "2-digit" }).format(now)} ${new Intl.DateTimeFormat("en-US", { ...tz, weekday: "short" }).format(now).toUpperCase()}`;
+  // ransom-note letters: each character gets its own tilted box, popping in one after another
+  const ROT = [-6, 4, -3, 7, -5, 3, -8, 5];
+  let n = 0;
+  const boxes = [...zh].map((c) => /[，,]/.test(c) ? `<i class="tw-gap"></i>` : `<span class="k${n % 3}" style="--i:${n};--r:${ROT[n++ % ROT.length]}deg">${c}</span>`).join("");
+  $(".ts-welcome")?.remove();
+  const el = document.createElement("div");
+  el.className = "ts-welcome";
+  el.innerHTML = `<canvas aria-hidden="true"></canvas><div class="tw-big" aria-hidden="true"><span>${big}</span></div>`
+    + `<div class="tw-text" role="status"><div class="tw-up"><i class="tw-tag">◆ WELCOME ─ ${date}</i><b class="tw-zh">${boxes}</b></div>`
+    + `<div class="tw-down"><em lang="en">${en}</em><em lang="ja">${ja}</em></div></div>`;
+  top.append(el);
+  const W = top.clientWidth, H = Math.min(top.clientHeight, window.innerHeight);
+  const ly = H * (W < 640 ? 0.42 : 0.5);
+  el.style.setProperty("--ly", `${ly}px`);
+  let done = false;
+  const end = () => { if (done) return; done = true; el.classList.add("off"); setTimeout(() => el.remove(), 1000); };
+  el.addEventListener("click", end, { once: true });
+  if (reduceMotion) {
+    requestAnimationFrame(() => el.classList.add("on"));
+    setTimeout(end, 2600);
+    return;
+  }
+
+  // Pixels fly in from all four edges and gather into a glowing streak that the greeting sits on; a white slash cuts it away and the pixels scatter.
+  const cv = $("canvas", el), cx = cv.getContext("2d"), dpr = Math.min(devicePixelRatio || 1, 2);
+  cv.width = W * dpr; cv.height = H * dpr; cv.style.height = `${H}px`;
+  cx.scale(dpr, dpr);
+  const half = Math.min(W * 0.36, 380);
+  const COLORS = ["#34c6ff", "#9fe9ff", "#ffffff", "#34c6ff", "#1466ff"];
+  const N = W < 640 ? 260 : 520;
+  const ps = Array.from({ length: N }, () => {
+    const side = Math.floor(Math.random() * 4), r = Math.random();
+    const [sx, sy] = side === 0 ? [r * W, -10] : side === 1 ? [W + 10, r * H] : side === 2 ? [r * W, H + 10] : [-10, r * H];
+    const tx = W / 2 + (Math.random() * 2 - 1) * half * (0.25 + 0.75 * Math.random() ** 0.5), ty = ly + (Math.random() - 0.5) * 6;
+    const a = Math.random() * Math.PI * 2, v = 120 + Math.random() * 420;
+    return { sx, sy, tx, ty, s: 1.5 + Math.random() * 2.5, c: COLORS[(Math.random() * COLORS.length) | 0], d: Math.random() * 0.35, vx: Math.cos(a) * v, vy: Math.sin(a) * v * 0.6 };
+  });
+  const IN = 0.95, HOLD = 2.9, OUT = 0.9;
+  const ease = (t) => 1 - (1 - t) ** 3;
+  let t0 = 0, shown = false;
+  function frame(now) {
+    if (!el.isConnected) return;
+    t0 ||= now;
+    const t = (now - t0) / 1000;
+    cx.clearRect(0, 0, W, H);
+    // streak: grows once most pixels have landed, flickers slightly, fades during the scatter
+    const grow = Math.min(1, Math.max(0, (t - IN * 0.7) / 0.45)), fade = t > IN + HOLD ? Math.max(0, 1 - (t - IN - HOLD) / (OUT * 0.6)) : 1;
+    if (grow > 0 && fade > 0) {
+      const g = cx.createLinearGradient(W / 2 - half, 0, W / 2 + half, 0);
+      g.addColorStop(0, "rgba(52,198,255,0)"); g.addColorStop(0.5, "rgba(159,233,255,0.95)"); g.addColorStop(1, "rgba(52,198,255,0)");
+      cx.globalAlpha = fade * (0.85 + Math.random() * 0.15);
+      cx.fillStyle = g;
+      cx.shadowColor = "#34c6ff"; cx.shadowBlur = 18;
+      cx.fillRect(W / 2 - half * ease(grow), ly - 1, half * 2 * ease(grow), 2);
+      cx.shadowBlur = 0;
+    }
+    for (const p of ps) {
+      let x, y, al = 1;
+      if (t < IN + HOLD) {
+        const k = ease(Math.min(1, Math.max(0, (t - p.d) / (IN - p.d))));
+        x = p.sx + (p.tx - p.sx) * k; y = p.sy + (p.ty - p.sy) * k;
+        if (k >= 1) { x += Math.sin(t * 7 + p.tx) * 0.6; al = 0.55 + 0.45 * Math.sin(t * 9 + p.tx * 0.1) ** 2; }
+        else al = 0.35 + 0.65 * k;
+      } else {
+        const k = (t - IN - HOLD) / OUT;
+        x = p.tx + p.vx * k; y = p.ty + p.vy * k;
+        al = Math.max(0, 1 - k);
+      }
+      cx.globalAlpha = al;
+      cx.fillStyle = p.c;
+      cx.fillRect(x, y, p.s, p.s);
+    }
+    const sl = (t - IN - HOLD) / 0.32;
+    if (sl > 0 && sl < 1) {
+      const x = -W * 0.2 + W * 1.4 * ease(sl), k = H * 0.35;
+      cx.globalAlpha = 0.9 * (1 - sl);
+      cx.fillStyle = "#fff";
+      cx.beginPath(); cx.moveTo(x + k, 0); cx.lineTo(x + k + 26, 0); cx.lineTo(x - k + 8, H); cx.lineTo(x - k - 18, H); cx.fill();
+    }
+    cx.globalAlpha = 1;
+    if (!shown && t > IN * 0.8) { shown = true; el.classList.add("on"); }
+    if (t > IN + HOLD && !done) { done = true; el.classList.add("off"); }
+    if (t < IN + HOLD + OUT) requestAnimationFrame(frame);
+    else el.remove();
+  }
+  requestAnimationFrame(frame);
 }
 if ("scrollRestoration" in history) history.scrollRestoration = "manual";
 if (!location.hash) window.scrollTo(0, 0);
@@ -576,6 +709,18 @@ const player = (function player() {
     root.dataset.playing = g;
     if (g === game) renderList();
     if (play) audio.play().catch(() => {});
+    syncNow();
+  }
+  // The home page's "在听" button mirrors whatever the player has loaded.
+  function syncNow() {
+    if (!cur) return;
+    const [, title] = TRACKS[cur.game][cur.n];
+    for (const b of $$(".now-play")) {
+      b.dataset.play = `${cur.game}:${cur.n}`;
+      b.textContent = `${audio.paused ? "▶" : "❚❚"} ${title}`;
+      b.classList.toggle("playing", !audio.paused);
+      b.setAttribute("aria-label", `${audio.paused ? "播放" : "暂停"}：${title}`);
+    }
   }
   function toggle() {
     if (!cur) return load(game, 0);
@@ -667,8 +812,8 @@ const player = (function player() {
     eatBlankClick(e);
   }, true);
 
-  audio.addEventListener("play", () => { root.classList.add("playing"); $("#pl-play").textContent = "❚❚"; $("#pl-play").setAttribute("aria-label", "暂停"); });
-  audio.addEventListener("pause", () => { root.classList.remove("playing"); $("#pl-play").textContent = "▶"; $("#pl-play").setAttribute("aria-label", "播放"); });
+  audio.addEventListener("play", () => { root.classList.add("playing"); $("#pl-play").textContent = "❚❚"; $("#pl-play").setAttribute("aria-label", "暂停"); syncNow(); });
+  audio.addEventListener("pause", () => { root.classList.remove("playing"); $("#pl-play").textContent = "▶"; $("#pl-play").setAttribute("aria-label", "播放"); syncNow(); });
   audio.addEventListener("playing", () => (fails = 0));
   audio.addEventListener("timeupdate", () => {
     if (!audio.duration) return;
@@ -687,8 +832,10 @@ const player = (function player() {
     $$("[data-open-player]").forEach((b) => b.addEventListener("click", () => { open(true); if (!cur) load("P3R", 0); }));
     $$("[data-play]").forEach((b) => b.addEventListener("click", () => {
       const [g, n] = b.dataset.play.split(":");
+      if (b.classList.contains("now-play") && cur && cur.game === g && cur.n === +n) return toggle();
       open(true); setGame(g); load(g, +n);
     }));
+    syncNow();
   }
 
   // Full page loads (file://, reload, a new tab) pick the song up where it left off.
@@ -720,9 +867,10 @@ const player = (function player() {
 })();
 
 /* ───── ask AI: a floating chat backed by cloudflare/functions/api/ask.js (Workers AI) ─────
-   Built once and listed in KEEP, so a conversation survives page swaps. Needs the deployed site, so file:// skips it. */
-(function ask() {
-  if (!SWAP || /^(localhost|127\.|\[::1\])/.test(location.hostname)) return;
+   Built once and listed in KEEP, so a conversation survives page swaps. Needs the deployed site, so file:// skips it (askUI is null).
+   The one conversation is drawn into every attached "view": the floating panel always, plus the contact page's phone while docked. */
+const askUI = (function ask() {
+  if (!SWAP || /^(localhost|127\.|\[::1\])/.test(location.hostname)) return null;
   const LOG = "colorai-ask";
   const root = document.createElement("aside");
   root.id = "ask";
@@ -739,27 +887,45 @@ const player = (function player() {
     </div>`;
   document.body.insertBefore(root, $("#toast"));
   const btn = $(".ask-btn", root), panel = $(".ask-panel", root), log = $(".ask-log", root), chips = $(".ask-chips", root);
-  const form = $(".ask-form", root), input = $("textarea", form), send = $("button", form);
+  const form = $(".ask-form", root), input = $("textarea", form);
   const SUGGEST = ["Colorai 是谁？", "电赛做了什么？", "SST 是什么，为什么换四电平？", "推荐一首 P 系列的歌"];
   let msgs = [];
   try { msgs = JSON.parse(sessionStorage.getItem(LOG)) || []; } catch {}
-  let busy = false;
+  let busy = false, live = null;
+  const views = new Set();
 
   const esc = (s) => s.replace(/[&<>"']/g, (c) => `&#${c.charCodeAt(0)};`);
   const fmt = (s) => esc(s).replace(/\*\*(.+?)\*\*/g, "<b>$1</b>").replace(/`([^`\n]+)`/g, "<code>$1</code>").replace(/^#{1,4}\s*/gm, "");
-  function bubble(role, text) {
-    const p = document.createElement("p");
-    p.className = `ask-msg ${role}`;
-    p.innerHTML = fmt(text);
-    log.append(p);
-    return p;
+  // kind: "user" | "assistant" | "assistant pending" | "assistant error"
+  function add(v, kind, text) {
+    const el = v.make();
+    v.paint(el, kind, fmt(text));
+    v.log.append(el);
+    return el;
   }
-  function render() {
-    log.innerHTML = "";
-    bubble("assistant", "你好，我是这个站的 AI 助手。可以问我关于 Colorai 的事，或者电气、动漫、音乐之类的问题。");
-    msgs.forEach((m) => bubble(m.role, m.content));
-    chips.innerHTML = msgs.length ? "" : SUGGEST.map((q) => `<button type="button">${esc(q)}</button>`).join("");
-    log.scrollTop = log.scrollHeight;
+  const bottom = (v) => (v.log.scrollTop = v.log.scrollHeight);
+  function draw(v) {
+    v.reset();
+    msgs.forEach((m) => add(v, m.role, m.content));
+    if (live) live.els.set(v, add(v, live.kind, live.text));
+    v.chips.innerHTML = msgs.length ? "" : SUGGEST.map((q) => `<button type="button">${esc(q)}</button>`).join("");
+    v.send.disabled = busy;
+    bottom(v);
+  }
+  const render = () => views.forEach(draw);
+  // v: { log, chips, form, input, send, make() -> element, paint(el, kind, html), reset() }
+  function attach(v) {
+    v.ac = new AbortController();
+    const o = { signal: v.ac.signal };
+    v.chips.addEventListener("click", (e) => { const b = e.target.closest("button"); if (b) askAI(b.textContent); }, o);
+    v.form.addEventListener("submit", (e) => { e.preventDefault(); const q = v.input.value; v.input.value = ""; v.input.style.height = ""; askAI(q); }, o);
+    views.add(v);
+    draw(v);
+  }
+  function detach(v) {
+    v.ac?.abort();
+    views.delete(v);
+    live?.els.delete(v);
   }
   const save = () => sessionStorage.setItem(LOG, JSON.stringify(msgs.slice(-20)));
   function open(v = panel.hidden) {
@@ -772,12 +938,20 @@ const player = (function player() {
     q = q.trim();
     if (!q || busy) return;
     busy = true;
-    send.disabled = true;
     msgs.push({ role: "user", content: q });
-    chips.innerHTML = "";
-    bubble("user", q);
-    const out = bubble("assistant pending", "……");
-    log.scrollTop = log.scrollHeight;
+    live = { kind: "assistant pending", text: "……", els: new Map() };
+    views.forEach((v) => {
+      v.send.disabled = true;
+      v.chips.innerHTML = "";
+      add(v, "user", q);
+      live.els.set(v, add(v, live.kind, live.text));
+      bottom(v);
+    });
+    const show = (kind, t) => {
+      live.kind = kind;
+      live.text = t;
+      live.els.forEach((el, v) => { v.paint(el, kind, fmt(t)); bottom(v); });
+    };
     let text = "";
     try {
       const res = await fetch("/api/ask", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ messages: msgs }) });
@@ -796,31 +970,113 @@ const player = (function player() {
           try { text += JSON.parse(d).t || ""; } catch {}
         }
         text = text.replace(/^\s*<think>[\s\S]*?(<\/think>\s*|$)/, "");
-        if (text) { out.classList.remove("pending"); out.innerHTML = fmt(text); log.scrollTop = log.scrollHeight; }
+        if (text) show("assistant", text);
       }
       if (!text.trim()) throw new Error("AI 没有回答，换个问法试试");
       msgs.push({ role: "assistant", content: text.trim() });
     } catch (err) {
-      out.className = "ask-msg assistant error";
-      out.textContent = err.message || "出错了";
+      show("assistant error", err.message || "出错了");
       msgs.pop();
     }
+    live = null;
     save();
     busy = false;
-    send.disabled = false;
+    views.forEach((v) => (v.send.disabled = false));
+  }
+  // Docking hides the floating widget, flying it toward `to` (the phone); dock(null) brings it back.
+  // Returns whether focus was inside the widget, so the dock can take it over.
+  function dock(to) {
+    if (!!to === root.classList.contains("docked")) return false;
+    const had = root.contains(document.activeElement);
+    if (to) {
+      open(false);
+      const a = btn.getBoundingClientRect(), b = to.getBoundingClientRect();
+      root.style.setProperty("--dx", `${Math.round(b.left + b.width / 2 - a.left - a.width / 2)}px`);
+      root.style.setProperty("--dy", `${Math.round(b.top + b.height / 2 - a.top - a.height / 2)}px`);
+    }
+    root.classList.toggle("docked", !!to);
+    root.inert = !!to;
+    return had;
   }
 
   btn.addEventListener("click", () => open());
   $(".ask-x", root).addEventListener("click", () => open(false));
   $(".ask-clear", root).addEventListener("click", () => { if (busy) return; msgs = []; save(); render(); });
-  chips.addEventListener("click", (e) => { const b = e.target.closest("button"); if (b) askAI(b.textContent); });
-  form.addEventListener("submit", (e) => { e.preventDefault(); const q = input.value; input.value = ""; input.style.height = ""; askAI(q); });
   input.addEventListener("keydown", (e) => { if (e.key === "Enter" && !e.shiftKey && !e.isComposing) { e.preventDefault(); form.requestSubmit(); } });
   input.addEventListener("input", () => { input.style.height = ""; input.style.height = `${Math.min(input.scrollHeight, 120)}px`; });
   document.addEventListener("keydown", (e) => { if (e.key === "Escape" && !panel.hidden) open(false); });
   document.addEventListener("pointerdown", (e) => { if (!panel.hidden && !root.contains(e.target)) { open(false); eatBlankClick(e); } }, true);
-  render();
+  attach({
+    log, chips, form, input, send: $("button", form),
+    make: () => document.createElement("p"),
+    paint(el, kind, html) { el.className = `ask-msg ${kind}`; el.innerHTML = html; },
+    reset() { log.innerHTML = ""; add(this, "assistant", "你好，我是这个站的 AI 助手。可以问我关于 Colorai 的事，或者电气、动漫、音乐之类的问题。"); },
+  });
+  return { attach, detach, dock };
 })();
+
+/* ───── editable content: overrides saved from the admin panel live in D1, see cloudflare/functions/api/content.js ─────
+   Text: an element tagged data-edit="page.name" shows the saved plain text instead (newlines become <br>, never parsed as HTML).
+   Lists: data:QUOTES / POSTS / FRIENDS / CITY_INFO / STATS replace the constants above in place, before anything renders.
+   The static HTML and the constants stay the fallback, so file:// or a failed request just shows them. */
+const EDITABLE = { QUOTES, POSTS, FRIENDS, CITY_INFO, STATS };
+const DEFAULTS = JSON.parse(JSON.stringify(EDITABLE));
+const CONTENT_CACHE = "colorai-content";
+let CONTENT = {};
+const ORIGINAL = new WeakMap();
+const escHTML = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => `&#${c.charCodeAt(0)};`);
+function setText(el, s) {
+  el.replaceChildren(...String(s).split("\n").flatMap((line, i) => (i ? [document.createElement("br"), line] : [line])));
+}
+function applyText(root = document) {
+  // The footer is the same on every page, so it shares one key.
+  $$(".foot-note:not([data-edit])", root).forEach((el) => (el.dataset.edit = "site.foot-note"));
+  for (const el of $$("[data-edit]", root)) {
+    const v = CONTENT[`text:${el.dataset.edit}`];
+    if (typeof v === "string") {
+      if (!ORIGINAL.has(el)) ORIGINAL.set(el, [...el.childNodes].map((n) => n.cloneNode(true)));
+      setText(el, v);
+    } else if (ORIGINAL.has(el)) {
+      el.replaceChildren(...ORIGINAL.get(el).map((n) => n.cloneNode(true)));
+      ORIGINAL.delete(el);
+    }
+  }
+}
+function applyData() {
+  for (const [name, target] of Object.entries(EDITABLE)) {
+    let v = CONTENT[`data:${name}`];
+    if (!v || typeof v !== "object" || Array.isArray(v) !== Array.isArray(target)) v = DEFAULTS[name];
+    const copy = JSON.parse(JSON.stringify(v));
+    if (Array.isArray(target)) target.splice(0, target.length, ...copy);
+    else { Object.keys(target).forEach((k) => delete target[k]); Object.assign(target, copy); }
+  }
+}
+function storeContent(c) {
+  CONTENT = c;
+  try { sessionStorage.setItem(CONTENT_CACHE, JSON.stringify({ t: Date.now(), c })); } catch {}
+}
+async function loadContent() {
+  if (!SWAP) return false;
+  try {
+    const res = await fetch("/api/content");
+    if (!res.ok || !/json/.test(res.headers.get("content-type") || "")) return false;
+    const d = await res.json();
+    storeContent(d.content && typeof d.content === "object" ? d.content : {});
+    return true;
+  } catch { return false; }
+}
+/* admin.js (inline editing + admin.html) is only fetched by the browser holding the admin key, on admin.html, or with #admin. */
+function adminTools() {
+  if (!SWAP) return;
+  if (window.coloraiAdmin) return window.coloraiAdmin.page();
+  if (!localStorage.getItem("colorai-admin") && document.body.dataset.page !== "admin" && location.hash !== "#admin") return;
+  const src = new URL(`${ROOT}admin.js`, location.href).href;
+  if (loadedScripts.has(src)) return;
+  loadedScripts.add(src);
+  const s = document.createElement("script");
+  s.src = src;
+  document.head.append(s);
+}
 
 /* ───── per-page setup: runs on first load and after every in-site page swap ───── */
 let pageAC = new AbortController();
@@ -828,13 +1084,14 @@ const on = (t, type, fn, o) => t.addEventListener(type, fn, { ...(typeof o === "
 function initPage() {
   pageAC.abort();
   pageAC = new AbortController();
+  applyText();
   clock();
   mail();
   player.bind();
   /* ───── page-by-page navigation: click blank space, keys, or the pager ───── */
   (function pager() {
     const secs = $$("[data-hud]");
-    const SKIP = "a, button, input, select, textarea, label, canvas, dialog, .player, .ask, .dialog, .polaroid, .wk, .trips li, .phone, .cc-card, .status-card, .arcana, .timeline li, .post-row, .fr-card, .prose, .branch";
+    const SKIP = "a, button, input, select, textarea, label, canvas, dialog, .player, .ask, .dialog, .danmaku, .gb-box, .polaroid, .wall.stacked, .wk, .trips li, .phone, .cc-card, .status-card, .arcana, .globe-wrap, .timeline li, .gtl, .post-row, .fr-card, .prose, .branch";
     const KEEP_MENU = "a, img, input, textarea, select, [contenteditable], pre, code, .player, .ask";
     const paged = secs.length > 1;
     let busy = false;
@@ -909,6 +1166,73 @@ function initPage() {
     }, { threshold: 0.12, rootMargin: "0px 0px -40px 0px" });
     els.forEach((n) => io.observe(n));
   })();
+  /* ───── contact phone: while it is on screen, the ask-AI widget docks into it and the phone goes ONLINE ───── */
+  (function phone() {
+    const ph = $(".phone");
+    if (!ph) return;
+    const st = $(".ph-st", ph);
+    const status = (t) => { if (st) st.textContent = t; };
+    status("OFFLINE");
+    if (!askUI || !("IntersectionObserver" in window)) return;
+    const chat = $(".ph-chat", ph);
+    const chips = document.createElement("div");
+    chips.className = "ph-chips";
+    const form = document.createElement("form");
+    form.className = "ph-form";
+    form.innerHTML = `<input type="text" maxlength="800" enterkeyhint="send" autocomplete="off" placeholder="问点什么……" aria-label="问 AI"><button type="submit">发送 →</button>`;
+    const mailto = document.createElement("a");
+    mailto.className = "ph-mail";
+    mailto.href = `mailto:${EMAIL}`;
+    mailto.textContent = `${EMAIL} · 写信`;
+    const view = {
+      log: chat, chips, form, input: $("input", form), send: $("button", form),
+      make: () => document.createElement("li"),
+      paint(el, kind, html) {
+        const [role, state = ""] = kind.split(" ");
+        el.className = `ai ${role === "user" ? "in" : "out"} ${state}`.trim();
+        el.innerHTML = (role === "user" ? "<b>你</b>" : "") + html.replace(/<(\/?)b>/g, "<$1strong>");
+      },
+      reset() {
+        $$("li.ai", chat).forEach((n) => n.remove());
+        const s = document.createElement("li");
+        s.className = "ai sys";
+        s.textContent = "AI 已接入 · 回答可能出错";
+        chat.append(s);
+      },
+    };
+    const label = ph.getAttribute("aria-label");
+    let docked = false, timer = 0;
+    function set(v) {
+      if (v === docked) return;
+      docked = v;
+      clearTimeout(timer);
+      ph.classList.toggle("on", v);
+      if (v) {
+        const refocus = askUI.dock(ph);
+        ph.append(chips, form, mailto);
+        askUI.attach(view);
+        ph.setAttribute("aria-label", "问 AI");
+        status(reduceMotion ? "ONLINE · 长沙" : "CONNECTING…");
+        if (!reduceMotion) timer = setTimeout(() => status("ONLINE · 长沙"), 450);
+        if (refocus) view.input.focus({ preventScroll: true });
+      } else {
+        askUI.detach(view);
+        $$("li.ai", chat).forEach((n) => n.remove());
+        chips.remove(); form.remove(); mailto.remove();
+        if (label) ph.setAttribute("aria-label", label);
+        status("OFFLINE");
+        askUI.dock(null);
+      }
+    }
+    // Dock once half the phone (or most of the screen) shows; undock only when it has nearly gone, and not while typing in it.
+    const io = new IntersectionObserver(([e]) => {
+      const r = e.intersectionRatio, fills = e.rootBounds && e.intersectionRect.height > e.rootBounds.height * 0.6;
+      if (r >= 0.5 || fills) set(true);
+      else if (!e.isIntersecting || (r < 0.2 && !ph.contains(document.activeElement))) set(false);
+    }, { threshold: [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.8, 1] });
+    io.observe(ph);
+    pageAC.signal.addEventListener("abort", () => { io.disconnect(); set(false); }, { once: true });
+  })();
   /* ───── bar & HUD ───── */
   (function chrome() {
     const bar = $("#bar");
@@ -963,12 +1287,12 @@ function initPage() {
     STATS.forEach(([zh, en], i) => {
       const [x, y] = pt(i, R + 26);
       const anchor = Math.abs(x - cx) < 4 ? "middle" : x > cx ? "start" : "end";
-      html += `<text x="${x}" y="${y - 2}" text-anchor="${anchor}">${zh}</text><text class="en" x="${x}" y="${y + 11}" text-anchor="${anchor}">${en}</text>`;
+      html += `<text x="${x}" y="${y - 2}" text-anchor="${anchor}">${escHTML(zh)}</text><text class="en" x="${x}" y="${y + 11}" text-anchor="${anchor}">${escHTML(en)}</text>`;
     });
     svg.innerHTML = html;
 
     $("#st-ranks").innerHTML = STATS.map(([zh, , lv, rank]) =>
-      `<li class="${lv === 5 ? "max" : ""}"><span>${zh}</span><span class="pips">${[1, 2, 3, 4, 5].map((k) => `<i class="${k <= lv ? "on" : ""}"></i>`).join("")}</span><b>${rank}</b></li>`
+      `<li class="${lv === 5 ? "max" : ""}"><span>${escHTML(zh)}</span><span class="pips">${[1, 2, 3, 4, 5].map((k) => `<i class="${k <= lv ? "on" : ""}"></i>`).join("")}</span><b>${escHTML(rank)}</b></li>`
     ).join("");
   })();
   /* ───── works: filter & modal ───── */
@@ -1024,22 +1348,28 @@ function initPage() {
     $("#modal-x").addEventListener("click", () => modal.close());
     modal.addEventListener("click", (e) => { if (e.target === modal) modal.close(); });
   })();
-  /* ───── words: P5 dialogue with typewriter ───── */
-  (function dialogue() {
-    const box = $("#dialog");
-    if (!box) return;
-    const text = $("#dl-text");
-    const src = $("#dl-src");
-    const count = $("#dl-count");
-    let i = 0, timer = null, full = "";
+  /* ───── words: QUOTES drift by as danmaku; clicking one pins it in the P4 caption bar below ───── */
+  (function danmaku() {
+    const stage = $("#dm-stage");
+    if (!stage || !QUOTES.length) return;
+    const text = $("#dm-text"), src = $("#dm-src"), count = $("#dm-count"), cap = $("#dm-cap");
+    const N = QUOTES.length;
+    const LOOKS = ["tag", "", "line", "", "acc", "", "", "tag", "", "line", "", "acc", ""];
+    const SIZES = ["l", "m", "s", "m", "l", "s", "m"];
+    const flat = (s) => s.replace(/\n+/g, "　");
+    let cur = 0, timer = null, full = "", typed = false;
 
-    function show(n) {
-      i = (n + QUOTES.length) % QUOTES.length;
-      full = QUOTES[i].text;
-      src.textContent = `— ${QUOTES[i].src}`;
-      count.textContent = `${String(i + 1).padStart(2, "0")} / ${String(QUOTES.length).padStart(2, "0")}`;
+    $("#dm-all").innerHTML = QUOTES.map((q) => `<li>${escHTML(flat(q.text))} —— ${escHTML(q.src)}</li>`).join("");
+
+    function show(n, type = true) {
+      cur = (n + N) % N;
+      full = QUOTES[cur].text;
+      src.textContent = QUOTES[cur].src ? `— ${QUOTES[cur].src}` : "";
+      count.textContent = `${String(cur + 1).padStart(2, "0")} / ${String(N).padStart(2, "0")}`;
+      $$(".dm-b", stage).forEach((b) => b.classList.toggle("on", +b.dataset.i === cur));
       clearInterval(timer);
-      if (reduceMotion) { text.textContent = full; return; }
+      timer = null;
+      if (reduceMotion || !type) { text.textContent = full; return; }
       let k = 0;
       text.innerHTML = '<span class="caret"></span>';
       timer = setInterval(() => {
@@ -1047,19 +1377,234 @@ function initPage() {
         text.textContent = full.slice(0, k);
         text.insertAdjacentHTML("beforeend", '<span class="caret"></span>');
         if (k >= full.length) { clearInterval(timer); timer = null; }
-      }, 55);
+      }, 45);
     }
-    function advance(dir = 1) {
+    function step(dir) {
       if (timer && dir > 0) { clearInterval(timer); timer = null; text.textContent = full; return; }
-      show(i + dir);
+      show(cur + dir);
     }
-    box.addEventListener("click", () => advance(1));
-    box.addEventListener("keydown", (e) => {
-      if (["Enter", " ", "ArrowRight"].includes(e.key)) { e.preventDefault(); advance(1); }
-      if (e.key === "ArrowLeft") { e.preventDefault(); advance(-1); }
+    function bullet(i) {
+      const b = document.createElement("button");
+      b.type = "button";
+      b.tabIndex = -1;
+      b.className = `dm-b ${LOOKS[i % LOOKS.length]} ${SIZES[i % SIZES.length]}${i === cur ? " on" : ""}`.replace(/ +/g, " ");
+      b.dataset.i = i;
+      b.dataset.src = QUOTES[i].src ? `— ${QUOTES[i].src}` : "";
+      b.textContent = flat(QUOTES[i].text);
+      return b;
+    }
+    show(0, false);
+    on(stage, "click", (e) => { const b = e.target.closest(".dm-b"); if (b) show(+b.dataset.i); });
+    $("#dm-prev").addEventListener("click", () => step(-1));
+    $("#dm-next").addEventListener("click", () => step(1));
+    on(cap, "keydown", (e) => { if (e.target === cap && (e.key === "Enter" || e.key === " ")) { e.preventDefault(); step(1); } });
+
+    let visible = false;
+    on(document, "keydown", (e) => {
+      if (!visible || (e.key !== "ArrowRight" && e.key !== "ArrowLeft") || e.altKey || e.ctrlKey || e.metaKey) return;
+      if (document.querySelector("dialog[open]") || e.target.closest("input, textarea, select, [contenteditable], [role=tablist], [role=slider]")) return;
+      e.preventDefault();
+      step(e.key === "ArrowRight" ? 1 : -1);
     });
-    const io = new IntersectionObserver((es) => { if (es[0].isIntersecting) { show(0); io.disconnect(); } }, { threshold: 0.4 });
-    io.observe(box);
+
+    if (reduceMotion) {
+      // No motion: the bullets sit scattered in place and can still be clicked.
+      stage.classList.add("still");
+      stage.append(...QUOTES.map((_, i) => bullet(i)));
+      const io = new IntersectionObserver(([e]) => (visible = e.isIntersecting), { threshold: 0.3 });
+      io.observe(stage);
+      pageAC.signal.addEventListener("abort", () => io.disconnect(), { once: true });
+      return;
+    }
+
+    let lanes = [], W = 0, H = 0, raf = 0, last = 0, hover = false, order = [], q = 0;
+    const live = new Set();
+    const narrow = () => window.matchMedia("(max-width: 620px)").matches;
+    function pick() {
+      for (let k = 0; k < N; k++) {
+        if (q >= order.length) { order = [...Array(N).keys()].sort(() => Math.random() - 0.5); q = 0; }
+        const i = order[q++];
+        if (!live.has(i)) return i;
+      }
+      return -1;
+    }
+    function spawn(lane, x) {
+      const i = pick();
+      if (i < 0) return false;
+      const el = bullet(i);
+      if (lane.k >= lanes.length / 2) el.classList.add("up");
+      el.style.top = `${lane.y}px`;
+      el.style.transform = `translate3d(${x}px, -50%, 0)`;
+      stage.append(el);
+      live.add(i);
+      lane.items.push({ el, x, w: el.offsetWidth, i });
+      lane.gap = 36 + Math.random() * 150;
+      return true;
+    }
+    // Each lane has its own speed, so a bullet can never catch the one ahead of it.
+    function layout() {
+      stage.replaceChildren();
+      live.clear();
+      W = stage.clientWidth; H = stage.clientHeight;
+      const n = narrow() ? 3 : 5, lh = H / n, base = narrow() ? 30 : 42;
+      lanes = Array.from({ length: n }, (_, k) => ({ k, y: lh * (k + 0.5), speed: base + ((k * 3) % n) * (narrow() ? 7 : 9) + Math.random() * 6, items: [], gap: 0 }));
+      for (const lane of lanes) {
+        let x = Math.random() * W * 0.45;
+        while (x < W && spawn(lane, x)) { const it = lane.items.at(-1); x = it.x + it.w + lane.gap; }
+      }
+    }
+    function advance(dt) {
+      for (const lane of lanes) {
+        for (const it of lane.items) {
+          it.x -= lane.speed * dt;
+          it.el.style.transform = `translate3d(${it.x.toFixed(1)}px, -50%, 0)`;
+        }
+        while (lane.items.length && lane.items[0].x + lane.items[0].w < 0) {
+          const it = lane.items.shift();
+          it.el.remove();
+          live.delete(it.i);
+        }
+        const tail = lane.items.at(-1);
+        if (!tail || tail.x + tail.w + lane.gap < W) spawn(lane, W);
+      }
+    }
+    function tick(t) {
+      raf = 0;
+      if (!stage.isConnected) return;
+      const dt = last ? Math.min(0.05, (t - last) / 1000) : 0;
+      last = t;
+      if (!hover) advance(dt);
+      if (visible) raf = requestAnimationFrame(tick);
+    }
+    const run = () => { if (!raf && visible) { last = 0; raf = requestAnimationFrame(tick); } };
+
+    layout();
+    const io = new IntersectionObserver(([e]) => {
+      visible = e.isIntersecting;
+      if (visible && !typed) { typed = true; show(cur); }
+      run();
+    }, { threshold: 0.3 });
+    io.observe(stage);
+    on(stage, "pointerenter", (e) => { if (e.pointerType !== "touch") hover = true; });
+    on(stage, "pointerleave", () => (hover = false));
+    let resizeT = 0;
+    on(window, "resize", () => {
+      clearTimeout(resizeT);
+      resizeT = setTimeout(() => {
+        if (stage.clientHeight !== H || lanes.length !== (narrow() ? 3 : 5)) layout();
+        else W = stage.clientWidth;
+      }, 150);
+    });
+    pageAC.signal.addEventListener("abort", () => { cancelAnimationFrame(raf); raf = 0; io.disconnect(); clearInterval(timer); clearTimeout(resizeT); }, { once: true });
+  })();
+  /* ───── words: daily quote from hitokoto.cn (cached per day, site QUOTES as fallback) + live countdowns ───── */
+  (function daily() {
+    const box = $("#daily");
+    if (!box) return;
+    // All clock math runs on "Beijing wall time as UTC" milliseconds, so getUTC* gives Beijing fields.
+    const BJ = 8 * 3600e3, DAY = 86400e3;
+    const bjNow = () => Date.now() + BJ;
+    const bjDate = (s) => { const [y, m, d, h = 0, mi = 0] = String(s).split(/[-\s:T]/).map(Number); return Date.UTC(y, m - 1, d, h, mi); };
+    const pad = (n) => String(n).padStart(2, "0");
+    const hms = (ms) => { const s = Math.floor(ms / 1000); return `${pad(Math.floor(s / 3600) % 24)}:${pad(Math.floor(s / 60) % 60)}:${pad(s % 60)}`; };
+    const left = (ms) => (ms >= DAY ? `${Math.floor(ms / DAY)} 天 ` : "") + hms(ms);
+
+    const text = $("#dy-text"), from = $("#dy-from"), credit = $("#dy-credit"), more = $("#dy-more");
+    const KEY = "colorai-daily", API = "https://v1.hitokoto.cn/?c=d&c=i&c=k&encode=json&max_length=40";
+    const today = () => new Date(bjNow()).toISOString().slice(0, 10);
+    function paint(d) {
+      text.textContent = d.text;
+      from.textContent = d.from ? `— ${d.from}` : "";
+      credit.hidden = !d.api;
+    }
+    function fallback() {
+      const q = QUOTES[Math.floor(Math.random() * QUOTES.length)];
+      return q ? { text: q.text, from: q.src || "Colorai", api: false } : { text: "请务必日复一日地相信自己。", from: "Colorai", api: false };
+    }
+    async function fetchOne() {
+      if (location.protocol === "file:") throw new Error("offline");
+      const ctl = new AbortController(), t = setTimeout(() => ctl.abort(), 4000);
+      try {
+        const res = await fetch(API, { signal: ctl.signal, cache: "no-store" });
+        const j = await res.json();
+        if (!j || typeof j.hitokoto !== "string" || !j.hitokoto.trim()) throw new Error("empty");
+        const who = typeof j.from_who === "string" ? j.from_who.trim() : "", work = typeof j.from === "string" && j.from.trim() ? `《${j.from.trim()}》` : "";
+        return { text: j.hitokoto.trim().slice(0, 80), from: `${who}${work}`.slice(0, 60), api: true };
+      } finally { clearTimeout(t); }
+    }
+    let busy = false;
+    async function load(fresh) {
+      if (busy) return;
+      busy = true;
+      more.classList.toggle("spin", fresh && !reduceMotion);
+      text.classList.add("busy");
+      let d;
+      try {
+        d = await fetchOne();
+        try { localStorage.setItem(KEY, JSON.stringify({ date: today(), d })); } catch {}
+      } catch { d = fallback(); }
+      busy = false;
+      if (!box.isConnected) return;
+      more.classList.remove("spin");
+      text.classList.remove("busy");
+      paint(d);
+    }
+    let cached = null;
+    try { cached = JSON.parse(localStorage.getItem(KEY) || "null"); } catch {}
+    if (cached && cached.date === today() && cached.d && typeof cached.d.text === "string") paint(cached.d);
+    else load(false);
+    more.addEventListener("click", () => load(true));
+
+    const list = $("#dy-rows");
+    const rows = COUNTDOWNS.map((c) => {
+      const li = document.createElement("li");
+      li.innerHTML = '<div class="dy-h"><b></b><span class="dy-p"></span></div><div class="dy-bar"><i></i></div><span class="dy-sub"></span>';
+      list.append(li);
+      return { c, head: $("b", li), pct: $(".dy-p", li), bar: $(".dy-bar", li), fill: $(".dy-bar i", li), sub: $(".dy-sub", li) };
+    });
+    function tick() {
+      const now = bjNow(), d = new Date(now), Y = d.getUTCFullYear();
+      for (const r of rows) {
+        const c = r.c;
+        let head, sub, p = null;
+        if (c.kind === "year") {
+          const a = Date.UTC(Y, 0, 1), b = Date.UTC(Y + 1, 0, 1);
+          p = (now - a) / (b - a);
+          head = `${Y} 年已经过去 ${Math.floor((now - a) / DAY)} 天`;
+          sub = `还剩 ${left(b - now)}`;
+        } else if (c.kind === "day") {
+          const a = Date.UTC(Y, d.getUTCMonth(), d.getUTCDate());
+          p = (now - a) / DAY;
+          head = "今天已经过去";
+          sub = `还剩 ${hms(a + DAY - now)}`;
+        } else {
+          const to = bjDate(c.to), fr = c.from ? bjDate(c.from) : NaN;
+          if (now >= to) {
+            head = `${c.done || "已到"} ${Math.floor((now - to) / DAY)} 天`;
+            sub = `${c.to} 已过`;
+            if (c.from) p = 1;
+          } else {
+            head = c.label || c.to;
+            sub = `还有 ${left(to - now)}`;
+            if (!Number.isNaN(fr)) p = Math.min(1, Math.max(0, (now - fr) / (to - fr)));
+          }
+        }
+        r.head.textContent = head;
+        r.sub.textContent = sub;
+        r.bar.hidden = p === null;
+        r.pct.textContent = p === null ? "" : `${(p * 100).toFixed(c.kind === "year" ? 4 : 2)}%`;
+        if (p !== null) r.fill.style.width = `${(p * 100).toFixed(3)}%`;
+      }
+    }
+    tick();
+    let iv = 0;
+    const io = new IntersectionObserver(([e]) => {
+      clearInterval(iv);
+      iv = e.isIntersecting ? setInterval(tick, 1000) : 0;
+      if (e.isIntersecting) tick();
+    });
+    io.observe(list);
+    pageAC.signal.addEventListener("abort", () => { clearInterval(iv); io.disconnect(); }, { once: true });
   })();
   /* ───── globe ───── */
   (function globe() {
@@ -1068,9 +1613,13 @@ function initPage() {
     const tip = $("#globe-tip");
     const ctx = canvas.getContext("2d");
     const D = Math.PI / 180;
-    let size, R, cx, cy;
-    let lon0 = 100, lat0 = 26, target = null;
+    const card = $("#globe-card");
+    let size, R0, R, L, cx, cy;
+    let lon0 = 100, lat0 = 26, target = null, zoom = 1, zoomTo = 1, openCity = null;
     let dragging = false, hovering = false, last = null, t = 0, hoverCity = null, visible = true;
+    const ZMIN = 1, ZMAX = 6;
+    const pts = new Map();
+    let pinch = null, downAt = null, moved = 0;
 
     const vec = (lat, lon) => [Math.cos(lat * D) * Math.sin(lon * D), Math.sin(lat * D), Math.cos(lat * D) * Math.cos(lon * D)];
     const cities = CITIES.map(([name, lat, lon]) => ({ name, lat, lon, v: vec(lat, lon) }));
@@ -1097,7 +1646,7 @@ function initPage() {
       size = canvas.clientWidth;
       canvas.width = canvas.height = size * dpr;
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-      R = size * 0.44; cx = cy = size / 2;
+      R0 = size * 0.44; cx = cy = size / 2;
     }
     function line(points) {
       ctx.beginPath();
@@ -1111,20 +1660,24 @@ function initPage() {
 
     function draw() {
       ctx.clearRect(0, 0, size, size);
+      R = R0 * zoom;
+      // zoomed in, the globe is seen through a round lens the size of the unzoomed globe
+      L = Math.min(R, size * 0.46);
       const sea = ctx.createRadialGradient(cx - R * 0.3, cy - R * 0.35, R * 0.1, cx, cy, R);
       sea.addColorStop(0, "#ffffff");
       sea.addColorStop(0.6, "#dcebfb");
       sea.addColorStop(1, "#b6d3f4");
-      ctx.fillStyle = sea;
-      ctx.beginPath(); ctx.arc(cx, cy, R, 0, Math.PI * 2); ctx.fill();
-      ctx.strokeStyle = "#0a1d52"; ctx.lineWidth = 2; ctx.stroke();
-      ctx.strokeStyle = "rgba(52,198,255,0.5)"; ctx.lineWidth = 6;
-      ctx.beginPath(); ctx.arc(cx, cy, R + 6, 0, Math.PI * 2); ctx.stroke();
+      ctx.save();
+      ctx.beginPath(); ctx.arc(cx, cy, L, 0, Math.PI * 2); ctx.clip();
+      ctx.fillStyle = zoom > 1.02 ? "#b6d3f4" : sea;
+      ctx.fillRect(0, 0, size, size);
+      if (zoom > 1.02) { ctx.fillStyle = sea; ctx.beginPath(); ctx.arc(cx, cy, R, 0, Math.PI * 2); ctx.fill(); }
 
       ctx.lineWidth = 1;
       ctx.strokeStyle = "rgba(10,29,82,0.09)";
-      for (let lon = -180; lon < 180; lon += 20) { const pts = []; for (let lat = -90; lat <= 90; lat += 4) pts.push(vec(lat, lon)); line(pts); }
-      for (let lat = -60; lat <= 60; lat += 20) { const pts = []; for (let lon = -180; lon <= 180; lon += 4) pts.push(vec(lat, lon)); line(pts); }
+      const step = zoom > 3 ? 5 : zoom > 1.8 ? 10 : 20;
+      for (let lon = -180; lon < 180; lon += step) { const pts = []; for (let lat = -90; lat <= 90; lat += 2) pts.push(vec(lat, lon)); line(pts); }
+      for (let lat = -80; lat <= 80; lat += step) { const pts = []; for (let lon = -180; lon <= 180; lon += 2) pts.push(vec(lat, lon)); line(pts); }
 
       const r = Math.max(1.6, R / 90);
       ctx.fillStyle = "#0a1d52";
@@ -1156,21 +1709,38 @@ function initPage() {
       for (const c of cities) {
         const p = project(c.v);
         c.p = p;
-        if (p.z <= 0) continue;
+        c.shown = p.z > 0 && Math.hypot(p.x - cx, p.y - cy) < L - 2;
+        if (!c.shown) continue;
         const isHome = c === home;
         const s = isHome ? 10 : 7;
+        if (openCity === c) {
+          ctx.strokeStyle = "#34c6ff"; ctx.lineWidth = 2;
+          ctx.beginPath(); ctx.arc(p.x, p.y, 9 + 2 * Math.sin(t * 0.08), 0, Math.PI * 2); ctx.stroke();
+        }
         ctx.fillStyle = isHome ? "#0a1d52" : "#1466ff";
         ctx.fillRect(p.x - s / 2, p.y - s / 2, s, s);
-        if (hoverCity === c || isHome) {
-          ctx.font = "bold 12px " + getComputedStyle(document.body).fontFamily;
-          const tw = ctx.measureText(c.name).width;
-          ctx.fillStyle = "#0a1d52";
-          ctx.fillRect(p.x + 8, p.y - 22, tw + 12, 18);
-          ctx.fillStyle = "#fff";
-          ctx.fillText(c.name, p.x + 14, p.y - 9);
-        }
+      }
+      ctx.restore();
+      ctx.strokeStyle = "#0a1d52"; ctx.lineWidth = 2;
+      ctx.beginPath(); ctx.arc(cx, cy, L, 0, Math.PI * 2); ctx.stroke();
+      ctx.strokeStyle = "rgba(52,198,255,0.5)"; ctx.lineWidth = 6;
+      ctx.beginPath(); ctx.arc(cx, cy, L + 6, 0, Math.PI * 2); ctx.stroke();
+
+      // labels go on top of the lens edge; zoomed in, every visible city gets one
+      ctx.font = "bold 12px " + font;
+      const focus = (c) => hoverCity === c || openCity === c;
+      const labelled = cities.filter((c) => c.shown && (focus(c) || c === home || zoom > 3));
+      labelled.sort((a, b) => focus(a) - focus(b));
+      for (const c of labelled) {
+        const p = c.p;
+        const tw = ctx.measureText(c.name).width;
+        ctx.fillStyle = focus(c) ? "#1466ff" : "#0a1d52";
+        ctx.fillRect(p.x + 8, p.y - 22, tw + 12, 18);
+        ctx.fillStyle = "#fff";
+        ctx.fillText(c.name, p.x + 14, p.y - 9);
       }
     }
+    const font = getComputedStyle(document.body).fontFamily;
 
     function tick() {
       t++;
@@ -1179,43 +1749,128 @@ function initPage() {
         lon0 += d * 0.08;
         lat0 += (target[1] - lat0) * 0.08;
         if (Math.abs(d) < 0.1 && Math.abs(target[1] - lat0) < 0.1) target = null;
-      } else if (!dragging && !hovering && !reduceMotion) {
+      } else if (!dragging && !hovering && !openCity && zoom < 1.05 && !reduceMotion) {
         // sway over Asia so the visited cities stay in view
         lon0 += (92 + 38 * Math.sin(t * 0.004) - lon0) * 0.01;
       }
+      zoom += (zoomTo - zoom) * (reduceMotion ? 1 : 0.18);
       if (!canvas.isConnected) return;
       if (visible) draw();
       requestAnimationFrame(tick);
     }
 
-    canvas.addEventListener("pointerdown", (e) => { dragging = true; target = null; last = [e.clientX, e.clientY]; canvas.setPointerCapture(e.pointerId); });
-    canvas.addEventListener("pointermove", (e) => {
+    const setZoom = (z) => (zoomTo = Math.max(ZMIN, Math.min(ZMAX, z)));
+    function cityAt(e) {
       const rect = canvas.getBoundingClientRect();
-      if (dragging) {
-        lon0 -= (e.clientX - last[0]) * 0.35;
-        lat0 = Math.max(-60, Math.min(70, lat0 + (e.clientY - last[1]) * 0.35));
-        last = [e.clientX, e.clientY];
-      }
       const mx = e.clientX - rect.left, my = e.clientY - rect.top;
-      hoverCity = null;
-      let best = 12;
+      let best = e.pointerType === "touch" ? 22 : 12, hit = null;
       for (const c of cities) {
-        if (!c.p || c.p.z <= 0) continue;
+        if (!c.shown) continue;
         const d = Math.hypot(c.p.x - mx, c.p.y - my);
-        if (d < best) { best = d; hoverCity = c; }
+        if (d < best) { best = d; hit = c; }
       }
-      if (hoverCity) {
-        tip.textContent = `${hoverCity.lat.toFixed(1)}°, ${hoverCity.lon.toFixed(1)}°`;
-        tip.style.left = `${canvas.offsetLeft + hoverCity.p.x}px`;
-        tip.style.top = `${canvas.offsetTop + hoverCity.p.y + 44}px`;
-        tip.classList.add("on");
-      } else tip.classList.remove("on");
+      return hit;
+    }
+    function showTip(c) {
+      if (!c) return tip.classList.remove("on");
+      tip.textContent = `${c.lat.toFixed(1)}°, ${c.lon.toFixed(1)}°`;
+      tip.style.left = `${canvas.offsetLeft + c.p.x}px`;
+      tip.style.top = `${canvas.offsetTop + c.p.y + 44}px`;
+      tip.classList.add("on");
+    }
+
+    function openCard(c) {
+      openCity = c;
+      target = [c.lon, c.lat];
+      if (zoomTo < 3) setZoom(3.5);
+      const [zh, when, note, photo] = CITY_INFO[c.name] || [c.name, "", "", ""];
+      card.replaceChildren();
+      const close = document.createElement("button");
+      close.type = "button"; close.className = "gc-x"; close.setAttribute("aria-label", "关闭"); close.textContent = "×";
+      close.addEventListener("click", closeCard);
+      card.append(close);
+      if (photo) {
+        const img = new Image();
+        img.src = `${ROOT}assets/photos/${photo}`; img.alt = zh; img.loading = "lazy";
+        card.append(img);
+      }
+      const body = document.createElement("div");
+      body.className = "gc-body";
+      body.innerHTML = `<span class="gc-k">${c === home ? "HOME · " : ""}${c.lat.toFixed(2)}°N, ${c.lon.toFixed(2)}°E</span><h4></h4><b class="gc-when"></b><p></p><div class="gc-links"></div>`;
+      body.querySelector("h4").textContent = c.name === zh ? zh : `${zh} ${c.name}`;
+      body.querySelector(".gc-when").textContent = when;
+      body.querySelector("p").textContent = note || "去过这里。";
+      const links = body.querySelector(".gc-links");
+      const a = document.createElement("a");
+      a.href = `https://baike.baidu.com/item/${encodeURIComponent(zh)}`; a.target = "_blank"; a.rel = "noopener"; a.textContent = "百度百科 ↗";
+      links.append(a);
+      if (photo) {
+        const g = document.createElement("a");
+        g.href = `${ROOT}gallery.html`; g.textContent = "相册 →";
+        links.append(g);
+      }
+      card.append(body);
+      card.hidden = false;
+    }
+    function closeCard() { openCity = null; card.hidden = true; }
+
+    canvas.addEventListener("pointerdown", (e) => {
+      pts.set(e.pointerId, [e.clientX, e.clientY]);
+      canvas.setPointerCapture(e.pointerId);
+      target = null;
+      if (pts.size === 2) {
+        const [a, b] = [...pts.values()];
+        pinch = { d: Math.hypot(a[0] - b[0], a[1] - b[1]), z: zoomTo };
+        dragging = false;
+        return;
+      }
+      dragging = true; last = [e.clientX, e.clientY]; downAt = last; moved = 0;
     });
-    const stop = () => (dragging = false);
+    canvas.addEventListener("pointermove", (e) => {
+      if (pts.has(e.pointerId)) pts.set(e.pointerId, [e.clientX, e.clientY]);
+      if (pinch && pts.size === 2) {
+        const [a, b] = [...pts.values()];
+        setZoom(pinch.z * Math.hypot(a[0] - b[0], a[1] - b[1]) / pinch.d);
+        zoom = zoomTo;
+        return;
+      }
+      if (dragging) {
+        const k = 0.35 / zoom;
+        lon0 -= (e.clientX - last[0]) * k;
+        lat0 = Math.max(-75, Math.min(80, lat0 + (e.clientY - last[1]) * k));
+        last = [e.clientX, e.clientY];
+        moved = Math.max(moved, Math.hypot(e.clientX - downAt[0], e.clientY - downAt[1]));
+      }
+      hoverCity = cityAt(e);
+      showTip(hoverCity);
+    });
+    const stop = (e) => {
+      pts.delete(e.pointerId);
+      if (pinch) { if (pts.size < 2) pinch = null; dragging = false; moved = 99; return; }
+      if (!dragging) return;
+      dragging = false;
+      if (e.type !== "pointerup" || moved > 6) return;
+      const c = cityAt(e);
+      if (c) openCard(c);
+      else if (openCity) closeCard();
+    };
     canvas.addEventListener("pointerup", stop);
     canvas.addEventListener("pointercancel", stop);
     canvas.addEventListener("pointerenter", () => (hovering = true));
     canvas.addEventListener("pointerleave", () => { hovering = false; hoverCity = null; tip.classList.remove("on"); });
+    canvas.addEventListener("wheel", (e) => {
+      e.preventDefault();
+      setZoom(zoomTo * Math.exp(-e.deltaY * (e.deltaMode ? 0.05 : 0.0018)));
+    }, { passive: false });
+    canvas.addEventListener("dblclick", () => setZoom(zoomTo * 2));
+
+    $$("[data-gz]").forEach((b) => b.addEventListener("click", () => {
+      const k = b.dataset.gz;
+      if (k === "in") setZoom(zoomTo * 1.6);
+      else if (k === "out") setZoom(zoomTo / 1.6);
+      else { setZoom(1); closeCard(); target = [100, 26]; }
+    }));
+    on(document, "keydown", (e) => { if (e.key === "Escape" && openCity) closeCard(); });
 
     $$(".trips li").forEach((li) => {
       const f = li.dataset.focus.split(",").map(Number);
@@ -1266,7 +1921,12 @@ function initPage() {
     };
     const esc = (s) => String(s).replace(/[&<>"']/g, (c) => `&#${c.charCodeAt(0)};`);
     const when = (t) => { const d = new Date(t); return `${d.getFullYear()}.${d.getMonth() + 1}.${d.getDate()} ${String(d.getHours()).padStart(2, "0")}:${String(d.getMinutes()).padStart(2, "0")}`; };
-    let admin = false, items = [];
+    let admin = false, items = [], loaded = false, filter = "";
+    const views = $(".gb-views", box), dm = $(".gb-dm", box), cloud = $(".gb-cloud", box), filterBar = $(".gb-filter", box);
+    const VIEW = "colorai-gb-view";
+    let view = localStorage.getItem(VIEW) || "dm";
+    const ipOf = (m) => (m.place ? `IP 属地 · ${m.place}` : "");
+    const short = (t) => { const d = new Date(t); return `${d.getFullYear()}.${d.getMonth() + 1}.${d.getDate()}`; };
 
     function row(m) {
       const mine = !!tokens()[m.id];
@@ -1277,16 +1937,176 @@ function initPage() {
         (mine || admin) && `<button type="button" data-act="del">删除</button>`,
       ].filter(Boolean).join("");
       return `<li class="gb-item${m.hidden ? " hidden-msg" : ""}${mine ? " mine" : ""}" data-id="${m.id}">` +
-        `<div class="gb-meta"><b>${esc(m.name)}</b><time>${when(m.created)}${m.updated ? " · 已编辑" : ""}</time>${mine ? "<i>我的</i>" : ""}${m.hidden ? "<i>已隐藏</i>" : ""}</div>` +
+        `<div class="gb-meta"><b>${esc(m.name)}</b><time>${when(m.created)}${m.updated ? " · 已编辑" : ""}</time>${m.place ? `<span class="gb-ip">${esc(ipOf(m))}</span>` : ""}${mine ? "<i>我的</i>" : ""}${m.hidden ? "<i>已隐藏</i>" : ""}</div>` +
         `<p class="gb-msg">${esc(m.text)}</p>` +
         (m.reply ? `<div class="gb-reply"><b>Colorai</b><p>${esc(m.reply)}</p></div>` : "") +
         (acts ? `<div class="gb-acts">${acts}</div>` : "") + `</li>`;
     }
     function render() {
-      list.innerHTML = items.length ? items.map(row).join("") : `<li class="gb-empty">还没有人留言，来做第一个吧。</li>`;
+      const shown = filter ? items.filter((m) => m.text.toLowerCase().includes(filter)) : items;
+      list.innerHTML = shown.length ? shown.map(row).join("") : `<li class="gb-empty">${filter ? "没有找到这样的留言。" : "还没有人留言，来做第一个吧。"}</li>`;
       if (admin) wait.innerHTML = `管理模式 · <button type="button" class="gb-logout">退出</button>`;
       wait.hidden = !admin;
+      $(".gb-total", views).textContent = `${items.length} 条留言`;
+      filterBar.hidden = !filter || view !== "list";
+      if (filter) filterBar.innerHTML = `含「${esc(filter)}」的留言 ${shown.length} 条 · <button type="button" class="gb-clear">看全部</button>`;
+      show(view);
     }
+
+    /* views: danmaku (default), word cloud, plain list. The list keeps the edit / reply buttons. */
+    function show(v) {
+      view = v;
+      localStorage.setItem(VIEW, v);
+      views.hidden = false;
+      $$("[data-view]", views).forEach((b) => b.setAttribute("aria-selected", String(b.dataset.view === v)));
+      dm.hidden = v !== "dm";
+      cloud.hidden = v !== "cloud";
+      list.hidden = v !== "list";
+      filterBar.hidden = !filter || v !== "list";
+      v === "dm" ? flow.start() : flow.stop();
+      if (v === "cloud") drawCloud();
+    }
+    function openMsg(id, word) {
+      filter = word || "";
+      show("list");
+      render();
+      const li = id != null && $(`.gb-item[data-id="${id}"]`, list);
+      if (li) {
+        li.scrollIntoView({ block: "center", behavior: reduceMotion ? "auto" : "smooth" });
+        li.classList.add("flash");
+        setTimeout(() => li.classList.remove("flash"), 1600);
+      }
+    }
+
+    const flow = (() => {
+      let lanes = [], W = 0, raf = 0, last = 0, hover = false, seen = false, running = false, order = [], q = 0;
+      const narrow = () => window.matchMedia("(max-width: 640px)").matches;
+      const LOOKS = ["", "cy", "", "line", "", "", "cy", ""];
+      function bullet(m, i) {
+        const b = document.createElement("button");
+        b.type = "button";
+        b.className = `gb-b ${LOOKS[i % LOOKS.length]}${tokens()[m.id] ? " mine" : ""}`;
+        b.dataset.id = m.id;
+        b.dataset.tip = [m.name, short(m.created), ipOf(m)].filter(Boolean).join(" · ");
+        const t = m.text.replace(/\s+/g, " ");
+        b.innerHTML = `<b>${esc(m.name)}</b>${esc(t.length > 48 ? t.slice(0, 47) + "…" : t)}`;
+        if (m.reply) b.insertAdjacentHTML("beforeend", `<i>↩ 站长回复了</i>`);
+        return b;
+      }
+      function next() {
+        if (q >= order.length) { order = [...items.keys()].sort(() => Math.random() - 0.5); q = 0; }
+        return order[q++];
+      }
+      function spawn(lane, x) {
+        const i = next();
+        const el = bullet(items[i], i);
+        if (lane.k === 0) el.classList.add("down");
+        el.style.top = `${lane.y}px`;
+        el.style.transform = `translate3d(${x}px, -50%, 0)`;
+        dm.append(el);
+        lane.items.push({ el, x, w: el.offsetWidth });
+        lane.gap = 40 + Math.random() * 160;
+      }
+      function layout() {
+        dm.replaceChildren();
+        W = dm.clientWidth;
+        const n = Math.max(1, Math.min(narrow() ? 4 : 6, items.length)), H = dm.clientHeight, lh = H / n, base = narrow() ? 34 : 48;
+        lanes = Array.from({ length: n }, (_, k) => ({ k, y: lh * (k + 0.5), speed: base + ((k * 5) % n) * 7 + Math.random() * 8, items: [], gap: 0 }));
+        for (const lane of lanes) spawn(lane, Math.random() * W * 0.6);
+      }
+      function tick(t) {
+        raf = 0;
+        if (!running || !dm.isConnected) return;
+        const dt = Math.min(0.05, (t - (last || t)) / 1000);
+        last = t;
+        if (!hover && seen) {
+          for (const lane of lanes) {
+            for (const it of lane.items) { it.x -= lane.speed * dt; it.el.style.transform = `translate3d(${it.x.toFixed(1)}px, -50%, 0)`; }
+            while (lane.items.length && lane.items[0].x + lane.items[0].w < 0) lane.items.shift().el.remove();
+            const tail = lane.items.at(-1);
+            if (!tail || tail.x + tail.w + lane.gap < W) spawn(lane, W);
+          }
+        }
+        raf = requestAnimationFrame(tick);
+      }
+      const io = new IntersectionObserver(([e]) => (seen = e.isIntersecting));
+      io.observe(dm);
+      pageAC.signal.addEventListener("abort", () => { io.disconnect(); cancelAnimationFrame(raf); running = false; }, { once: true });
+      on(dm, "pointerover", (e) => (hover = !!e.target.closest(".gb-b")));
+      on(dm, "pointerleave", () => (hover = false));
+      on(dm, "click", (e) => { const b = e.target.closest(".gb-b"); if (b) openMsg(+b.dataset.id); });
+      let rw = 0;
+      on(window, "resize", () => { if (!running || Math.abs(dm.clientWidth - rw) < 40) return; rw = dm.clientWidth; layout(); });
+      return {
+        start() {
+          if (!items.length) { dm.classList.add("still"); dm.innerHTML = `<p class="gb-none">还没有人留言，来做第一个吧。</p>`; running = false; return; }
+          if (reduceMotion) {
+            dm.classList.add("still");
+            dm.replaceChildren(...items.slice(0, 30).map(bullet));
+            return;
+          }
+          dm.classList.remove("still");
+          running = true;
+          rw = dm.clientWidth;
+          layout();
+          last = 0;
+          if (!raf) raf = requestAnimationFrame(tick);
+        },
+        stop() { running = false; cancelAnimationFrame(raf); raf = 0; },
+      };
+    })();
+
+    const STOP = new Set("的 了 是 在 我 你 他 她 它 们 我们 你们 他们 这 那 这个 那个 就 都 也 还 很 和 与 及 或 吗 吧 啊 呀 呢 哦 嗯 哈 哈哈 哈哈哈 么 什么 怎么 一个 一下 没有 不是 可以 自己 因为 所以 但是 然后 如果 已经 还是 就是 真的 有点 一点 觉得 这样 那样 这里 那里 一直 现在 时候 之后 之前 以后 起来 出来 知道 感觉 应该 不过 还有 而且 其实 只是 一些 有些 比较 非常 特别 太 好 有 会 要 想 能 去 来 说 看 到 着 过 把 被 让 给 对 从 向 为 啊啊 嘿嘿 the and you for are this that with have was not but just".split(" "));
+    function tally() {
+      const seg = "Segmenter" in Intl ? new Intl.Segmenter("zh", { granularity: "word" }) : null;
+      const n = new Map();
+      for (const m of items) {
+        const t = m.text.toLowerCase();
+        let words;
+        if (seg) words = [...seg.segment(t)].filter((s) => s.isWordLike).map((s) => s.segment);
+        else words = (t.match(/[\u4e00-\u9fff]{2}|[a-z0-9]{3,}/g) || []);
+        for (const w of new Set(words)) {
+          if (w.length < 2 && !/[\u4e00-\u9fff]/.test(w)) continue;
+          if (/^[\u4e00-\u9fff]$/.test(w) || /^\d+$/.test(w) || STOP.has(w)) continue;
+          n.set(w, (n.get(w) || 0) + 1);
+        }
+      }
+      return [...n].sort((a, b) => b[1] - a[1]).slice(0, 48);
+    }
+    function drawCloud() {
+      const top = tally();
+      cloud.replaceChildren();
+      if (top.length < 3) { cloud.innerHTML = `<p class="gb-none">留言还不多，词云还攒不起来。</p>`; return; }
+      const W = cloud.clientWidth, H = cloud.clientHeight, max = top[0][1], min = top.at(-1)[1];
+      const big = W < 520 ? 34 : 50, small = W < 520 ? 13 : 15;
+      const placed = [];
+      const hit = (r) => placed.some((p) => r.x < p.x + p.w && r.x + r.w > p.x && r.y < p.y + p.h && r.y + r.h > p.y);
+      top.forEach(([w, c], i) => {
+        const b = document.createElement("button");
+        b.type = "button";
+        b.className = `gb-w k${i % 4}`;
+        b.dataset.word = w;
+        b.title = `${c} 条留言提到`;
+        b.textContent = w;
+        const f = max === min ? (big + small) / 2 : small + (big - small) * Math.sqrt((c - min) / (max - min));
+        b.style.fontSize = `${f.toFixed(1)}px`;
+        cloud.append(b);
+        const bw = b.offsetWidth + 6, bh = b.offsetHeight + 2;
+        for (let s = 0; s < 1400; s++) {
+          const a = s * 0.32, rad = 3.2 * a;
+          const r = { x: W / 2 + rad * Math.cos(a) * 1.5 - bw / 2, y: H / 2 + rad * Math.sin(a) * 0.8 - bh / 2, w: bw, h: bh };
+          if (r.x < 0 || r.y < 0 || r.x + r.w > W || r.y + r.h > H || hit(r)) continue;
+          placed.push(r);
+          b.style.left = `${r.x}px`;
+          b.style.top = `${r.y}px`;
+          return;
+        }
+        b.remove();
+      });
+    }
+    on(cloud, "click", (e) => { const b = e.target.closest(".gb-w"); if (b) openMsg(null, b.dataset.word); });
+    on(views, "click", (e) => { const b = e.target.closest("[data-view]"); if (b) { if (b.dataset.view !== "list") filter = ""; show(b.dataset.view); if (b.dataset.view === "list") render(); } });
+    on(filterBar, "click", (e) => { if (e.target.closest(".gb-clear")) { filter = ""; render(); } });
     async function load() {
       wait.textContent = "留言板加载中……";
       try {
@@ -1384,6 +2204,106 @@ function initPage() {
       if (e.key === "ArrowRight") show(i + 1);
     });
   })();
+  /* ───── memories: a timeline rail; the album group in view lights up, click a stop to jump there ───── */
+  (function timeline() {
+    const marks = $$(".memories .g-group").map((g) => {
+      const t = ($(".g-head b", g)?.textContent || "").trim();
+      const m = t.match(/^(\d{4})\.(.+)$/);
+      return m && { g, y: m[1], md: m[2].replace(/\s+/g, ""), label: t, place: $(".g-head span", g)?.textContent || "" };
+    }).filter(Boolean);
+    if (marks.length < 2) return;
+    const el = document.createElement("aside");
+    el.className = "gtl";
+    el.setAttribute("aria-label", "相册时间轴");
+    let html = "", year = "";
+    marks.forEach((k, i) => {
+      if (k.y !== year) { year = k.y; html += `<li class="gtl-y" aria-hidden="true">${year}</li>`; }
+      html += `<li><button type="button" data-i="${i}" aria-label="${k.label} ${k.place}"><i></i><b>${k.md}</b><span>${k.place}</span></button></li>`;
+    });
+    el.innerHTML = `<div class="gtl-head"><b>TIMELINE</b><span class="gtl-n"></span></div><ol>${html}<span class="gtl-fill" aria-hidden="true"></span></ol>`
+      + `<div class="gtl-now" aria-hidden="true"><b></b><span></span></div>`;
+    $("#main").append(el);
+    pageAC.signal.addEventListener("abort", () => el.remove(), { once: true });
+    const btns = $$("button", el), ol = $("ol", el), fill = $(".gtl-fill", el);
+
+    let cur = -1;
+    function set(i) {
+      if (i < 0 || i === cur) return;
+      cur = i;
+      btns.forEach((b, j) => { b.classList.toggle("on", j === i); b.classList.toggle("past", j < i); b.toggleAttribute("aria-current", j === i); });
+      const b = btns[i], k = marks[i];
+      fill.style.height = `${b.offsetTop + b.offsetHeight / 2}px`;
+      if (ol.scrollHeight > ol.clientHeight) ol.scrollTo({ top: b.offsetTop - ol.clientHeight / 2, behavior: reduceMotion ? "auto" : "smooth" });
+      $(".gtl-n", el).textContent = `${String(i + 1).padStart(2, "0")} / ${String(marks.length).padStart(2, "0")}`;
+      $(".gtl-now b", el).textContent = k.label;
+      $(".gtl-now span", el).textContent = k.place;
+    }
+    set(0);
+    const io = new IntersectionObserver((es) => {
+      for (const e of es) if (e.isIntersecting) set(marks.findIndex((k) => k.g === e.target));
+    }, { rootMargin: "-40% 0px -55% 0px" });
+    marks.forEach((k) => io.observe(k.g));
+    pageAC.signal.addEventListener("abort", () => io.disconnect(), { once: true });
+    on(el, "click", (e) => {
+      const b = e.target.closest("button[data-i]");
+      if (!b) return;
+      const k = marks[+b.dataset.i];
+      window.scrollTo({ top: k.g.getBoundingClientRect().top + scrollY - 90, behavior: reduceMotion ? "auto" : "smooth" });
+    });
+  })();
+  /* ───── memories: each album group starts as a pile; the pile spreads into the wall, 收起 piles it back ───── */
+  (function albumStacks() {
+    const FAN = [[0, 0, -2], [12, 6, 4.5], [-10, 10, -6], [16, 3, 8]];
+    const EASE = getComputedStyle(document.documentElement).getPropertyValue("--ease").trim() || "cubic-bezier(.2, .8, .2, 1)";
+    const deg = (v) => (!v || v === "none" ? "0deg" : v);
+    $$(".g-group > .wall").forEach((wall, g) => {
+      const cards = $$(".polaroid", wall);
+      $(".g-toggle", wall)?.remove();
+      if (cards.length < 2) return;
+      const n = cards.length, title = $(".g-head b", wall.parentElement)?.textContent || "";
+      wall.id ||= `wall-${g + 1}`;
+      cards.forEach((c, i) => {
+        const [x, y, r] = FAN[Math.min(i, FAN.length - 1)];
+        c.style.setProperty("--sx", `${x}px`);
+        c.style.setProperty("--sy", `${y}px`);
+        c.style.setProperty("--sr", `${r}deg`);
+        c.style.setProperty("--sz", n - i);
+        c.classList.toggle("stack-deep", i >= FAN.length);
+      });
+      const btn = document.createElement("button");
+      btn.type = "button";
+      btn.className = "g-toggle";
+      btn.setAttribute("aria-controls", wall.id);
+      wall.append(btn);
+      const box = (c) => {
+        const r = c.getBoundingClientRect(), cs = getComputedStyle(c);
+        return { x: r.x + r.width / 2, y: r.y + r.height / 2, w: c.offsetWidth * (parseFloat(cs.scale) || 1), rot: deg(cs.rotate) };
+      };
+      function set(open, animate) {
+        const first = animate && !reduceMotion && cards.map(box), h0 = wall.offsetHeight;
+        cards.forEach((c) => c.getAnimations().forEach((a) => a.id === "stack" && a.cancel()));
+        wall.getAnimations().forEach((a) => a.cancel());
+        wall.classList.toggle("stacked", !open);
+        cards.forEach((c) => (c.inert = !open));
+        btn.setAttribute("aria-expanded", open);
+        btn.setAttribute("aria-label", `${open ? "收起" : "展开"} ${title} 的 ${n} 张照片`);
+        btn.innerHTML = open ? `收起<i>×${n}</i>` : `<i>×${n}</i><b>点击展开</b>`;
+        if (!first) return;
+        wall.animate({ height: [`${h0}px`, `${wall.offsetHeight}px`] }, { duration: 460, easing: EASE });
+        cards.forEach((c, i) => {
+          const f = first[i], l = box(c);
+          l.rot = deg(open ? c.style.getPropertyValue("--r") : c.style.getPropertyValue("--sr"));
+          c.animate(
+            [{ translate: `${f.x - l.x}px ${f.y - l.y}px`, scale: `${f.w / l.w}`, rotate: f.rot }, { translate: "0px 0px", scale: "1", rotate: l.rot }],
+            { id: "stack", duration: 460, delay: (open ? i : n - 1 - i) * 30, easing: EASE, fill: "backwards" }
+          );
+        });
+      }
+      set(false, false);
+      on(btn, "click", () => set(wall.classList.contains("stacked"), true));
+      on(wall, "click", (e) => { if (wall.classList.contains("stacked") && e.target === wall) set(true, true); });
+    });
+  })();
   /* ───── title screen: background follows the time of day; click the calendar to change it ───── */
   (function heroTime() {
     const hero = $(".hero.title");
@@ -1416,18 +2336,18 @@ function initPage() {
       const tag = new URLSearchParams(location.search).get("tag");
       const list = POSTS.filter((p) => !tag || p.tags.includes(tag)).slice(0, limit);
       const row = (p) =>
-        `<li><a class="post-row" href="${ROOT}posts/${p.id}.html"><time>${box.dataset.year === "group" ? fmtDate(p.date) : p.date}</time>` +
-        `<b>${p.title}</b><span>${p.desc}</span><em>${p.tags.map((t) => `#${t}`).join(" ")}</em></a></li>`;
+        `<li><a class="post-row" href="${ROOT}posts/${encodeURIComponent(p.id)}.html"><time>${escHTML(box.dataset.year === "group" ? fmtDate(p.date) : p.date)}</time>` +
+        `<b>${escHTML(p.title)}</b><span>${escHTML(p.desc)}</span><em>${p.tags.map((t) => `#${escHTML(t)}`).join(" ")}</em></a></li>`;
       if (box.dataset.year !== "group") return (box.innerHTML = `<ol class="post-list">${list.map(row).join("")}</ol>`);
       const years = [...new Set(list.map((p) => p.date.slice(0, 4)))];
       box.innerHTML =
-        (tag ? `<p class="tag-on">只看 <b>#${tag}</b> · <a href="index.html">看全部</a></p>` : "") +
-        years.map((y) => `<section class="year"><h2>${y}</h2><ol class="post-list">${list.filter((p) => p.date.startsWith(y)).map(row).join("")}</ol></section>`).join("");
+        (tag ? `<p class="tag-on">只看 <b>#${escHTML(tag)}</b> · <a href="index.html">看全部</a></p>` : "") +
+        years.map((y) => `<section class="year"><h2>${escHTML(y)}</h2><ol class="post-list">${list.filter((p) => p.date.startsWith(y)).map(row).join("")}</ol></section>`).join("");
     });
     $$("[data-tags]").forEach((box) => {
       const count = {};
       POSTS.forEach((p) => p.tags.forEach((t) => (count[t] = (count[t] || 0) + 1)));
-      box.innerHTML = Object.entries(count).sort((a, b) => b[1] - a[1]).map(([t, n]) => `<a href="${ROOT}posts/index.html?tag=${encodeURIComponent(t)}">#${t}<i>${n}</i></a>`).join("");
+      box.innerHTML = Object.entries(count).sort((a, b) => b[1] - a[1]).map(([t, n]) => `<a href="${ROOT}posts/index.html?tag=${encodeURIComponent(t)}">#${escHTML(t)}<i>${n}</i></a>`).join("");
     });
     // prev / next links at the end of a post
     const self = document.body.dataset.post;
@@ -1436,14 +2356,115 @@ function initPage() {
       const k = POSTS.findIndex((p) => p.id === self);
       const newer = POSTS[k - 1], older = POSTS[k + 1];
       nav.innerHTML =
-        (older ? `<a href="${older.id}.html"><i>← 更早</i><b>${older.title}</b></a>` : "<span></span>") +
-        (newer ? `<a class="r" href="${newer.id}.html"><i>更新 →</i><b>${newer.title}</b></a>` : "<span></span>");
+        (older ? `<a href="${encodeURIComponent(older.id)}.html"><i>← 更早</i><b>${escHTML(older.title)}</b></a>` : "<span></span>") +
+        (newer ? `<a class="r" href="${encodeURIComponent(newer.id)}.html"><i>更新 →</i><b>${escHTML(newer.title)}</b></a>` : "<span></span>");
     }
+  })();
+  /* ───── visitor log: every page view is reported (except by the admin's browser);
+     log.html shows the log only to the admin (key from guestbook.html#admin), the API answers 403 to everyone else ───── */
+  (async function visits() {
+    if (!SWAP) return;
+    const ADM = "colorai-admin", key = localStorage.getItem(ADM);
+    if (!key && !/^(localhost|127\.|\[::1\])/.test(location.hostname))
+      fetch("/api/visit", { method: "POST", headers: { "content-type": "application/json" }, keepalive: true,
+        body: JSON.stringify({ path: location.pathname, title: document.title }) }).catch(() => {});
+    const box = $("[data-visits]");
+    if (!box || !key) return;
+    box.hidden = false;
+    $("[data-log-tabs]") && ($("[data-log-tabs]").hidden = false);
+    $("[data-log-privacy]") && ($("[data-log-privacy]").hidden = true);
+    const msg = $(".visits-msg", box), table = $(".vt", box), list = $(".visits-list", box);
+    const say = (html) => { msg.innerHTML = html; msg.hidden = !html; };
+    const get = async (q = "") => {
+      const res = await fetch(`/api/visit${q}`, { headers: { "X-Admin-Key": localStorage.getItem(ADM) || "" }, signal: pageAC.signal });
+      if (res.status === 403) throw Object.assign(new Error("403"), { code: 403 });
+      if (!res.ok || !/json/.test(res.headers.get("content-type") || "")) throw new Error("offline");
+      return res.json();
+    };
+    msg.addEventListener("click", (e) => {
+      if (!e.target.closest("[data-rekey]")) return;
+      const k = prompt("管理密码");
+      if (k) { localStorage.setItem(ADM, k.trim()); load(); }
+    });
+    const region = (() => { try { return new Intl.DisplayNames(["zh-CN"], { type: "region" }); } catch { return null; } })();
+    const where = (v) => {
+      const c = v.country && (region ? region.of(v.country) : v.country);
+      const local = [v.region, v.city].filter((x, i, a) => x && a.indexOf(x) === i).join(" · ");
+      return [c, local].filter(Boolean).join(" · ") || "未知地点";
+    };
+    const ago = (t) => {
+      const m = Math.round((Date.now() - t) / 60e3);
+      if (m < 1) return "刚刚";
+      if (m < 60) return `${m} 分钟前`;
+      if (m < 1440) return `${Math.round(m / 60)} 小时前`;
+      const x = new Date(t);
+      return `${x.getMonth() + 1}.${x.getDate()} ${String(x.getHours()).padStart(2, "0")}:${String(x.getMinutes()).padStart(2, "0")}`;
+    };
+    const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => `&#${c.charCodeAt(0)};`);
+    const full = (t) => new Date(t).toLocaleString("zh-CN", { hour12: false });
+    const tag = (vid) => `访客 #${String(vid).slice(0, 4)}`;
+    const page = (v) => esc(v.title || v.path);
+    const row = (v, who) =>
+      `<li><time title="${full(v.ts)}">${ago(v.ts)}</time><span>${who ? `<b>${esc(who)}</b> ` : ""}来自 ${esc(where(v))}，看了「${page(v)}」</span><em>${esc(v.device)}</em></li>`;
+    let people = {};
+    const toggle = async (tr) => {
+      const open = tr.nextElementSibling?.classList.contains("vt-more");
+      $$(".vt-more", table).forEach((x) => x.remove());
+      $$("tr[aria-expanded]", table).forEach((x) => x.setAttribute("aria-expanded", "false"));
+      if (open) return;
+      tr.setAttribute("aria-expanded", "true");
+      const more = document.createElement("tr");
+      more.className = "vt-more";
+      more.innerHTML = `<td colspan="6"><ol class="visits-list"><li class="visits-empty">读取中…</li></ol></td>`;
+      tr.after(more);
+      try {
+        const h = await get(`?vid=${encodeURIComponent(tr.dataset.vid)}`);
+        $("ol", more).innerHTML = h.visits.map((v) => row(v)).join("") || `<li class="visits-empty">没有记录。</li>`;
+      } catch { $("ol", more).innerHTML = `<li class="visits-empty">读取失败。</li>`; }
+    };
+    table.addEventListener("click", (e) => { const tr = e.target.closest("tr[data-vid]"); if (tr) toggle(tr); });
+    table.addEventListener("keydown", (e) => {
+      const tr = e.target.closest("tr[data-vid]");
+      if (tr && (e.key === "Enter" || e.key === " ")) { e.preventDefault(); toggle(tr); }
+    });
+    async function load() {
+      say("");
+      let d;
+      try { d = await get(); } catch (err) {
+        if (err.name === "AbortError") return;
+        say(err.code === 403
+          ? `管理员密钥失效，读不到访客记录。<button type="button" data-rekey>重新输入密钥</button>`
+          : "读不到访客记录。本地预览没有后端，上线以后才能看。");
+        $$(".visits-h3", box).forEach((x) => (x.hidden = true));
+        table.hidden = list.hidden = true;
+        $(".visits-stat", box).innerHTML = "";
+        return;
+      }
+      const stat = (n, unit, what) => `<span><b>${n || 0}</b>${unit} · ${what}</span>`;
+      $(".visits-stat", box).innerHTML =
+        `<div><i>TODAY</i>${stat(d.uvToday, "人", "今天")}${stat(d.today, "次", "今天")}</div>` +
+        `<div><i>24H</i>${stat(d.uv24, "人", "24 小时")}${stat(d.pv24, "次", "24 小时")}</div>` +
+        `<div><i>TOTAL</i>${stat(d.uv, "人", "累计")}${stat(d.pv, "次", "累计")}</div>`;
+      people = Object.fromEntries(d.visitors.map((p) => [p.vid, p]));
+      $("tbody", table).innerHTML = d.visitors.map((p) => `<tr data-vid="${esc(p.vid)}" tabindex="0" aria-expanded="false">
+        <td data-k="谁"><b>${esc(tag(p.vid))}</b>${p.name ? `<em>留言署名「${esc(p.name)}」</em>` : ""}</td>
+        <td data-k="来自">${esc(where(p))}</td>
+        <td data-k="设备">${esc(p.device)}</td>
+        <td data-k="次数"><b>${p.n}</b> 次<em>${p.pages} 个页面</em></td>
+        <td data-k="首次" title="${full(p.first)}">${ago(p.first)}</td>
+        <td data-k="最近" title="${full(p.last)}">${ago(p.last)}</td></tr>`).join("");
+      list.innerHTML = d.visits.map((v) => row(v, tag(v.vid) + (people[v.vid]?.name ? `（${people[v.vid].name}）` : ""))).join("");
+      const any = d.visitors.length > 0;
+      $$(".visits-h3", box).forEach((x) => (x.hidden = !any));
+      table.hidden = list.hidden = !any;
+      if (!any) say("还没有访客记录。");
+    }
+    load();
   })();
   /* ───── friend links ───── */
   (function friends() {
     const card = ([name, url, desc, badge, color, cat], tag) =>
-      `<a class="fr-card" href="${url}" target="_blank" rel="noopener" style="--fc:${color}"><span class="fr-av">${badge}</span><b>${name}</b><span>${desc}</span><i>↗</i>${tag && cat ? `<em class="fr-tag">${cat}</em>` : ""}</a>`;
+      `<a class="fr-card" href="${escHTML(/^https?:\/\//.test(url) ? url : "#")}" target="_blank" rel="noopener" style="--fc:${/^#[0-9a-f]{3,8}$/i.test(color) ? color : "#34c6ff"}"><span class="fr-av">${escHTML(badge)}</span><b>${escHTML(name)}</b><span>${escHTML(desc)}</span><i>↗</i>${tag && cat ? `<em class="fr-tag">${escHTML(cat)}</em>` : ""}</a>`;
     $$("[data-friends]").forEach((box) => {
       if (box.dataset.friends === "more") {
         box.innerHTML = FRIENDS.map((f) => card(f, true)).join("") +
@@ -1452,9 +2473,22 @@ function initPage() {
       }
       const cats = [...new Set(FRIENDS.map((f) => f[5] || "其他"))];
       box.innerHTML = cats.map((c) =>
-        `<h3 class="fr-cat"><span>${c}</span></h3>` + FRIENDS.filter((f) => (f[5] || "其他") === c).map((f) => card(f, false)).join("")
+        `<h3 class="fr-cat"><span>${escHTML(c)}</span></h3>` + FRIENDS.filter((f) => (f[5] || "其他") === c).map((f) => card(f, false)).join("")
       ).join("");
     });
   })();
+  adminTools();
 }
-initPage();
+{
+  let cached = null;
+  try { cached = JSON.parse(sessionStorage.getItem(CONTENT_CACHE)); } catch {}
+  if (cached && cached.c) CONTENT = cached.c;
+  const loading = cached && Date.now() - cached.t < 60e3 ? null : loadContent();
+  const firstPath = shownPath;
+  // Without a cached copy, wait a moment for the overrides so the original text doesn't flash first.
+  (loading && !cached ? Promise.race([loading, sleep(1500)]) : Promise.resolve()).then(() => {
+    applyData();
+    if (shownPath === firstPath && !swapping) initPage();
+    loading?.then((ok) => { if (ok) { applyData(); applyText(); } });
+  });
+}

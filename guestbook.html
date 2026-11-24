@@ -42,7 +42,7 @@
     <header class="sec-head">
       <span class="sec-num">06</span>
       <h1 class="sec-title">Guestbook <span class="sec-tag">留言板 <i lang="ja">でんごん</i></span></h1>
-      <p class="sec-lead">路过的话，留一句再走。不用登录，填个名字就行；写错了可以用同一个浏览器回来改。不想公开说的，还是发邮件吧。</p>
+      <p class="sec-lead" data-edit="guestbook.lead">路过的话，留一句再走。不用登录，填个名字就行；写错了可以用同一个浏览器回来改。不想公开说的，还是发邮件吧。</p>
     </header>
     <div class="gb-box" data-guestbook>
       <form class="gb-form" hidden>
@@ -54,10 +54,19 @@
         <div class="gb-foot"><span class="gb-count">0 / 500</span><button type="submit" class="gb-send">留下 ▶</button></div>
       </form>
       <p class="gb-wait">留言板要等网站上线后才能用。现在可以先 <a data-mail>写信</a>。</p>
+      <div class="gb-views" role="tablist" aria-label="留言的看法" hidden>
+        <button type="button" role="tab" data-view="dm">弹幕</button>
+        <button type="button" role="tab" data-view="cloud">词云</button>
+        <button type="button" role="tab" data-view="list">列表</button>
+        <span class="gb-total"></span>
+      </div>
+      <div class="gb-dm" role="tabpanel" aria-label="留言弹幕" hidden></div>
+      <div class="gb-cloud" role="tabpanel" aria-label="留言词云" hidden></div>
+      <p class="gb-filter" hidden></p>
       <ol class="gb-list" aria-live="polite"></ol>
     </div>
   </div>
-  <figure class="page-chara" aria-hidden="true"><img src="assets/chars/words.webp" alt=""><figcaption class="bubble">写点什么吧。</figcaption></figure>
+  <figure class="page-chara" aria-hidden="true"><img src="assets/chars/words.webp" alt=""><figcaption class="bubble" data-edit="guestbook.bubble">写点什么吧。</figcaption></figure>
 </main>
 
 <footer class="foot" data-theme="p3d">

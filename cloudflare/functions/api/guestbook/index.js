@@ -1,11 +1,20 @@
-import { json, sha, visitor, isAdmin, allow, clean } from "../../../lib/util.js";
+import { json, sha, visitor, isAdmin, allow, clean, place } from "../../../lib/util.js";
+
+// Older databases predate the `place` column; add it once per isolate (fails harmlessly if it already exists).
+let ready = false;
+async function setup(env) {
+  if (ready) return;
+  try { await env.DB.prepare("ALTER TABLE messages ADD COLUMN place TEXT").run(); } catch {}
+  ready = true;
+}
 
 const view = (r, admin) => ({
-  id: r.id, name: r.name, text: r.text, reply: r.reply, created: r.created, updated: r.updated,
+  id: r.id, name: r.name, text: r.text, reply: r.reply, place: r.place || null, created: r.created, updated: r.updated,
   ...(admin ? { hidden: !!r.hidden } : {}),
 });
 
 export async function onRequestGet({ request, env }) {
+  await setup(env);
   const admin = isAdmin(request, env);
   const { results } = await env.DB.prepare(
     `SELECT * FROM messages ${admin ? "" : "WHERE hidden = 0"} ORDER BY created DESC LIMIT 300`
@@ -22,6 +31,7 @@ export async function onRequestPost({ request, env }) {
   if (text.length < 2) return json({ error: "多写两个字吧" }, 400);
   if ((text.match(/https?:\/\//g) || []).length > 2) return json({ error: "链接太多了" }, 400);
 
+  await setup(env);
   const admin = isAdmin(request, env);
   const who = await visitor(request, env);
   if (!admin && !(await allow(env, who, "post", 5, 600))) return json({ error: "写得太快了，过几分钟再来" }, 429);
@@ -29,7 +39,7 @@ export async function onRequestPost({ request, env }) {
   const token = crypto.randomUUID().replace(/-/g, "");
   const now = Date.now();
   const row = await env.DB.prepare(
-    "INSERT INTO messages (name, text, token, ip, created) VALUES (?, ?, ?, ?, ?) RETURNING *"
-  ).bind(name, text, await sha(token), who, now).first();
+    "INSERT INTO messages (name, text, token, ip, place, created) VALUES (?, ?, ?, ?, ?, ?) RETURNING *"
+  ).bind(name, text, await sha(token), who, place(request), now).first();
   return json({ message: view(row, admin), token }, 201);
 }
