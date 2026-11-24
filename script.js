@@ -25,6 +25,11 @@ const TRACKS = {
     [403034, "Mass Destruction", "Lotus Juice · 川村ゆみ", 208],
     [403026, "When The Moon's Reaching Out Stars", "川村ゆみ", 155],
     [403002, "Burn My Dread", "川村ゆみ", 95],
+    [403180, "キミの記憶", "川村ゆみ · P3 原版", 369],
+    [403010, "Want To Be Close", "川村ゆみ · P3 原版", 153],
+    [403082, "Changing Seasons", "アトラスサウンドチーム · P3 原版", 179],
+    [507585438, "Soul Phrase -long ver.-", "喜多修平 · P3P", 181],
+    [403028, "巌戸台分寮", "アトラスサウンドチーム · P3 原版", 151],
   ],
   P4G: [
     [402742, "Your Affection", "平田志穂子", 172],
@@ -32,6 +37,11 @@ const TRACKS = {
     [402722, "Pursuing My True Self", "平田志穂子", 86],
     [402815, "Heartbeat, Heartbreak", "平田志穂子", 135],
     [402271, "Signs Of Love", "平田志穂子", 180],
+    [401798, "Shadow World", "平田志穂子", 283],
+    [401800, "Time To Make History", "平田志穂子", 152],
+    [402868, "Never More", "平田志穂子", 397],
+    [402808, "specialist", "平田志穂子", 133],
+    [439915109, "I'll Face Myself", "目黒将司", 161],
   ],
   P5R: [
     [2655083909, "Colors Flying High", "Lyn", 241],
@@ -42,6 +52,9 @@ const TRACKS = {
     [454224827, "Wake Up, Get Up, Get Out There", "Lyn", 277],
     [454231899, "Rivers In the Desert", "Lyn", 315],
     [454231738, "全ての人の魂の詩", "小宮知子", 338],
+    [1403087374, "I believe", "Lyn", 271],
+    [454224871, "Tokyo Daylight", "Lyn", 124],
+    [454231747, "Blooming Villain", "アトラスサウンドチーム", 248],
   ],
 };
 
@@ -64,9 +77,6 @@ const CITIES = [
   ["Moscow", 55.76, 37.62], ["Saint Petersburg", 59.93, 30.34],
 ];
 const HOME = "长沙";
-
-// Guestbook (giscus.app). Fill these in after the repo has Discussions enabled; empty repoId keeps the board closed.
-const GISCUS = { repo: "wuzhangyu/wuzhangyu.github.io", repoId: "R_kgDOVgSPUQ", category: "Announcements", categoryId: "DIC_kwDOVgSPUc4DL2hd" };
 
 // Posts: add a new file under posts/ and one line here. date "YYYY" or "YYYY.MM" or "YYYY.MM.DD".
 const POSTS = [
@@ -414,7 +424,7 @@ document.addEventListener("click", async (e) => {
    Over http(s) the new page is fetched and swapped into this document, so the player (and its music) never unloads.
    Opened from file:// that is impossible, so it falls back to a normal page load and the player resumes from where it was. */
 const SWAP = /^https?:$/.test(location.protocol) && "DOMParser" in window;
-const KEEP = "#pixels, #player, #toast";
+const KEEP = "#pixels, #player, #ask, #toast";
 const pagePath = (u) => { const x = new URL(u, location.href); return x.pathname + x.search; };
 let shownPath = pagePath(location.href);
 const depth = () => (history.state && history.state.depth) || 0;
@@ -695,6 +705,108 @@ const player = (function player() {
   return { bind, save };
 })();
 
+/* ───── ask AI: a floating chat backed by cloudflare/functions/api/ask.js (Workers AI) ─────
+   Built once and listed in KEEP, so a conversation survives page swaps. Needs the deployed site, so file:// skips it. */
+(function ask() {
+  if (!SWAP || /^(localhost|127\.|\[::1\])/.test(location.hostname)) return;
+  const LOG = "colorai-ask";
+  const root = document.createElement("aside");
+  root.id = "ask";
+  root.className = "ask";
+  root.setAttribute("aria-label", "问 AI");
+  root.innerHTML = `
+    <button type="button" class="ask-btn" aria-expanded="false" aria-controls="ask-panel"><b>?</b><span><i>ASK</i>问 AI</span></button>
+    <div class="ask-panel" id="ask-panel" hidden>
+      <div class="ask-head"><span>✦ ASK <i lang="ja">しつもん</i></span><span><button type="button" class="ask-clear" title="清空对话">↺</button><button type="button" class="ask-x" aria-label="收起">—</button></span></div>
+      <div class="ask-log" role="log" aria-live="polite"></div>
+      <div class="ask-chips"></div>
+      <form class="ask-form"><textarea rows="1" maxlength="800" placeholder="问点什么……（Enter 发送）" aria-label="你的问题"></textarea><button type="submit" aria-label="发送">▶</button></form>
+      <p class="ask-note">AI 回答，可能出错；关于站长只知道网站上公开的内容。</p>
+    </div>`;
+  document.body.insertBefore(root, $("#toast"));
+  const btn = $(".ask-btn", root), panel = $(".ask-panel", root), log = $(".ask-log", root), chips = $(".ask-chips", root);
+  const form = $(".ask-form", root), input = $("textarea", form), send = $("button", form);
+  const SUGGEST = ["Colorai 是谁？", "电赛做了什么？", "SST 是什么，为什么换四电平？", "推荐一首 P 系列的歌"];
+  let msgs = [];
+  try { msgs = JSON.parse(sessionStorage.getItem(LOG)) || []; } catch {}
+  let busy = false;
+
+  const esc = (s) => s.replace(/[&<>"']/g, (c) => `&#${c.charCodeAt(0)};`);
+  const fmt = (s) => esc(s).replace(/\*\*(.+?)\*\*/g, "<b>$1</b>").replace(/`([^`\n]+)`/g, "<code>$1</code>").replace(/^#{1,4}\s*/gm, "");
+  function bubble(role, text) {
+    const p = document.createElement("p");
+    p.className = `ask-msg ${role}`;
+    p.innerHTML = fmt(text);
+    log.append(p);
+    return p;
+  }
+  function render() {
+    log.innerHTML = "";
+    bubble("assistant", "你好，我是这个站的 AI 助手。可以问我关于 Colorai 的事，或者电气、动漫、音乐之类的问题。");
+    msgs.forEach((m) => bubble(m.role, m.content));
+    chips.innerHTML = msgs.length ? "" : SUGGEST.map((q) => `<button type="button">${esc(q)}</button>`).join("");
+    log.scrollTop = log.scrollHeight;
+  }
+  const save = () => sessionStorage.setItem(LOG, JSON.stringify(msgs.slice(-20)));
+  function open(v = panel.hidden) {
+    panel.hidden = !v;
+    btn.setAttribute("aria-expanded", String(v));
+    root.classList.toggle("open", v);
+    if (v) { log.scrollTop = log.scrollHeight; setTimeout(() => input.focus(), 50); }
+  }
+  async function askAI(q) {
+    q = q.trim();
+    if (!q || busy) return;
+    busy = true;
+    send.disabled = true;
+    msgs.push({ role: "user", content: q });
+    chips.innerHTML = "";
+    bubble("user", q);
+    const out = bubble("assistant pending", "……");
+    log.scrollTop = log.scrollHeight;
+    let text = "";
+    try {
+      const res = await fetch("/api/ask", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ messages: msgs }) });
+      if (!res.ok || !res.body) throw new Error((await res.json().catch(() => ({}))).error || "AI 暂时不在线");
+      const reader = res.body.getReader(), dec = new TextDecoder();
+      let buf = "", end = false;
+      while (!end) {
+        const { value, done } = await reader.read();
+        if (done) break;
+        buf += dec.decode(value, { stream: true });
+        const parts = buf.split("\n\n");
+        buf = parts.pop();
+        for (const part of parts) {
+          const d = part.replace(/^data:\s*/, "");
+          if (d === "[DONE]") { end = true; reader.cancel().catch(() => {}); break; }
+          try { text += JSON.parse(d).t || ""; } catch {}
+        }
+        text = text.replace(/^\s*<think>[\s\S]*?(<\/think>\s*|$)/, "");
+        if (text) { out.classList.remove("pending"); out.innerHTML = fmt(text); log.scrollTop = log.scrollHeight; }
+      }
+      if (!text.trim()) throw new Error("AI 没有回答，换个问法试试");
+      msgs.push({ role: "assistant", content: text.trim() });
+    } catch (err) {
+      out.className = "ask-msg assistant error";
+      out.textContent = err.message || "出错了";
+      msgs.pop();
+    }
+    save();
+    busy = false;
+    send.disabled = false;
+  }
+
+  btn.addEventListener("click", () => open());
+  $(".ask-x", root).addEventListener("click", () => open(false));
+  $(".ask-clear", root).addEventListener("click", () => { if (busy) return; msgs = []; save(); render(); });
+  chips.addEventListener("click", (e) => { const b = e.target.closest("button"); if (b) askAI(b.textContent); });
+  form.addEventListener("submit", (e) => { e.preventDefault(); const q = input.value; input.value = ""; input.style.height = ""; askAI(q); });
+  input.addEventListener("keydown", (e) => { if (e.key === "Enter" && !e.shiftKey && !e.isComposing) { e.preventDefault(); form.requestSubmit(); } });
+  input.addEventListener("input", () => { input.style.height = ""; input.style.height = `${Math.min(input.scrollHeight, 120)}px`; });
+  document.addEventListener("keydown", (e) => { if (e.key === "Escape" && !panel.hidden) open(false); });
+  render();
+})();
+
 /* ───── per-page setup: runs on first load and after every in-site page swap ───── */
 let pageAC = new AbortController();
 const on = (t, type, fn, o) => t.addEventListener(type, fn, { ...(typeof o === "object" ? o : { capture: !!o }), signal: pageAC.signal });
@@ -707,8 +819,8 @@ function initPage() {
   /* ───── page-by-page navigation: click blank space, keys, or the pager ───── */
   (function pager() {
     const secs = $$("[data-hud]");
-    const SKIP = "a, button, input, select, textarea, label, canvas, dialog, .player, .dialog, .polaroid, .wk, .trips li, .phone, .cc-card, .status-card, .arcana, .timeline li, .post-row, .fr-card, .prose, .branch";
-    const KEEP_MENU = "a, img, input, textarea, select, [contenteditable], pre, code, .player";
+    const SKIP = "a, button, input, select, textarea, label, canvas, dialog, .player, .ask, .dialog, .polaroid, .wk, .trips li, .phone, .cc-card, .status-card, .arcana, .timeline li, .post-row, .fr-card, .prose, .branch";
+    const KEEP_MENU = "a, img, input, textarea, select, [contenteditable], pre, code, .player, .ask";
     const paged = secs.length > 1;
     let busy = false;
 
@@ -1110,24 +1222,119 @@ function initPage() {
     }, { threshold: 0.25 });
     els.forEach((n) => io.observe(n));
   })();
-  /* ───── guestbook: giscus has to be injected by hand, swapped-in <script> tags never run ───── */
+  /* ───── guestbook: Cloudflare Pages Functions + D1, see cloudflare/ ─────
+     Posting returns a token kept in localStorage, which lets the same browser edit or delete that message.
+     Open guestbook.html#admin once to enter the admin key; it can reply to, hide, edit and delete anything. */
   (function guestbook() {
-    const box = $("[data-giscus]");
-    if (!box || !GISCUS.repoId || !SWAP) return;
-    const s = document.createElement("script");
-    const attrs = {
-      src: "https://giscus.app/client.js", "data-repo": GISCUS.repo, "data-repo-id": GISCUS.repoId,
-      "data-category": GISCUS.category, "data-category-id": GISCUS.categoryId, "data-mapping": "specific",
-      "data-term": "guestbook", "data-strict": "1", "data-reactions-enabled": "1", "data-emit-metadata": "0",
-      "data-input-position": "top", "data-theme": "transparent_dark", "data-lang": "zh-CN", crossorigin: "anonymous",
+    const box = $("[data-guestbook]");
+    if (!box || !SWAP) return;
+    const form = $(".gb-form", box), wait = $(".gb-wait", box), list = $(".gb-list", box);
+    const TOK = "colorai-gb-tokens", ADM = "colorai-admin", NAME = "colorai-gb-name";
+    const tokens = () => { try { return JSON.parse(localStorage.getItem(TOK)) || {}; } catch { return {}; } };
+    const setToken = (id, t) => { const m = tokens(); t ? (m[id] = t) : delete m[id]; localStorage.setItem(TOK, JSON.stringify(m)); };
+    if (location.hash === "#admin" && !localStorage.getItem(ADM)) {
+      const k = prompt("管理密码");
+      if (k) localStorage.setItem(ADM, k.trim());
+    }
+    const headers = (id) => {
+      const h = { "content-type": "application/json" };
+      const k = localStorage.getItem(ADM), t = id != null && tokens()[id];
+      if (k) h["X-Admin-Key"] = k;
+      if (t) h["X-Token"] = t;
+      return h;
     };
-    for (const [k, v] of Object.entries(attrs)) s.setAttribute(k, v);
-    s.async = true;
-    const wait = document.createElement("p");
-    wait.className = "gb-wait";
-    wait.innerHTML = "留言板加载中……如果一直出不来，多半是连不上 GitHub，可以改成 <a data-mail>写信</a>。";
-    wait.querySelector("a").href = `mailto:${EMAIL}`;
-    box.replaceChildren(wait, s);
+    const api = async (path, opt = {}) => {
+      const res = await fetch(`/api/guestbook${path}`, { ...opt, headers: headers(opt.id), signal: pageAC.signal });
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok) throw new Error(data.error || `出错了（${res.status}）`);
+      return data;
+    };
+    const esc = (s) => String(s).replace(/[&<>"']/g, (c) => `&#${c.charCodeAt(0)};`);
+    const when = (t) => { const d = new Date(t); return `${d.getFullYear()}.${d.getMonth() + 1}.${d.getDate()} ${String(d.getHours()).padStart(2, "0")}:${String(d.getMinutes()).padStart(2, "0")}`; };
+    let admin = false, items = [];
+
+    function row(m) {
+      const mine = !!tokens()[m.id];
+      const acts = [
+        (mine || admin) && `<button type="button" data-act="edit">编辑</button>`,
+        admin && `<button type="button" data-act="reply">${m.reply ? "改回复" : "回复"}</button>`,
+        admin && `<button type="button" data-act="hide">${m.hidden ? "取消隐藏" : "隐藏"}</button>`,
+        (mine || admin) && `<button type="button" data-act="del">删除</button>`,
+      ].filter(Boolean).join("");
+      return `<li class="gb-item${m.hidden ? " hidden-msg" : ""}${mine ? " mine" : ""}" data-id="${m.id}">` +
+        `<div class="gb-meta"><b>${esc(m.name)}</b><time>${when(m.created)}${m.updated ? " · 已编辑" : ""}</time>${mine ? "<i>我的</i>" : ""}${m.hidden ? "<i>已隐藏</i>" : ""}</div>` +
+        `<p class="gb-msg">${esc(m.text)}</p>` +
+        (m.reply ? `<div class="gb-reply"><b>Colorai</b><p>${esc(m.reply)}</p></div>` : "") +
+        (acts ? `<div class="gb-acts">${acts}</div>` : "") + `</li>`;
+    }
+    function render() {
+      list.innerHTML = items.length ? items.map(row).join("") : `<li class="gb-empty">还没有人留言，来做第一个吧。</li>`;
+      if (admin) wait.innerHTML = `管理模式 · <button type="button" class="gb-logout">退出</button>`;
+      wait.hidden = !admin;
+    }
+    async function load() {
+      wait.textContent = "留言板加载中……";
+      try {
+        const d = await api("");
+        admin = d.admin;
+        if (!admin && localStorage.getItem(ADM)) { localStorage.removeItem(ADM); toast("管理密码不对"); }
+        items = d.messages;
+        form.hidden = false;
+        render();
+      } catch (e) {
+        if (e.name === "AbortError") return;
+        wait.innerHTML = "留言板暂时连不上，可以过一会儿刷新，或者直接 <a>写信</a>。";
+        $("a", wait).href = `mailto:${EMAIL}`;
+      }
+    }
+
+    const nameIn = form.elements.name, textIn = form.elements.text, count = $(".gb-count", form);
+    nameIn.value = localStorage.getItem(NAME) || "";
+    on(textIn, "input", () => (count.textContent = `${textIn.value.length} / 500`));
+    on(form, "submit", async (e) => {
+      e.preventDefault();
+      const btn = $(".gb-send", form);
+      btn.disabled = true;
+      try {
+        const d = await api("", { method: "POST", body: JSON.stringify({ name: nameIn.value, text: textIn.value, website: form.elements.website.value }) });
+        setToken(d.message.id, d.token);
+        localStorage.setItem(NAME, nameIn.value.trim());
+        items.unshift(d.message);
+        textIn.value = "";
+        count.textContent = "0 / 500";
+        render();
+        toast("留好了，谢谢！");
+      } catch (err) { toast(err.message); }
+      btn.disabled = false;
+    });
+    on(box, "click", async (e) => {
+      if (e.target.closest(".gb-logout")) { localStorage.removeItem(ADM); admin = false; return load(); }
+      const b = e.target.closest("[data-act]");
+      if (!b) return;
+      const li = b.closest(".gb-item"), id = +li.dataset.id, m = items.find((x) => x.id === id);
+      const patch = async (body) => {
+        const d = await api(`/${id}`, { method: "PATCH", id, body: JSON.stringify(body) });
+        Object.assign(m, d.message);
+        render();
+      };
+      try {
+        if (b.dataset.act === "edit") {
+          const t = prompt("修改留言", m.text);
+          if (t != null && t.trim() !== m.text) await patch({ text: t });
+        } else if (b.dataset.act === "reply") {
+          const t = prompt("回复（留空删除回复）", m.reply || "");
+          if (t != null) await patch({ reply: t });
+        } else if (b.dataset.act === "hide") {
+          await patch({ hidden: !m.hidden });
+        } else if (b.dataset.act === "del" && confirm("删除这条留言？")) {
+          await api(`/${id}`, { method: "DELETE", id });
+          setToken(id, null);
+          items = items.filter((x) => x.id !== id);
+          render();
+        }
+      } catch (err) { toast(err.message); }
+    });
+    load();
   })();
   /* ───── compendium: tap a card to flip it ───── */
   (function arcana() {

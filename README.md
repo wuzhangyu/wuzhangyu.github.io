@@ -54,4 +54,4 @@ Persona 系列、首页和友链页的像素画、点歌窗口里的音乐，版
 
 ## 部署
 
-线上：https://colorai-7w3.pages.dev/ （Cloudflare Pages）。运行 `tools\publish.ps1` 上传，同时推一份到 GitHub 仓库备份。留言板用 giscus，数据在本仓库的 Discussions。
+线上：https://coloraiyu.pages.dev/ （Cloudflare Pages）。运行 `tools\publish.ps1` 上传，同时推一份到 GitHub 仓库备份。留言板和「问 AI」是 Cloudflare Pages Functions（`cloudflare/`），留言存在 Cloudflare D1 数据库 `coloraiyu`，AI 用 Workers AI。

@@ -1,4 +1,5 @@
 Copyright 2017 The Barlow Project Authors (https://github.com/jpt/barlow)
+Copyright 2018 The Chakra Petch Project Authors (https://github.com/m4rc1e/Chakra-Petch.git)  (chakra-petch-700i.woff2, subset to the letters of "Colorai")
 
 This Font Software is licensed under the SIL Open Font License, Version 1.1.
 This license is copied below, and is also available with a FAQ at:

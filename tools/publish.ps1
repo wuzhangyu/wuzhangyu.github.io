@@ -1,7 +1,6 @@
 # Publish the site.
-#   1. Upload to Cloudflare Pages: https://colorai-7w3.pages.dev/  (needs `npx wrangler login`, once)
-#   2. Push a copy to GitHub wuzhangyu/wuzhangyu.github.io, which also hosts the guestbook Discussions
-#      (needs `gh auth login`, once; skip with -NoGitHub)
+#   1. Upload to Cloudflare Pages: https://coloraiyu.pages.dev/  (needs `npx wrangler login`, once)
+#   2. Push a backup copy to GitHub wuzhangyu/wuzhangyu.github.io (needs `gh auth login`, once; skip with -NoGitHub)
 # Only the working tree is uploaded; local git history stays on this machine.
 param([string]$Message = "Update site", [switch]$NoGitHub)
 
@@ -10,12 +9,18 @@ $env:PATH += ";C:\Program Files\GitHub CLI"
 $src = Split-Path $PSScriptRoot -Parent
 $skip = ".git", ".cursor", ".vscode", ".gitignore", ".wrangler"
 
+# Pages wants: wrangler.toml + functions/ (guestbook and AI APIs) next to public/ (the static site).
 $dist = Join-Path $env:TEMP "colorai-dist"
 if (Test-Path $dist) { Remove-Item $dist -Recurse -Force }
-New-Item -ItemType Directory $dist | Out-Null
-Get-ChildItem $src -Force | Where-Object { $_.Name -notin ($skip + "tools", "启动本地网站.bat", "修改指南.md") } | Copy-Item -Destination $dist -Recurse -Force
-npx --yes wrangler pages deploy $dist --project-name colorai --branch main --commit-dirty=true --commit-message $Message
-if ($LASTEXITCODE) { throw "Cloudflare upload failed." }
+$public = Join-Path $dist "public"
+New-Item -ItemType Directory $public | Out-Null
+Get-ChildItem $src -Force | Where-Object { $_.Name -notin ($skip + "tools", "cloudflare", "启动本地网站.bat", "修改指南.md") } | Copy-Item -Destination $public -Recurse -Force
+Get-ChildItem (Join-Path $src "cloudflare") | Where-Object { $_.Name -ne "schema.sql" } | Copy-Item -Destination $dist -Recurse -Force
+Push-Location $dist
+try {
+  npx --yes wrangler pages deploy --project-name coloraiyu --branch main --commit-dirty=true --commit-message $Message
+  if ($LASTEXITCODE) { throw "Cloudflare upload failed." }
+} finally { Pop-Location }
 
 if (-not $NoGitHub) {
   $repo = Join-Path $env:TEMP "colorai-publish"
@@ -34,4 +39,4 @@ if (-not $NoGitHub) {
     git -C $repo push -q origin main
   }
 }
-Write-Host "Done: https://colorai-7w3.pages.dev/"
+Write-Host "Done: https://coloraiyu.pages.dev/"

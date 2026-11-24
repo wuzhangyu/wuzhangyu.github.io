@@ -42,10 +42,19 @@
     <header class="sec-head">
       <span class="sec-num">06</span>
       <h1 class="sec-title">Guestbook <span class="sec-tag">留言板 <i lang="ja">でんごん</i></span></h1>
-      <p class="sec-lead">路过的话，留一句再走。用 GitHub 账号登录就能写，也可以只点个表情。不想公开说的，还是发邮件吧。</p>
+      <p class="sec-lead">路过的话，留一句再走。不用登录，填个名字就行；写错了可以用同一个浏览器回来改。不想公开说的，还是发邮件吧。</p>
     </header>
-    <div class="gb-box" data-giscus>
+    <div class="gb-box" data-guestbook>
+      <form class="gb-form" hidden>
+        <div class="gb-row">
+          <label class="gb-name"><span>名字</span><input name="name" maxlength="24" placeholder="路过的人" autocomplete="nickname"></label>
+          <input class="gb-hp" name="website" tabindex="-1" autocomplete="off" aria-hidden="true">
+        </div>
+        <label class="gb-text"><span>留言</span><textarea name="text" maxlength="500" rows="4" placeholder="想说点什么……" required></textarea></label>
+        <div class="gb-foot"><span class="gb-count">0 / 500</span><button type="submit" class="gb-send">留下 ▶</button></div>
+      </form>
       <p class="gb-wait">留言板要等网站上线后才能用。现在可以先 <a data-mail>写信</a>。</p>
+      <ol class="gb-list" aria-live="polite"></ol>
     </div>
   </div>
   <figure class="page-chara" aria-hidden="true"><img src="assets/chars/words.webp" alt=""><figcaption class="bubble">写点什么吧。</figcaption></figure>
