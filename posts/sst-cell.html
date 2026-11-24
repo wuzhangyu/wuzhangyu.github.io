@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="zh-CN" data-root="../" data-parent="posts/index.html">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>为什么把 cell 换成四电平 · Colorai</title>
+<meta name="description" content="在课题组跟的是电力电子变压器（SST）的前级。SST 用中高频的电力电子变换加中频隔离，替掉笨重的工频变压器，把 10kV 中压交流变成低压直流。">
+<meta name="author" content="Colorai">
+<meta name="referrer" content="no-referrer">
+<meta name="theme-color" content="#0a1d52">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%230a1d52'/%3E%3Cpath d='M14 10 L54 6 L48 58 L8 54 Z' fill='%2334c6ff'/%3E%3Ctext x='32' y='44' font-family='Arial Black,Impact' font-size='34' fill='%230a1d52' text-anchor='middle'%3EC%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="../style.css">
+<script src="../script.js" defer></script>
+</head>
+<body class="booting reading" data-page="posts" data-post="sst-cell" data-theme="p3l">
+
+<canvas id="pixels" aria-hidden="true"></canvas>
+<a class="skip" href="#main">跳到正文</a>
+
+<header class="bar" id="bar" data-theme="p3d">
+  <a class="bar-logo" href="../index.html" aria-label="Colorai 首页">
+    <span class="rn r1">C</span><span class="rn r2">o</span><span class="rn r3">l</span><span class="rn r4">o</span><span class="rn r5">r</span><span class="rn r6">a</span><span class="rn r7">i</span>
+  </a>
+  <nav class="bar-nav" aria-label="站点导航">
+    <a href="../index.html" data-page="home"><i>00</i>Home</a>
+    <a href="../posts/index.html" data-page="posts"><i>01</i>随记</a>
+    <a href="../about.html" data-page="about"><i>02</i>档案</a>
+    <a href="../gallery.html" data-page="gallery"><i>03</i>相册</a>
+    <a href="../friends.html" data-page="friends"><i>04</i>友链</a>
+    <a href="../log.html" data-page="log"><i>05</i>日志</a>
+    <a href="../guestbook.html" data-page="guestbook"><i>06</i>留言</a>
+  </nav>
+  <div class="bar-cal" aria-label="今日">
+    <span class="cal-date" data-cal-date>11/24</span>
+    <span class="cal-day" data-cal-day>TUE</span>
+    <svg class="moon-mini" viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="8" class="moon-dark"/><path class="moon-lit" data-moon-path/></svg>
+  </div>
+</header>
+
+<main id="main" class="page" data-theme="p3l">
+  <article class="post">
+    <header class="post-head">
+      <a class="back" href="index.html">← 随记</a>
+      <p class="post-meta"><time>2025</time><a href="index.html?tag=电力电子">#电力电子</a> <a href="index.html?tag=课题组">#课题组</a></p>
+      <h1>为什么把 cell 换成四电平</h1>
+    </header>
+    <div class="prose">
+<p>在课题组跟的是电力电子变压器（SST）的前级。SST 用中高频的电力电子变换加中频隔离，替掉笨重的工频变压器，把 10kV 中压交流变成低压直流。</p>
+<p>前级走的是级联多电平。级联的单元叫 cell，它是可以换的：只要有独立浮地的直流、能全桥双向输出，H 桥、三电平、四电平都能当 cell。要凑出 17 电平，三种 cell 的账是这样的：</p>
+<table>
+<tr><th>cell</th><th>每个 cell 的电平</th><th>凑 17 电平</th><th>问题</th></tr>
+<tr><td>H 桥</td><td>3</td><td>8 个 cell，8 套浮地驱动</td><td>器件和绝缘做不下来</td></tr>
+<tr><td>T-NPC 三电平</td><td>5</td><td>4 个 cell</td><td>1200V + 600V，上下管电压和损耗不均</td></tr>
+<tr><td>准 NPC 四电平</td><td>7</td><td><b>3 个 cell，3 套浮地驱动</b></td><td>中间管要扛满 3300V</td></tr>
+</table>
+<p>容易想错的一点：换成四电平，开关总数并没有变少，32 个反而变成 36 个。真正省下来的是浮地驱动。每一套都要隔离供电、隔离采样、中压绝缘，从 8 套压到 3 套，这才是成本和体积的大头。</p>
+<h2>我做的部分</h2>
+<p>准 NPC 四电平单元的 Simulink 模型：交流 2.2kV，直流母线 3.3kV（3×1100V）。控制分三层，直流电压外环 PI，电流内环准 PR，最后是 5kHz 的层叠载波 PWM，控制频率 20kHz。</p>
+<pre><span class="c">% 准 PR 控制器</span>
+G(s) = Kp + Kr · <span class="f">2·Wc·s</span> / (s² + 2·Wc·s + Wo²)
+<span class="k">Wo</span> = 2π·50 ≈ <span class="n">314</span> rad/s   <span class="c">% 50Hz 处高增益 → 无静差</span>
+<span class="k">Wc</span> = <span class="n">5</span> rad/s             <span class="c">% 展宽谐振，抗电网频偏</span>
+<span class="c">% Tustin 离散化 → 二阶 IIR，可以直接上 DSP</span></pre>
+<p>拓扑方向是课题组定的。目前只验证了单个 cell，多 cell 级联和均压还没做。</p>
+</div>
+    <footer class="post-foot">
+      <p>有想法可以<a data-mail>写信给我</a>。</p>
+      <nav class="post-nav" data-post-nav aria-label="上一篇 / 下一篇"></nav>
+    </footer>
+  </article>
+</main>
+
+<footer class="foot" data-theme="p3d">
+  <span>© <span id="year">2026</span> Colorai · 木纹刀 / 岉雨</span>
+  <span class="foot-links"><a href="../posts/index.html">随记</a><a href="../gallery.html">相册</a><a href="../friends.html">友链</a><a href="../log.html">日志</a><a href="../guestbook.html">留言</a><a data-mail>写信</a></span>
+  <span class="foot-note">Persona 系列与首页像素画版权归 ATLUS 所有。这是一个非商业的个人站。</span>
+  <button type="button" class="foot-btn" id="replay">↻ Replay intro</button>
+</footer>
+
+<dialog class="lightbox" id="lightbox" aria-label="照片">
+  <figure>
+    <img id="lb-img" alt="">
+    <figcaption><span id="lb-idx"></span><b id="lb-cap"></b></figcaption>
+  </figure>
+  <button class="lb-btn prev" type="button" id="lb-prev" aria-label="上一张">‹</button>
+  <button class="lb-btn next" type="button" id="lb-next" aria-label="下一张">›</button>
+  <button class="lb-btn close" type="button" id="lb-x" aria-label="关闭">✕</button>
+</dialog>
+
+
+<aside class="player" id="player" data-game="P3R" aria-label="点歌窗口">
+  <button class="pl-mini" type="button" id="pl-mini" aria-expanded="false" aria-controls="pl-panel">
+    <span class="pl-disc"></span>
+    <span class="pl-mini-t"><i id="pl-mini-game">REQUEST</i><b id="pl-mini-title">点歌 · P-Series</b></span>
+    <span class="eq"><i></i><i></i><i></i><i></i></span>
+  </button>
+  <div class="pl-panel" id="pl-panel" hidden>
+    <div class="pl-head" title="按住拖动">
+      <span class="pl-grip" aria-hidden="true">⠿</span><span class="pl-k">♪ REQUEST <i lang="ja">リクエスト</i></span>
+      <button class="pl-x" type="button" id="pl-x" aria-label="收起">—</button>
+    </div>
+    <div class="pl-now">
+      <span class="pl-game" id="pl-game">P3R</span>
+      <b class="pl-title" id="pl-title">选一首歌</b>
+      <span class="pl-artist" id="pl-artist">Persona Series · ATLUS</span>
+      <div class="pl-bar" id="pl-bar"><span id="pl-fill"></span></div>
+      <div class="pl-time"><span id="pl-cur">0:00</span><span id="pl-dur">0:00</span></div>
+      <div class="pl-ctrl">
+        <button type="button" id="pl-prev" aria-label="上一首">⏮</button>
+        <button type="button" class="pl-play" id="pl-play" aria-label="播放">▶</button>
+        <button type="button" id="pl-next" aria-label="下一首">⏭</button>
+        <input type="range" id="pl-vol" min="0" max="1" step="0.05" value="0.7" aria-label="音量">
+      </div>
+    </div>
+    <div class="pl-tabs" role="tablist">
+      <button type="button" class="on" data-game="P3R">P3R</button>
+      <button type="button" data-game="P4G">P4G</button>
+      <button type="button" data-game="P5R">P5R</button>
+    </div>
+    <ol class="pl-list" id="pl-list"></ol>
+    <p class="pl-note">音源：网易云音乐外链 · 版权归 ATLUS 及原作者</p>
+  </div>
+</aside>
+
+<div class="toast" id="toast" role="status"></div>
+</body>
+</html>

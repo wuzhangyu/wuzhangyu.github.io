@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="zh-CN" data-root="" data-parent="index.html">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>友链 · Colorai</title>
+<meta name="description" content="Colorai 的朋友们。">
+<meta name="author" content="Colorai">
+<meta name="referrer" content="no-referrer">
+<meta name="theme-color" content="#0a1d52">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%230a1d52'/%3E%3Cpath d='M14 10 L54 6 L48 58 L8 54 Z' fill='%2334c6ff'/%3E%3Ctext x='32' y='44' font-family='Arial Black,Impact' font-size='34' fill='%230a1d52' text-anchor='middle'%3EC%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="style.css">
+<script src="script.js" defer></script>
+</head>
+<body class="booting" data-page="friends" data-theme="p3l">
+
+<canvas id="pixels" aria-hidden="true"></canvas>
+<a class="skip" href="#main">跳到正文</a>
+
+<header class="bar" id="bar" data-theme="p3d">
+  <a class="bar-logo" href="index.html" aria-label="Colorai 首页">
+    <span class="rn r1">C</span><span class="rn r2">o</span><span class="rn r3">l</span><span class="rn r4">o</span><span class="rn r5">r</span><span class="rn r6">a</span><span class="rn r7">i</span>
+  </a>
+  <nav class="bar-nav" aria-label="站点导航">
+    <a href="index.html" data-page="home"><i>00</i>Home</a>
+    <a href="posts/index.html" data-page="posts"><i>01</i>随记</a>
+    <a href="about.html" data-page="about"><i>02</i>档案</a>
+    <a href="gallery.html" data-page="gallery"><i>03</i>相册</a>
+    <a href="friends.html" data-page="friends"><i>04</i>友链</a>
+    <a href="log.html" data-page="log"><i>05</i>日志</a>
+    <a href="guestbook.html" data-page="guestbook"><i>06</i>留言</a>
+  </nav>
+  <div class="bar-cal" aria-label="今日">
+    <span class="cal-date" data-cal-date>11/24</span>
+    <span class="cal-day" data-cal-day>TUE</span>
+    <svg class="moon-mini" viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="8" class="moon-dark"/><path class="moon-lit" data-moon-path/></svg>
+  </div>
+</header>
+
+<main id="main" class="page friends-page" data-theme="p3l">
+  <div class="fr-banner" aria-hidden="true"><img src="assets/bg/shrine.webp" alt=""></div>
+  <div class="page-inner">
+    <header class="sec-head">
+      <span class="sec-num">04</span>
+      <h1 class="sec-title">Social Link <span class="sec-tag">友链 <i lang="ja">コミュ</i></span></h1>
+      <p class="sec-lead">朋友们的站。点开会在新标签页打开。</p>
+    </header>
+    <div class="fr-grid" data-friends></div>
+
+    <section class="fr-apply">
+      <h2>交换友链</h2>
+      <p>想互相挂上的话，发邮件到 <a data-mail><b data-email-text></b></a>，标题写「友链」，附上下面这几项。个人站就行，不挑主题。</p>
+      <pre class="fr-me"><span class="k">名称</span>  Colorai
+<span class="k">简介</span>  木纹刀 / 岉雨 的个人站
+<span class="k">地址</span>  https://wuzhangyu.github.io/
+<span class="k">头像</span>  （部署后补上）</pre>
+      <button class="fr-copy" type="button" data-copy-email>复制邮箱</button>
+    </section>
+  </div>
+  <figure class="page-chara" aria-hidden="true"><img src="assets/chars/cat.webp" alt=""><figcaption class="bubble">挂上友链，<br>就是羁绊了喵。</figcaption></figure>
+</main>
+
+<footer class="foot" data-theme="p3d">
+  <span>© <span id="year">2026</span> Colorai · 木纹刀 / 岉雨</span>
+  <span class="foot-links"><a href="posts/index.html">随记</a><a href="gallery.html">相册</a><a href="friends.html">友链</a><a href="log.html">日志</a><a href="guestbook.html">留言</a><a data-mail>写信</a></span>
+  <span class="foot-note">Persona 系列与首页像素画版权归 ATLUS 所有。这是一个非商业的个人站。</span>
+  <button type="button" class="foot-btn" id="replay">↻ Replay intro</button>
+</footer>
+
+
+
+
+<aside class="player" id="player" data-game="P3R" aria-label="点歌窗口">
+  <button class="pl-mini" type="button" id="pl-mini" aria-expanded="false" aria-controls="pl-panel">
+    <span class="pl-disc"></span>
+    <span class="pl-mini-t"><i id="pl-mini-game">REQUEST</i><b id="pl-mini-title">点歌 · P-Series</b></span>
+    <span class="eq"><i></i><i></i><i></i><i></i></span>
+  </button>
+  <div class="pl-panel" id="pl-panel" hidden>
+    <div class="pl-head" title="按住拖动">
+      <span class="pl-grip" aria-hidden="true">⠿</span><span class="pl-k">♪ REQUEST <i lang="ja">リクエスト</i></span>
+      <button class="pl-x" type="button" id="pl-x" aria-label="收起">—</button>
+    </div>
+    <div class="pl-now">
+      <span class="pl-game" id="pl-game">P3R</span>
+      <b class="pl-title" id="pl-title">选一首歌</b>
+      <span class="pl-artist" id="pl-artist">Persona Series · ATLUS</span>
+      <div class="pl-bar" id="pl-bar"><span id="pl-fill"></span></div>
+      <div class="pl-time"><span id="pl-cur">0:00</span><span id="pl-dur">0:00</span></div>
+      <div class="pl-ctrl">
+        <button type="button" id="pl-prev" aria-label="上一首">⏮</button>
+        <button type="button" class="pl-play" id="pl-play" aria-label="播放">▶</button>
+        <button type="button" id="pl-next" aria-label="下一首">⏭</button>
+        <input type="range" id="pl-vol" min="0" max="1" step="0.05" value="0.7" aria-label="音量">
+      </div>
+    </div>
+    <div class="pl-tabs" role="tablist">
+      <button type="button" class="on" data-game="P3R">P3R</button>
+      <button type="button" data-game="P4G">P4G</button>
+      <button type="button" data-game="P5R">P5R</button>
+    </div>
+    <ol class="pl-list" id="pl-list"></ol>
+    <p class="pl-note">音源：网易云音乐外链 · 版权归 ATLUS 及原作者</p>
+  </div>
+</aside>
+
+<div class="toast" id="toast" role="status"></div>
+</body>
+</html>

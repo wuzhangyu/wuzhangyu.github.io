@@ -1,0 +1,250 @@
+<!doctype html>
+<html lang="zh-CN" data-root="" data-parent="index.html">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>相册 · Colorai</title>
+<meta name="description" content="从 Apple 手记里翻出来的照片。">
+<meta name="author" content="Colorai">
+<meta name="referrer" content="no-referrer">
+<meta name="theme-color" content="#0a1d52">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%230a1d52'/%3E%3Cpath d='M14 10 L54 6 L48 58 L8 54 Z' fill='%2334c6ff'/%3E%3Ctext x='32' y='44' font-family='Arial Black,Impact' font-size='34' fill='%230a1d52' text-anchor='middle'%3EC%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="style.css">
+<script src="script.js" defer></script>
+</head>
+<body class="booting" data-page="gallery" data-theme="p5d">
+
+<canvas id="pixels" aria-hidden="true"></canvas>
+<a class="skip" href="#main">跳到正文</a>
+
+<header class="bar" id="bar" data-theme="p3d">
+  <a class="bar-logo" href="index.html" aria-label="Colorai 首页">
+    <span class="rn r1">C</span><span class="rn r2">o</span><span class="rn r3">l</span><span class="rn r4">o</span><span class="rn r5">r</span><span class="rn r6">a</span><span class="rn r7">i</span>
+  </a>
+  <nav class="bar-nav" aria-label="站点导航">
+    <a href="index.html" data-page="home"><i>00</i>Home</a>
+    <a href="posts/index.html" data-page="posts"><i>01</i>随记</a>
+    <a href="about.html" data-page="about"><i>02</i>档案</a>
+    <a href="gallery.html" data-page="gallery"><i>03</i>相册</a>
+    <a href="friends.html" data-page="friends"><i>04</i>友链</a>
+    <a href="log.html" data-page="log"><i>05</i>日志</a>
+    <a href="guestbook.html" data-page="guestbook"><i>06</i>留言</a>
+  </nav>
+  <div class="bar-cal" aria-label="今日">
+    <span class="cal-date" data-cal-date>11/24</span>
+    <span class="cal-day" data-cal-day>TUE</span>
+    <svg class="moon-mini" viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="8" class="moon-dark"/><path class="moon-lit" data-moon-path/></svg>
+  </div>
+</header>
+
+<main id="main" class="page memories" data-theme="p5d">
+  <div class="page-inner">
+    <header class="sec-head">
+      <span class="sec-num">03</span>
+      <h1 class="sec-title">Album <span class="sec-tag">相册 <i lang="ja">おもいで</i></span></h1>
+      <p class="sec-lead">从 Apple 手记和 iCloud 相册里翻出来的。按时间排，点开看大图，左右键翻页。</p>
+    </header>
+    <section class="g-group">
+      <h2 class="g-head"><b>2026.10.31</b><span>深圳</span><i>又回到南山。</i></h2>
+      <div class="wall">
+        <button class="polaroid rv" type="button" style="--r:-2deg" data-src="assets/photos/sz-night.webp" data-cap="2026.10.31 · 深圳，深圳湾的夜景。"><img src="assets/photos/sz-night.webp" alt="深圳湾夜景" loading="lazy"><span><i>深圳</i>深圳湾的夜</span></button>
+        <button class="polaroid rv" type="button" style="--r:1.5deg" data-src="assets/photos/sz-keyuan.webp" data-cap="2026.10.31 · 深圳，晚上沿科苑南路走。"><img src="assets/photos/sz-keyuan.webp" alt="科苑南路" loading="lazy"><span><i>深圳</i>科苑南路</span></button>
+        <button class="polaroid rv" type="button" style="--r:-1deg" data-src="assets/photos/sz-tower.webp" data-cap="2026.11.01 · 深圳，去华强北路上抬头看见的楼。"><img src="assets/photos/sz-tower.webp" alt="深圳的高楼" loading="lazy"><span><i>深圳</i>去华强北</span></button>
+      </div>
+    </section>
+    <section class="g-group">
+      <h2 class="g-head"><b>2026.10.01</b><span>香港 · M+</span><i>第二天，看展、坐天星小轮、看国庆烟花。</i></h2>
+      <div class="wall">
+        <button class="polaroid rv" type="button" style="--r:2deg" data-src="assets/photos/hk-mplus.webp" data-cap="2026.10.01 · 香港西九，M+ 门口。"><img src="assets/photos/hk-mplus.webp" alt="M+ 门口" loading="lazy"><span><i>M+</i>门口</span></button>
+        <button class="polaroid rv" type="button" style="--r:-2.5deg" data-src="assets/photos/hk-mplus-light.webp" data-cap="2026.10.01 · M+，彩虹色的光打在墙上。"><img src="assets/photos/hk-mplus-light.webp" alt="M+ 展厅里的光" loading="lazy"><span><i>M+</i>光</span></button>
+        <button class="polaroid rv" type="button" style="--r:1deg" data-src="assets/photos/hk-mplus-art.webp" data-cap="2026.10.01 · M+ 的展厅。"><img src="assets/photos/hk-mplus-art.webp" alt="M+ 展厅" loading="lazy"><span><i>M+</i>展厅</span></button>
+        <button class="polaroid rv" type="button" style="--r:-1.5deg" data-src="assets/photos/hk-mplus-view.webp" data-cap="2026.10.01 · 从 M+ 的窗看出去的维多利亚港。"><img src="assets/photos/hk-mplus-view.webp" alt="M+ 窗外的维港" loading="lazy"><span><i>M+</i>窗外的维港</span></button>
+        <button class="polaroid rv" type="button" style="--r:2.5deg" data-src="assets/photos/hk-ferry.webp" data-cap="2026.10.01 · 天星小轮上看湾仔。"><img src="assets/photos/hk-ferry.webp" alt="天星小轮上的夜景" loading="lazy"><span><i>维港</i>天星小轮</span></button>
+        <button class="polaroid rv" type="button" style="--r:-2deg" data-src="assets/photos/hk-fireworks.webp" data-cap="2026.10.01 · 维多利亚港的国庆烟花。"><img src="assets/photos/hk-fireworks.webp" alt="维港烟花" loading="lazy"><span><i>维港</i>国庆烟花</span></button>
+      </div>
+    </section>
+    <section class="g-group">
+      <h2 class="g-head"><b>2026.09.30</b><span>香港 · 刺团</span><i>TOGENASHI TOGEARI，亚洲国际博览中心。</i></h2>
+      <div class="wall">
+        <button class="polaroid rv" type="button" style="--r:-2deg" data-src="assets/photos/hk-awe.webp" data-cap="2026.09.30 · 香港，入场前的亚洲国际博览中心。"><img src="assets/photos/hk-awe.webp" alt="亚洲国际博览中心" loading="lazy"><span><i>亚博</i>入场前</span></button>
+        <button class="polaroid rv" type="button" style="--r:2deg" data-src="assets/photos/hk-stage.webp" data-cap="2026.09.30 · 刺团香港公演，开场前的舞台。"><img src="assets/photos/hk-stage.webp" alt="刺团舞台" loading="lazy"><span><i>刺团</i>舞台</span></button>
+        <button class="polaroid rv" type="button" style="--r:-1deg" data-src="assets/photos/hk-toge.webp" data-cap="2026.09.30 · TOGENASHI TOGEARI，香港。"><img src="assets/photos/hk-toge.webp" alt="TOGENASHI TOGEARI 演出" loading="lazy"><span><i>刺团</i>TOGENASHI TOGEARI</span></button>
+        <button class="polaroid rv" type="button" style="--r:3deg" data-src="assets/photos/hk-toge-2.webp" data-cap="2026.09.30 · 散场前最后一眼。"><img src="assets/photos/hk-toge-2.webp" alt="刺团演出结束" loading="lazy"><span><i>刺团</i>最后一眼</span></button>
+      </div>
+    </section>
+    <section class="g-group">
+      <h2 class="g-head"><b>2026.08</b><span>惠州</span><i>在惠州待了两个星期，周末就在城里走走。</i></h2>
+      <div class="wall">
+        <button class="polaroid rv" type="button" style="--r:-2deg" data-src="assets/photos/hz-westlake.webp" data-cap="2026.08.15 · 惠州西湖。"><img src="assets/photos/hz-westlake.webp" alt="惠州西湖" loading="lazy"><span><i>惠州</i>西湖</span></button>
+        <button class="polaroid rv" type="button" style="--r:2deg" data-src="assets/photos/hz-sizhou.webp" data-cap="2026.08.15 · 惠州西湖，泗洲塔。"><img src="assets/photos/hz-sizhou.webp" alt="泗洲塔" loading="lazy"><span><i>惠州</i>泗洲塔</span></button>
+        <button class="polaroid rv" type="button" style="--r:-1deg" data-src="assets/photos/hz-bridge.webp" data-cap="2026.08.16 · 惠州，早上的桥。"><img src="assets/photos/hz-bridge.webp" alt="惠州的桥" loading="lazy"><span><i>惠州</i>桥</span></button>
+        <button class="polaroid rv" type="button" style="--r:2.5deg" data-src="assets/photos/hz-hejiang.webp" data-cap="2026.08.16 · 惠州，东江边的合江楼。"><img src="assets/photos/hz-hejiang.webp" alt="合江楼" loading="lazy"><span><i>惠州</i>合江楼</span></button>
+        <button class="polaroid rv" type="button" style="--r:-2.5deg" data-src="assets/photos/hz-dongjiang.webp" data-cap="2026.08.16 · 从合江楼上看东江。"><img src="assets/photos/hz-dongjiang.webp" alt="东江" loading="lazy"><span><i>惠州</i>东江</span></button>
+        <button class="polaroid rv" type="button" style="--r:1.5deg" data-src="assets/photos/hz-cloud.webp" data-cap="2026.08.19 · 惠州，傍晚的积雨云。"><img src="assets/photos/hz-cloud.webp" alt="积雨云" loading="lazy"><span><i>惠州</i>云</span></button>
+        <button class="polaroid rv" type="button" style="--r:-1.5deg" data-src="assets/photos/hz-dusk.webp" data-cap="2026.08.20 · 惠州，最后几天的晚霞。"><img src="assets/photos/hz-dusk.webp" alt="惠州的晚霞" loading="lazy"><span><i>惠州</i>晚霞</span></button>
+      </div>
+    </section>
+    <section class="g-group">
+      <h2 class="g-head"><b>2026.08</b><span>广州</span><i>实习结束，去广州走了两天。</i></h2>
+      <div class="wall">
+        <button class="polaroid rv" type="button" style="--r:-2deg" data-src="assets/photos/gz-tower.webp" data-cap="2026.08.24 · 广州，晚上的珠江新城。"><img src="assets/photos/gz-tower.webp" alt="珠江新城" loading="lazy"><span><i>广州</i>珠江新城</span></button>
+        <button class="polaroid rv" type="button" style="--r:2deg" data-src="assets/photos/gz-river.webp" data-cap="2026.08.24 · 广州，珠江的夜。"><img src="assets/photos/gz-river.webp" alt="珠江夜景" loading="lazy"><span><i>广州</i>珠江</span></button>
+        <button class="polaroid rv" type="button" style="--r:-1.5deg" data-src="assets/photos/gz-shamian.webp" data-cap="2026.08.25 · 广州，沙面的老楼。"><img src="assets/photos/gz-shamian.webp" alt="沙面老楼" loading="lazy"><span><i>广州</i>沙面</span></button>
+      </div>
+    </section>
+    <section class="g-group">
+      <h2 class="g-head"><b>2026.07</b><span>北京</span><i>五天，故宫、颐和园，还有国贸的楼。</i></h2>
+      <div class="wall">
+        <button class="polaroid rv" type="button" style="--r:2deg" data-src="assets/photos/bj-taihe.webp" data-cap="2026.07.03 · 北京，故宫太和殿。"><img src="assets/photos/bj-taihe.webp" alt="太和殿" loading="lazy"><span><i>北京</i>太和殿</span></button>
+        <button class="polaroid rv" type="button" style="--r:-2deg" data-src="assets/photos/bj-qianqing.webp" data-cap="2026.07.03 · 故宫，「正大光明」。"><img src="assets/photos/bj-qianqing.webp" alt="正大光明匾" loading="lazy"><span><i>故宫</i>正大光明</span></button>
+        <button class="polaroid rv" type="button" style="--r:1deg" data-src="assets/photos/bj-summer.webp" data-cap="2026.07.04 · 北京，颐和园的湖和桥。"><img src="assets/photos/bj-summer.webp" alt="颐和园" loading="lazy"><span><i>北京</i>颐和园</span></button>
+        <button class="polaroid rv" type="button" style="--r:-1.5deg" data-src="assets/photos/bj-kunming.webp" data-cap="2026.07.04 · 颐和园，从高处看昆明湖。"><img src="assets/photos/bj-kunming.webp" alt="昆明湖" loading="lazy"><span><i>颐和园</i>昆明湖</span></button>
+        <button class="polaroid rv" type="button" style="--r:2.5deg" data-src="assets/photos/bj-cctv.webp" data-cap="2026.07.04 · 北京国贸，傍晚的央视大楼。"><img src="assets/photos/bj-cctv.webp" alt="央视大楼" loading="lazy"><span><i>北京</i>国贸</span></button>
+        <button class="polaroid rv" type="button" style="--r:-2deg" data-src="assets/photos/bj-tiananmen.webp" data-cap="2026.07.05 · 北京，天安门。"><img src="assets/photos/bj-tiananmen.webp" alt="天安门" loading="lazy"><span><i>北京</i>天安门</span></button>
+      </div>
+    </section>
+    <section class="g-group">
+      <h2 class="g-head"><b>2026.01</b><span>广汽埃安</span><i>操作发那科机器人写的字。</i></h2>
+      <div class="wall">
+        <button class="polaroid rv" type="button" style="--r:2deg" data-src="assets/photos/fanuc-mago.webp" data-cap="2026.01 · 广汽埃安，操作发那科机器人写的「马到成功」。"><img src="assets/photos/fanuc-mago.webp" alt="发那科机器人写的马到成功" loading="lazy"><span><i>广汽埃安</i>马到成功</span></button>
+      </div>
+    </section>
+    <section class="g-group">
+      <h2 class="g-head"><b>2025.08</b><span>重庆 · 厦门</span><i>电赛完的暑假，到处走走。</i></h2>
+      <div class="wall">
+        <button class="polaroid rv" type="button" style="--r:-2deg" data-src="assets/photos/cq-rail.webp" data-cap="2025.08.15 · 重庆，从山里钻出来的轻轨。"><img src="assets/photos/cq-rail.webp" alt="重庆轻轨" loading="lazy"><span><i>重庆</i>轻轨</span></button>
+        <button class="polaroid rv" type="button" style="--r:2deg" data-src="assets/photos/cq-skyline.webp" data-cap="2025.08.15 · 重庆，傍晚的江边。"><img src="assets/photos/cq-skyline.webp" alt="重庆江边的楼" loading="lazy"><span><i>重庆</i>江边</span></button>
+        <button class="polaroid rv" type="button" style="--r:-1deg" data-src="assets/photos/cq-sunset.webp" data-cap="2025.08.15 · 重庆，日落。"><img src="assets/photos/cq-sunset.webp" alt="重庆日落" loading="lazy"><span><i>重庆</i>日落</span></button>
+        <button class="polaroid rv" type="button" style="--r:2.5deg" data-src="assets/photos/cq-night.webp" data-cap="2025.08.14 · 重庆，江上的桥和夜景。"><img src="assets/photos/cq-night.webp" alt="重庆夜景" loading="lazy"><span><i>重庆</i>夜景</span></button>
+        <button class="polaroid rv" type="button" style="--r:-2deg" data-src="assets/photos/cq-pavilion.webp" data-cap="2025.08.15 · 重庆，高楼中间的老楼阁。"><img src="assets/photos/cq-pavilion.webp" alt="重庆的楼阁" loading="lazy"><span><i>重庆</i>楼阁</span></button>
+        <button class="polaroid rv" type="button" style="--r:1.5deg" data-src="assets/photos/xm-zhongshan.webp" data-cap="2025.08.21 · 厦门中山路。"><img src="assets/photos/xm-zhongshan.webp" alt="厦门中山路" loading="lazy"><span><i>厦门</i>中山路</span></button>
+        <button class="polaroid rv" type="button" style="--r:-1.5deg" data-src="assets/photos/xm-gate.webp" data-cap="2025.08.21 · 厦门，老街口的牌坊。"><img src="assets/photos/xm-gate.webp" alt="厦门的牌坊" loading="lazy"><span><i>厦门</i>牌坊</span></button>
+        <button class="polaroid rv" type="button" style="--r:2deg" data-src="assets/photos/xm-harbour.webp" data-cap="2025.08.21 · 厦门，和平码头的夜。"><img src="assets/photos/xm-harbour.webp" alt="厦门夜里的海" loading="lazy"><span><i>厦门</i>海边的夜</span></button>
+      </div>
+    </section>
+    <section class="g-group">
+      <h2 class="g-head"><b>2025.07</b><span>电赛</span><i>四天三夜。</i></h2>
+      <div class="wall">
+        <button class="polaroid rv" type="button" style="--r:1.5deg" data-src="assets/photos/bench.webp" data-cap="2025.07 · 全国电赛，那几天的实验台。"><img src="assets/photos/bench.webp" alt="实验台" loading="lazy"><span><i>长沙</i>实验台</span></button>
+        <button class="polaroid rv" type="button" style="--r:-1deg" data-src="assets/photos/board.webp" data-cap="三相逆变主板接上驱动和采样，准备上电。"><img src="assets/photos/board.webp" alt="主板上电前" loading="lazy"><span><i>长沙</i>主板上电前</span></button>
+      </div>
+    </section>
+    <section class="g-group">
+      <h2 class="g-head"><b>2024.09</b><span>上海</span><i>人生第一场演唱会。</i></h2>
+      <div class="wall">
+        <button class="polaroid rv" type="button" style="--r:-2.5deg" data-src="assets/photos/j-mygo-live.webp" data-cap="2024.09.21 · 上海，MyGO!!!!! 6th LIVE 追加公演。"><img src="assets/photos/j-mygo-live.webp" alt="MyGO!!!!! 6th LIVE" loading="lazy"><span><i>上海</i>MyGO!!!!! 6th LIVE</span></button>
+      </div>
+    </section>
+    <section class="g-group">
+      <h2 class="g-head"><b>2024.08</b><span>京都 · 大阪</span><i>巡礼走完，往关西去。</i></h2>
+      <div class="wall">
+        <button class="polaroid rv" type="button" style="--r:2deg" data-src="assets/photos/j-senbon.webp" data-cap="2024.08.08 · 京都，伏见稻荷的千本鸟居。"><img src="assets/photos/j-senbon.webp" alt="千本鸟居" loading="lazy"><span><i>京都</i>千本鸟居</span></button>
+        <button class="polaroid rv" type="button" style="--r:-2deg" data-src="assets/photos/j-inari-fox.webp" data-cap="2024.08.08 · 京都，伏见稻荷的狐狸像。"><img src="assets/photos/j-inari-fox.webp" alt="稻荷的狐" loading="lazy"><span><i>京都</i>稻荷的狐</span></button>
+        <button class="polaroid rv" type="button" style="--r:1deg" data-src="assets/photos/j-arashiyama.webp" data-cap="2024.08 · 京都，岚山的竹林小径。"><img src="assets/photos/j-arashiyama.webp" alt="岚山竹林" loading="lazy"><span><i>京都</i>岚山竹林</span></button>
+        <button class="polaroid rv" type="button" style="--r:-2.5deg" data-src="assets/photos/o-dotonbori.webp" data-cap="2024.08.11 · 大阪，道顿堀的夜。"><img src="assets/photos/o-dotonbori.webp" alt="道顿堀" loading="lazy"><span><i>大阪</i>道顿堀</span></button>
+        <button class="polaroid rv" type="button" style="--r:2.5deg" data-src="assets/photos/o-usj.webp" data-cap="2024.08.12 · 大阪，环球影城关门前。"><img src="assets/photos/o-usj.webp" alt="大阪环球影城" loading="lazy"><span><i>大阪</i>环球影城</span></button>
+      </div>
+    </section>
+    <section class="g-group">
+      <h2 class="g-head"><b>2024.08.04</b><span>江之岛 · 镰仓</span><i>《青春猪头少年》的舞台，坐江之电从藤泽一路到七里滨。</i></h2>
+      <div class="wall">
+        <button class="polaroid rv" type="button" style="--r:-2deg" data-src="assets/photos/e-fujisawa.webp" data-cap="2024.08.04 · 藤泽站。巡礼从这里开始。"><img src="assets/photos/e-fujisawa.webp" alt="藤泽站" loading="lazy"><span><i>巡礼</i>藤泽站</span></button>
+        <button class="polaroid rv" type="button" style="--r:2deg" data-src="assets/photos/e-enoden.webp" data-cap="2024.08.04 · 江之电，绿色的车厢。"><img src="assets/photos/e-enoden.webp" alt="江之电" loading="lazy"><span><i>巡礼</i>江之电</span></button>
+        <button class="polaroid rv" type="button" style="--r:-1deg" data-src="assets/photos/e-koshigoe.webp" data-cap="2024.08.04 · 腰越，江之电从房子中间开过去。"><img src="assets/photos/e-koshigoe.webp" alt="腰越的江之电" loading="lazy"><span><i>巡礼</i>腰越</span></button>
+        <button class="polaroid rv" type="button" style="--r:2.5deg" data-src="assets/photos/e-crossing.webp" data-cap="2024.08.04 · 镰仓高校前的道口，路的尽头就是海。"><img src="assets/photos/e-crossing.webp" alt="镰仓高校前的道口" loading="lazy"><span><i>巡礼</i>镰仓高校前</span></button>
+        <button class="polaroid rv" type="button" style="--r:-2.5deg" data-src="assets/photos/e-shichirigahama.webp" data-cap="2024.08.04 · 七里滨的海。"><img src="assets/photos/e-shichirigahama.webp" alt="七里滨" loading="lazy"><span><i>巡礼</i>七里滨</span></button>
+        <button class="polaroid rv" type="button" style="--r:1.5deg" data-src="assets/photos/e-katase.webp" data-cap="2024.08.04 · 片濑江之岛站，像龙宫一样的站房。"><img src="assets/photos/e-katase.webp" alt="片濑江之岛站" loading="lazy"><span><i>江之岛</i>片濑江之岛站</span></button>
+        <button class="polaroid rv" type="button" style="--r:-1.5deg" data-src="assets/photos/y-fireworks.webp" data-cap="2024.08.05 · 横滨，港口的花火大会。"><img src="assets/photos/y-fireworks.webp" alt="横滨的花火" loading="lazy"><span><i>横滨</i>花火大会</span></button>
+      </div>
+    </section>
+    <section class="g-group">
+      <h2 class="g-head"><b>2024.07.31</b><span>东京 · 巡礼</span><i>这趟日本主要是来巡礼的，东京待了大半时间。</i></h2>
+      <div class="wall">
+        <button class="polaroid rv" type="button" style="--r:-2deg" data-src="assets/photos/t-asakusa.webp" data-cap="2024.07.31 · 东京浅草，落地第一晚。"><img src="assets/photos/t-asakusa.webp" alt="浅草的夜" loading="lazy"><span><i>东京</i>浅草的第一晚</span></button>
+        <button class="polaroid rv" type="button" style="--r:2deg" data-src="assets/photos/t-sunshine60.webp" data-cap="2024.08.01 · 东京池袋，从东池袋中央公园看 Sunshine 60。巡礼。"><img src="assets/photos/t-sunshine60.webp" alt="东池袋中央公园" loading="lazy"><span><i>巡礼</i>东池袋</span></button>
+        <button class="polaroid rv" type="button" style="--r:2.5deg" data-src="assets/photos/j-jellyfish.webp" data-cap="2024.08.01 · 东京池袋，Sunshine 水族馆的水母。"><img src="assets/photos/j-jellyfish.webp" alt="Sunshine 水族馆" loading="lazy"><span><i>东京</i>Sunshine 水族馆</span></button>
+        <button class="polaroid rv" type="button" style="--r:-2.5deg" data-src="assets/photos/t-nagasaki.webp" data-cap="2024.08.01 · 东京丰岛区长崎，巡礼路上的住宅街。"><img src="assets/photos/t-nagasaki.webp" alt="丰岛区的住宅街" loading="lazy"><span><i>巡礼</i>丰岛区长崎</span></button>
+        <button class="polaroid rv" type="button" style="--r:-2deg" data-src="assets/photos/t-station.webp" data-cap="2024.08.01 · 东京站丸之内口的穹顶。"><img src="assets/photos/t-station.webp" alt="东京站穹顶" loading="lazy"><span><i>东京</i>东京站</span></button>
+        <button class="polaroid rv" type="button" style="--r:1.5deg" data-src="assets/photos/t-ochanomizu.webp" data-cap="2024.08.02 · 御茶水，从圣桥上看神田川和电车。"><img src="assets/photos/t-ochanomizu.webp" alt="御茶水的神田川" loading="lazy"><span><i>巡礼</i>御茶水</span></button>
+        <button class="polaroid rv" type="button" style="--r:3deg" data-src="assets/photos/t-shimokita.webp" data-cap="2024.08.02 · 东京下北泽的道口。乐队番巡礼的一站。"><img src="assets/photos/t-shimokita.webp" alt="下北泽的道口" loading="lazy"><span><i>巡礼</i>下北泽的道口</span></button>
+        <button class="polaroid rv" type="button" style="--r:-1.5deg" data-src="assets/photos/t-shimokita-night.webp" data-cap="2024.08.02 · 下北泽，入夜的街。"><img src="assets/photos/t-shimokita-night.webp" alt="下北泽夜晚" loading="lazy"><span><i>巡礼</i>下北泽的夜</span></button>
+        <button class="polaroid rv" type="button" style="--r:1.5deg" data-src="assets/photos/t-shibuya.webp" data-cap="2024.08.02 · 涩谷，入夜的十字路口。"><img src="assets/photos/t-shibuya.webp" alt="十字路口" loading="lazy"><span><i>涩谷</i>十字路口</span></button>
+        <button class="polaroid rv" type="button" style="--r:-2deg" data-src="assets/photos/t-akiba.webp" data-cap="2024.08.03 · 秋叶原，Radio 会馆。"><img src="assets/photos/t-akiba.webp" alt="Radio 会馆" loading="lazy"><span><i>秋叶原</i>Radio 会馆</span></button>
+        <button class="polaroid rv" type="button" style="--r:2deg" data-src="assets/photos/t-ginza.webp" data-cap="2024.08.03 · 银座，和光的钟楼。"><img src="assets/photos/t-ginza.webp" alt="和光" loading="lazy"><span><i>银座</i>和光</span></button>
+        <button class="polaroid rv" type="button" style="--r:-1.5deg" data-src="assets/photos/t-shinjuku.webp" data-cap="2024.08.03 · 新宿站。"><img src="assets/photos/t-shinjuku.webp" alt="新宿站" loading="lazy"><span><i>新宿</i>新宿站</span></button>
+        <button class="polaroid rv" type="button" style="--r:2.5deg" data-src="assets/photos/t-kabukicho.webp" data-cap="2024.08.03 · 新宿，歌舞伎町一番街。"><img src="assets/photos/t-kabukicho.webp" alt="歌舞伎町" loading="lazy"><span><i>新宿</i>歌舞伎町</span></button>
+        <button class="polaroid rv" type="button" style="--r:-2deg" data-src="assets/photos/t-shibuya-sky.webp" data-cap="2024.08.05 · 从高处看涩谷。"><img src="assets/photos/t-shibuya-sky.webp" alt="高处" loading="lazy"><span><i>涩谷</i>高处</span></button>
+        <button class="polaroid rv" type="button" style="--r:2deg" data-src="assets/photos/t-yasuda.webp" data-cap="2024.08.03 · 东京大学，安田讲堂。"><img src="assets/photos/t-yasuda.webp" alt="安田讲堂" loading="lazy"><span><i>东京</i>安田讲堂</span></button>
+        <button class="polaroid rv" type="button" style="--r:-2deg" data-src="assets/photos/t-suga.webp" data-cap="2024.08.06 · 四谷，须贺神社前的台阶。《你的名字。》巡礼。"><img src="assets/photos/t-suga.webp" alt="须贺神社前的台阶" loading="lazy"><span><i>巡礼</i>须贺神社</span></button>
+        <button class="polaroid rv" type="button" style="--r:1deg" data-src="assets/photos/t-tower.webp" data-cap="2024.08.06 · 东京塔，离开东京前一晚。"><img src="assets/photos/t-tower.webp" alt="东京塔" loading="lazy"><span><i>东京</i>东京塔</span></button>
+      </div>
+    </section>
+    <section class="g-group">
+      <h2 class="g-head"><b>2024.05 – 07</b><span>上海 · 武汉 · 广州</span><i>大一那年的五一和暑假。</i></h2>
+      <div class="wall">
+        <button class="polaroid rv" type="button" style="--r:-2deg" data-src="assets/photos/sh-tower.webp" data-cap="2024.05.02 · 上海陆家嘴，抬头看上海中心。"><img src="assets/photos/sh-tower.webp" alt="上海中心" loading="lazy"><span><i>上海</i>上海中心</span></button>
+        <button class="polaroid rv" type="button" style="--r:2deg" data-src="assets/photos/sh-night.webp" data-cap="2024.05.02 · 上海之巅，云里的夜景。"><img src="assets/photos/sh-night.webp" alt="上海之巅的夜景" loading="lazy"><span><i>上海</i>上海之巅</span></button>
+        <button class="polaroid rv" type="button" style="--r:-1deg" data-src="assets/photos/sh-pearl.webp" data-cap="2024.05.02 · 上海，东方明珠。"><img src="assets/photos/sh-pearl.webp" alt="东方明珠" loading="lazy"><span><i>上海</i>东方明珠</span></button>
+        <button class="polaroid rv" type="button" style="--r:2.5deg" data-src="assets/photos/wh-yellowcrane.webp" data-cap="2024.07.04 · 武汉，黄鹤楼。"><img src="assets/photos/wh-yellowcrane.webp" alt="黄鹤楼" loading="lazy"><span><i>武汉</i>黄鹤楼</span></button>
+        <button class="polaroid rv" type="button" style="--r:-2deg" data-src="assets/photos/gz-cantontower.webp" data-cap="2024.07.19 · 广州，晚上的广州塔。"><img src="assets/photos/gz-cantontower.webp" alt="广州塔" loading="lazy"><span><i>广州</i>广州塔</span></button>
+      </div>
+    </section>
+  </div>
+  <figure class="page-chara" aria-hidden="true"><img src="assets/chars/memories.webp" alt=""></figure>
+</main>
+
+<footer class="foot" data-theme="p3d">
+  <span>© <span id="year">2026</span> Colorai · 木纹刀 / 岉雨</span>
+  <span class="foot-links"><a href="posts/index.html">随记</a><a href="gallery.html">相册</a><a href="friends.html">友链</a><a href="log.html">日志</a><a href="guestbook.html">留言</a><a data-mail>写信</a></span>
+  <span class="foot-note">Persona 系列与首页像素画版权归 ATLUS 所有。这是一个非商业的个人站。</span>
+  <button type="button" class="foot-btn" id="replay">↻ Replay intro</button>
+</footer>
+
+<dialog class="lightbox" id="lightbox" aria-label="照片">
+  <figure>
+    <img id="lb-img" alt="">
+    <figcaption><span id="lb-idx"></span><b id="lb-cap"></b></figcaption>
+  </figure>
+  <button class="lb-btn prev" type="button" id="lb-prev" aria-label="上一张">‹</button>
+  <button class="lb-btn next" type="button" id="lb-next" aria-label="下一张">›</button>
+  <button class="lb-btn close" type="button" id="lb-x" aria-label="关闭">✕</button>
+</dialog>
+
+
+<aside class="player" id="player" data-game="P3R" aria-label="点歌窗口">
+  <button class="pl-mini" type="button" id="pl-mini" aria-expanded="false" aria-controls="pl-panel">
+    <span class="pl-disc"></span>
+    <span class="pl-mini-t"><i id="pl-mini-game">REQUEST</i><b id="pl-mini-title">点歌 · P-Series</b></span>
+    <span class="eq"><i></i><i></i><i></i><i></i></span>
+  </button>
+  <div class="pl-panel" id="pl-panel" hidden>
+    <div class="pl-head" title="按住拖动">
+      <span class="pl-grip" aria-hidden="true">⠿</span><span class="pl-k">♪ REQUEST <i lang="ja">リクエスト</i></span>
+      <button class="pl-x" type="button" id="pl-x" aria-label="收起">—</button>
+    </div>
+    <div class="pl-now">
+      <span class="pl-game" id="pl-game">P3R</span>
+      <b class="pl-title" id="pl-title">选一首歌</b>
+      <span class="pl-artist" id="pl-artist">Persona Series · ATLUS</span>
+      <div class="pl-bar" id="pl-bar"><span id="pl-fill"></span></div>
+      <div class="pl-time"><span id="pl-cur">0:00</span><span id="pl-dur">0:00</span></div>
+      <div class="pl-ctrl">
+        <button type="button" id="pl-prev" aria-label="上一首">⏮</button>
+        <button type="button" class="pl-play" id="pl-play" aria-label="播放">▶</button>
+        <button type="button" id="pl-next" aria-label="下一首">⏭</button>
+        <input type="range" id="pl-vol" min="0" max="1" step="0.05" value="0.7" aria-label="音量">
+      </div>
+    </div>
+    <div class="pl-tabs" role="tablist">
+      <button type="button" class="on" data-game="P3R">P3R</button>
+      <button type="button" data-game="P4G">P4G</button>
+      <button type="button" data-game="P5R">P5R</button>
+    </div>
+    <ol class="pl-list" id="pl-list"></ol>
+    <p class="pl-note">音源：网易云音乐外链 · 版权归 ATLUS 及原作者</p>
+  </div>
+</aside>
+
+<div class="toast" id="toast" role="status"></div>
+</body>
+</html>

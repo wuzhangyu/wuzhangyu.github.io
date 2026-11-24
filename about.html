@@ -1,0 +1,757 @@
+<!doctype html>
+<html lang="zh-CN" data-root="" data-parent="index.html">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>档案 · Colorai</title>
+<meta name="description" content="Colorai 的档案：经历、做过的东西、喜欢的东西、去过的地方。">
+<meta name="author" content="Colorai">
+<meta name="referrer" content="no-referrer">
+<meta name="theme-color" content="#0a1d52">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%230a1d52'/%3E%3Cpath d='M14 10 L54 6 L48 58 L8 54 Z' fill='%2334c6ff'/%3E%3Ctext x='32' y='44' font-family='Arial Black,Impact' font-size='34' fill='%230a1d52' text-anchor='middle'%3EC%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="style.css">
+<script src="globe-data.js" defer></script>
+<script src="script.js" defer></script>
+</head>
+<body class="booting" data-page="about" data-theme="p3l">
+
+<canvas id="pixels" aria-hidden="true"></canvas>
+<a class="skip" href="#main">跳到正文</a>
+
+<header class="bar" id="bar" data-theme="p3d">
+  <a class="bar-logo" href="index.html" aria-label="Colorai 首页">
+    <span class="rn r1">C</span><span class="rn r2">o</span><span class="rn r3">l</span><span class="rn r4">o</span><span class="rn r5">r</span><span class="rn r6">a</span><span class="rn r7">i</span>
+  </a>
+  <nav class="bar-nav" aria-label="站点导航">
+    <a href="index.html" data-page="home"><i>00</i>Home</a>
+    <a href="posts/index.html" data-page="posts"><i>01</i>随记</a>
+    <a href="about.html" data-page="about"><i>02</i>档案</a>
+    <a href="gallery.html" data-page="gallery"><i>03</i>相册</a>
+    <a href="friends.html" data-page="friends"><i>04</i>友链</a>
+    <a href="log.html" data-page="log"><i>05</i>日志</a>
+    <a href="guestbook.html" data-page="guestbook"><i>06</i>留言</a>
+  </nav>
+  <div class="bar-cal" aria-label="今日">
+    <span class="cal-date" data-cal-date>11/24</span>
+    <span class="cal-day" data-cal-day>TUE</span>
+    <svg class="moon-mini" viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="8" class="moon-dark"/><path class="moon-lit" data-moon-path/></svg>
+  </div>
+</header>
+
+<div class="hud" id="hud" data-theme="p3d" aria-hidden="true">
+  <span class="hud-game" id="hud-game">P3R</span>
+  <span class="hud-idx" id="hud-idx">00</span>
+  <span class="hud-sep">/</span>
+  <span class="hud-total">06</span>
+  <span class="hud-name" id="hud-name">Profile</span>
+  <span class="hud-prog"><span id="hud-prog"></span></span>
+</div>
+
+<div class="pager" aria-label="翻页">
+  <button type="button" id="pg-prev" aria-label="上一页">▲</button>
+  <button type="button" id="pg-next" aria-label="下一页">▼</button>
+</div>
+
+<main id="main">
+
+  <!-- ═════════ 01 PROFILE · P3R light · Aigis ═════════ -->
+  <section class="sec" id="about" data-theme="p3l" data-hud="Profile" data-game="P3R">
+    <figure class="chara right" aria-hidden="true"><img src="assets/chars/profile.webp" alt="" loading="lazy"><figcaption>ME · Lv.22</figcaption></figure>
+    <div class="sec-inner">
+      <header class="sec-head rv">
+        <span class="sec-num">01</span>
+        <h2 class="sec-title">Profile <span class="sec-tag">人物档案 <i lang="ja">プロフィール</i></span></h2>
+        <p class="sec-lead">湖大电气，2027 届。<br>大学是我人生的大基建时代。</p>
+      </header>
+
+      <div class="about-grid">
+        <aside class="status rv">
+          <div class="status-card">
+            <div class="st-top"><span>SOCIAL STATS</span><span>Lv. 22</span></div>
+            <div class="st-name">Colorai</div>
+            <div class="st-alias">木纹刀 · 岉雨 · ARCANA <b>0 THE FOOL</b></div>
+            <svg class="radar" id="radar" viewBox="0 0 300 270" role="img" aria-label="五维自评"></svg>
+            <ul class="st-ranks" id="st-ranks"></ul>
+            <p class="st-note">* 自评。</p>
+          </div>
+        </aside>
+
+        <div class="profile">
+          <div class="keys">
+            <article class="key rv">
+              <span class="key-no">01</span>
+              <h3>广而不卷 <small>BREADTH</small></h3>
+              <p>电赛、课题组、两段实习、开源社团、图书馆志愿者，同时做好几件事，哪件都不死磕。</p>
+            </article>
+            <article class="key rv">
+              <span class="key-no">02</span>
+              <h3>大基建时代 <small>FOUNDATION</small></h3>
+              <p>日语、电赛、实验室、实习，一项一项打地基。</p>
+            </article>
+            <article class="key rv">
+              <span class="key-no">03</span>
+              <h3>在路上想通 <small>ON THE ROAD</small></h3>
+              <p>很多想不明白的事，反而是在路上想通的。长沙夜里骑车兜风的时候，或者去机场的快线上。</p>
+            </article>
+          </div>
+
+          <dl class="spec rv">
+            <div><dt>School</dt><dd>湖南大学</dd></div>
+            <div><dt>Major</dt><dd>电气工程及其自动化</dd></div>
+            <div><dt>Class</dt><dd>2027 届本科</dd></div>
+            <div><dt>Now</dt><dd>长沙</dd></div>
+            <div><dt>Next</dt><dd>回广东，去电网</dd></div>
+            <div><dt>Alias</dt><dd>木纹刀 · 岉雨</dd></div>
+          </dl>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═════════ 02 JOURNEY · P4G · Yu ═════════ -->
+  <section class="sec journey-sec" id="journey" data-theme="p4" data-hud="Journey" data-game="P4G">
+    <div class="tv-stripe" aria-hidden="true"></div>
+    <figure class="chara right" aria-hidden="true"><img src="assets/chars/journey.webp" alt="" loading="lazy"><figcaption>ON THE ROAD</figcaption></figure>
+    <div class="sec-inner">
+      <header class="sec-head rv">
+        <span class="sec-num">02</span>
+        <h2 class="sec-title">Journey <span class="sec-tag">轨迹 <i lang="ja">あゆみ</i></span></h2>
+        <p class="sec-lead">2024 是一场向外的旅程，2025 是一场向内的旅程；到了 2026，阅历终于开始兑现。</p>
+      </header>
+      <ol class="timeline">
+        <li class="rv"><span class="tl-year">2023</span><h4>入学 · 湖南大学</h4><p>从广东来到长沙，电气工程及其自动化。第一次离家这么远。</p></li>
+        <li class="rv"><span class="tl-year">2024</span><h4>向外 · 世界很大</h4><p>美赛队长；两周日本，人生第一场烟火大会。回来以后玩了 P5R 和 P3R，开始听爵士和 City Pop。</p></li>
+        <li class="rv"><span class="tl-year">2025</span><h4>向内 · 成年礼</h4><p>做电赛项目负责人，画出三相逆变主板；进入国家电能变换中心课题组；年底在 FPGA 上写了一条 VGA 贪吃蛇。</p></li>
+        <li class="rv"><span class="tl-year">2026</span><h4>兑现 · 阅历</h4><p>1 月在广汽埃安智能制造实习；夏天去了一趟北京，又在惠州供电局实习。秋招在大湾区来回跑，最后签了广东电网。</p></li>
+        <li class="rv next"><span class="tl-year">2027</span><h4>启程 · 新的春天</h4><p>回到广东，成为一名电网工程师。<span lang="ja">季節は巡る。</span></p></li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- ═════════ 03 WORKS · P5R ═════════ -->
+  <section class="sec" id="works" data-theme="p5" data-hud="Works" data-game="P5R">
+    <div class="sec-inner">
+    <div class="wk-top">
+      <header class="sec-head rv">
+        <span class="sec-num">03</span>
+        <h2 class="sec-title">Works <span class="sec-tag">作品 <i lang="ja">せっていしゅう</i></span></h2>
+        <p class="sec-lead">做过的几样东西，从功率板到一条像素蛇。左边选一个，点「查看设定」看参数和代码。电赛和 SST 的过程另外写在<a class="inline" href="posts/index.html">随记</a>里。</p>
+      </header>
+    </div>
+
+    <div class="wk rv">
+      <ol class="wk-list" id="wk-list" role="tablist" aria-label="作品列表"></ol>
+      <div class="wk-stage" id="wk-stage" role="tabpanel" aria-live="polite"></div>
+      <figure class="wk-chara" aria-hidden="true"><img src="assets/chars/works.webp" alt="" loading="lazy"><figcaption>ON THE BENCH</figcaption></figure>
+    </div>
+
+    <div class="works" hidden>
+      <!-- 01 电赛 A 题 -->
+      <article class="work featured rv" data-cat="power" tabindex="0">
+        <div class="w-head"><span class="w-no">No.01</span><span class="w-cat">Power Electronics · NUEDC 2025-A</span><span class="w-state">实物 · 已调通</span></div>
+        <div class="w-fig">
+          <svg viewBox="0 0 640 360" class="fig" role="img" aria-label="能量回馈的变流器负载试验装置系统框图">
+            <g class="tb"><rect x="440" y="318" width="196" height="38"/><line x1="440" y1="337" x2="636" y2="337"/><line x1="520" y1="318" x2="520" y2="356"/>
+              <text x="448" y="332" class="lbl">DWG</text><text x="528" y="332" class="lbl strong">REGEN-TEST-01</text>
+              <text x="448" y="351" class="lbl">BY</text><text x="528" y="351" class="lbl strong">colorai · 2025</text></g>
+            <!-- DC source -->
+            <g transform="translate(20,120)">
+              <rect class="part" width="70" height="100"/>
+              <text class="lbl strong" x="35" y="46" text-anchor="middle">DC</text>
+              <text class="lbl" x="35" y="64" text-anchor="middle">SOURCE</text>
+              <text class="lbl" x="35" y="122" text-anchor="middle">Ud · Id</text>
+            </g>
+            <!-- bus -->
+            <g class="flow"><path d="M90 150 H140"/><path d="M90 190 H140"/></g>
+            <circle class="node" cx="126" cy="150" r="4"/><circle class="node" cx="126" cy="190" r="4"/>
+            <!-- converter 1 -->
+            <g transform="translate(140,96)">
+              <rect class="part" width="150" height="148"/>
+              <text class="lbl strong" x="75" y="22" text-anchor="middle">变流器 1 · DC-AC</text>
+              <g class="sw" transform="translate(18,36)">
+                <rect x="0" y="0" width="26" height="30"/><rect x="44" y="0" width="26" height="30"/><rect x="88" y="0" width="26" height="30"/>
+                <rect x="0" y="54" width="26" height="30"/><rect x="44" y="54" width="26" height="30"/><rect x="88" y="54" width="26" height="30"/>
+                <path d="M13 30 V54 M57 30 V54 M101 30 V54" class="wire"/>
+              </g>
+              <text class="lbl" x="75" y="138" text-anchor="middle">MOSFET×6 · UCC21520×3</text>
+            </g>
+            <!-- 3-phase out -->
+            <g class="flow"><path d="M290 140 H350 M290 170 H350 M290 200 H350"/></g>
+            <text class="lbl" x="296" y="130">a b c</text>
+            <text class="lbl strong" x="300" y="226">U1 · I1</text>
+            <!-- link unit -->
+            <g transform="translate(350,116)">
+              <rect class="part accent" width="80" height="108"/>
+              <text class="lbl inv" x="40" y="36" text-anchor="middle">连接单元</text>
+              <path class="coil" d="M14 62 q6 -12 12 0 q6 -12 12 0 q6 -12 12 0 q6 -12 12 0"/>
+              <text class="lbl inv" x="40" y="94" text-anchor="middle">L · C · EMI</text>
+            </g>
+            <g class="flow"><path d="M430 140 H480 M430 170 H480 M430 200 H480"/></g>
+            <!-- converter 2 -->
+            <g transform="translate(480,96)">
+              <rect class="part" width="140" height="148"/>
+              <text class="lbl strong" x="70" y="22" text-anchor="middle">变流器 2 · AC-DC</text>
+              <text class="lbl" x="70" y="62" text-anchor="middle">PWM 整流</text>
+              <text class="lbl" x="70" y="80" text-anchor="middle">PQ 解耦控制</text>
+              <path class="wire" d="M30 108 H110"/><path class="wire" d="M30 118 H110" stroke-dasharray="6 4"/>
+            </g>
+            <!-- feedback loop -->
+            <path class="feedback" d="M550 96 V48 H126 V150"/>
+            <polygon class="arrow" points="120,138 132,138 126,150"/>
+            <text class="lbl accent-t" x="338" y="40" text-anchor="middle">ENERGY FEEDBACK · 能量回馈至直流母线</text>
+            <!-- spec pills -->
+            <g transform="translate(20,280)">
+              <rect class="pill" width="120" height="26"/><text class="lbl inv" x="60" y="17" text-anchor="middle">THD &lt; 0.3%</text>
+              <rect class="pill alt" x="130" width="130" height="26"/><text class="lbl strong" x="195" y="17" text-anchor="middle">Pd &lt; 5 W @ 2A</text>
+              <rect class="pill alt" x="270" width="140" height="26"/><text class="lbl strong" x="340" y="17" text-anchor="middle">20–100 Hz / 1 Hz</text>
+            </g>
+          </svg>
+        </div>
+        <div class="w-body">
+          <span class="w-meta">2025 · 全国大学生电子设计竞赛 · 本科组 A 题</span>
+          <h3>能量回馈的变流器负载试验装置 <small>Regenerative Converter Load Test Rig</small></h3>
+          <p>DC-AC 逆变输出三相 50Hz / 线电压 32V / 2A，再经 PWM 整流把能量送回直流母线。实测 <b>THD &lt; 0.3%</b>（题目要求 ≤ 2%），回馈后直流电源输出功率 <b>&lt; 5W</b>。作为项目负责人，我画了三相逆变主板与 EMI 板的原理图和 PCB，也负责板级调试，四天三夜里把它调通。</p>
+          <span class="w-more">查看设定 →</span>
+        </div>
+        <template class="w-detail">
+          <p>赛题要求：变流器 1（DC-AC）输出 f=50Hz、线电压 32V±0.25V、额定线电流 2A 的三相对称正弦电；THD ≤ 2%，负载调整率 ≤ 0.3%，频率 20–100Hz 可调、步进 1Hz。发挥部分要求变流器 2（AC-DC）把能量回馈到变流器 1 的输入端，与直流电源共同供电，直流电源输出功率越小越好。</p>
+          <table class="spec-t">
+            <tr><th>指标</th><th>题目要求</th><th>我们的结果</th></tr>
+            <tr><td>输出 THD</td><td>≤ 2%</td><td><b>&lt; 0.3%</b></td></tr>
+            <tr><td>直流电源功率 Pd（I1=2A）</td><td>越小越好</td><td><b>&lt; 5 W</b></td></tr>
+            <tr><td>输出频率</td><td>20–100 Hz，步进 1 Hz</td><td>满足</td></tr>
+          </table>
+          <h4>我的部分</h4>
+          <ul>
+            <li>三相逆变主板：原理图与 PCB（图纸署名 colorai），三路 UCC21520 隔离双通道驱动六颗 100V / 4.2mΩ MOSFET，6.8Ω 门极电阻 + SS34 加速关断，RS1JG 自举；母线 3×1000µF / 63V，输出 3×470µH / 10A 滤波电感；LM5017 从母线取电做辅助电源。</li>
+            <li>EMI 与采样板：三相共模电感 + X2 安规电容，CKSR 霍尔电流传感器、ZMPT101B 电压互感器做采样调理。</li>
+            <li>Simulink 前期仿真：三相 SPWM 逆变、PQ 控制的 PWM 整流回馈、逆变-整流联合模型（ThreeINVTRECT2025）。</li>
+          </ul>
+          <div class="m-photos"><img src="assets/photos/board.webp" alt="三相逆变主板实物" loading="lazy"><img src="assets/photos/bench.webp" alt="电赛调试台" loading="lazy"></div>
+          <div class="tags"><span>3φ Inverter</span><span>PWM Rectifier</span><span>UCC21520</span><span>EasyEDA Pro</span><span>Simulink</span></div>
+<pre><span class="c"># 主板关键器件 · 位号级（Schematic_电赛主板）</span>
+<span class="k">power</span>    Q1~Q6   IPB042N10N3   100V / 4.2mΩ
+<span class="k">driver</span>   U1~U3   UCC21520DWR   隔离双通道 · 带 DT 死区
+<span class="k">gate</span>     6.8Ω + SS34 关断加速 · RS1JG 自举
+<span class="k">bus</span>      C26~28  1000µF / 63V × 3
+<span class="k">filter</span>   L1~L3   470µH / 10A × 3
+<span class="k">aux</span>      U4      LM5017 · 母线自供电
+<span class="k">sense</span>    CT1/2 CKSR 霍尔 · PT1/2 ZMPT101B</pre>
+        </template>
+      </article>
+
+      <!-- 02 SST -->
+      <article class="work rv" data-cat="power" tabindex="0">
+        <div class="w-head"><span class="w-no">No.02</span><span class="w-cat">Research · SST</span><span class="w-state">仿真</span></div>
+        <div class="w-fig">
+          <svg viewBox="0 0 320 200" class="fig" role="img" aria-label="级联 cell 演进与浮地驱动数量">
+            <g transform="translate(10,22)">
+              <rect class="part" width="88" height="40"/><text class="lbl strong" x="44" y="18" text-anchor="middle">H 桥 CHB</text><text class="lbl" x="44" y="32" text-anchor="middle">17 电平</text>
+            </g>
+            <g transform="translate(116,22)">
+              <rect class="part" width="88" height="40"/><text class="lbl strong" x="44" y="18" text-anchor="middle">T-NPC 3L</text><text class="lbl" x="44" y="32" text-anchor="middle">1200V+600V</text>
+            </g>
+            <g transform="translate(222,22)">
+              <rect class="part accent" width="88" height="40"/><text class="lbl inv" x="44" y="18" text-anchor="middle">准 NPC 4L</text><text class="lbl inv" x="44" y="32" text-anchor="middle">3.3k/1.7kV</text>
+            </g>
+            <g class="flow"><path d="M98 42 H116 M204 42 H222"/></g>
+            <text class="lbl" x="10" y="92">浮地驱动 / 相（凑 17 电平）</text>
+            <g class="bars" transform="translate(10,100)">
+              <rect width="240" height="18"/><text class="lbl strong" x="248" y="13">8 套</text>
+              <rect class="hot" y="28" width="90" height="18"/><text class="lbl strong" x="98" y="41">3 套</text>
+            </g>
+            <text class="lbl" x="10" y="172">PI(Udc) → 准 PR(i) → 层叠载波 PWM</text>
+            <text class="lbl" x="10" y="188">2.2 kV AC → 3.3 kV DC · 5 kHz</text>
+          </svg>
+        </div>
+        <div class="w-body">
+          <span class="w-meta">课题组 · 电力电子变压器前级</span>
+          <h3>混合级联多电平 SST 前级</h3>
+          <p>cell 从 H 桥一路换到准 NPC 四电平，把每相浮地驱动从 8 套压到 3 套。我负责 Simulink 建模与控制回路。</p>
+          <span class="w-more">查看设定 →</span>
+        </div>
+        <template class="w-detail">
+          <p>固态变压器（SST）用中高频电力电子变换 + 中频隔离替代工频变压器，把 10kV 中压交流转成低压直流。前级走级联多电平方向，级联的单元（cell）是一个可替换的模块：只要满足「独立浮地直流 + 全桥双向输出」，H 桥、三电平、四电平都能当 cell。</p>
+          <table class="spec-t">
+            <tr><th>cell</th><th>每 cell 电平</th><th>凑 17 电平</th><th>问题</th></tr>
+            <tr><td>H 桥</td><td>3</td><td>8 个 cell · 8 套浮地驱动</td><td>器件与绝缘做不下来</td></tr>
+            <tr><td>T-NPC 三电平</td><td>5</td><td>4 个 cell</td><td>1200V+600V，上下管电压 / 损耗不均</td></tr>
+            <tr><td>准 NPC 四电平</td><td>7</td><td><b>3 个 cell · 3 套浮地驱动</b></td><td>中间管满压 3300V</td></tr>
+          </table>
+          <p>反直觉的一点：换成四电平 cell，开关总数（32 → 36）并没有减少，真正省下的是最烧钱的独立浮地驱动——每套都要隔离供电、隔离采样和中压绝缘。</p>
+          <h4>我的部分</h4>
+          <ul>
+            <li>准 NPC 四电平单元的 Simulink 建模：交流 2.2kV、直流母线 3.3kV（3×1100V，10mF×3），滤波电感 400µH×2。</li>
+            <li>三层控制：直流电压外环 PI → 电流内环准 PR（50Hz 无静差，Wc 展宽抗频偏，Tustin 离散化）→ 5kHz 层叠载波 PWM，控制频率 20kHz。</li>
+            <li>拓扑方向由课题组提出；目前完成单 cell 仿真验证，多 cell 级联与均压是下一步。</li>
+          </ul>
+          <div class="tags"><span>Simulink</span><span>Quasi-NPC</span><span>CHB</span><span>Quasi-PR</span><span>LS-PWM</span></div>
+<pre><span class="c">% 准 PR 控制器</span>
+G(s) = Kp + Kr · <span class="f">2·Wc·s</span> / (s² + 2·Wc·s + Wo²)
+<span class="k">Wo</span> = 2π·50 ≈ <span class="n">314</span> rad/s   <span class="c">% 50Hz 处高增益 → 无静差</span>
+<span class="k">Wc</span> = <span class="n">5</span> rad/s             <span class="c">% 展宽谐振，抗电网频偏</span>
+<span class="c">% Tustin 离散化 → 二阶 IIR（biquad），可直接上 DSP</span></pre>
+        </template>
+      </article>
+
+      <!-- 03 F280049C -->
+      <article class="work rv" data-cat="embedded" tabindex="0">
+        <div class="w-head"><span class="w-no">No.03</span><span class="w-cat">Embedded · C2000</span><span class="w-state">校内考核</span></div>
+        <div class="w-fig">
+          <svg viewBox="0 0 320 200" class="fig" role="img" aria-label="四灯轮流呼吸时序">
+            <g class="wire thin"><path d="M28 150 H306"/><path d="M28 30 V150"/></g>
+            <text class="lbl" x="6" y="36">PWM</text>
+            <g class="breath">
+              <path d="M30 150 L62 50 L94 150"/>
+              <path d="M94 150 L126 50 L158 150"/>
+            </g>
+            <g class="breath b2">
+              <path d="M166 150 L198 82 L230 150"/>
+              <path d="M230 150 L262 82 L294 150"/>
+            </g>
+            <text class="lbl strong" x="62" y="44" text-anchor="middle">D1</text>
+            <text class="lbl strong" x="126" y="44" text-anchor="middle">D2</text>
+            <text class="lbl accent-t" x="198" y="76" text-anchor="middle">D3</text>
+            <text class="lbl accent-t" x="262" y="76" text-anchor="middle">D4</text>
+            <text class="lbl" x="94" y="168" text-anchor="middle">A 板 · T = 0.5 / 1 / 2 s</text>
+            <text class="lbl" x="230" y="168" text-anchor="middle">B 板 · 亮度 ∝ Vi</text>
+            <rect class="dot-accent" x="160" y="146" width="8" height="8"/>
+            <text class="lbl" x="28" y="190">ADC ISR · 0.1 ms 步进 · ≤ 3 线板间通信</text>
+          </svg>
+        </div>
+        <div class="w-body">
+          <span class="w-meta">2025 电赛校内第二轮考核 · TMS320F280049C</span>
+          <h3>双板呼吸灯与通信</h3>
+          <p>ADC 采样 Vi 并在 OLED 显示，ePWM 驱动呼吸灯，亮度随 Vi 线性变化；按键状态机支持消抖与长按连发。</p>
+          <span class="w-more">查看设定 →</span>
+        </div>
+        <template class="w-detail">
+          <p>考核题：A、B 两块主控板各带按键、显示和两颗 LED，板间连线不超过 3 根。四颗 LED 按 D1→D4 轮流呼吸，周期由按键在 0 / 0.5 / 1 / 2 秒四档间切换；A 板采样 0–3.3V 的 Vi，误差不超过 0.05V，呼吸灯最大亮度随 Vi 连续变化；任一板断电，另一板 2 秒内显示通信失效。</p>
+          <h4>我的实现（TI F280049C · C2000Ware）</h4>
+          <ul>
+            <li>以 ADC 中断（放在 RAM 运行）为时基，0.1ms 一步，把每个呼吸周期分成四段：D1 亮→灭、D2 亮→灭，直接写 ePWM 的 CMPA。</li>
+            <li>亮度系数在 0.1–1.0 之间随 Vi 线性映射，保证 Vi=0V 时仍能看到呼吸。</li>
+            <li>按键四状态机：按下消抖 → 按下 → 释放消抖 → 释放，区分短按与长按（超过 0.6s 后每 0.4s 连发）。</li>
+            <li>OLED 显示 Vi、档位、循环次数（0–9）和通信状态。</li>
+          </ul>
+          <div class="tags"><span>F280049C</span><span>ePWM</span><span>ADC</span><span>OLED</span><span>FSM</span></div>
+<pre><span class="k">#pragma</span> CODE_SECTION(INT_myADCA_1_ISR, <span class="f">".TI.ramfunc"</span>);
+__interrupt <span class="k">void</span> <span class="f">INT_myADCA_1_ISR</span>(<span class="k">void</span>) {
+    <span class="k">float</span> k = MIN_BRIGHTNESS + (m_adc.Udc / <span class="n">3.3f</span>)
+              * (MAX_BRIGHTNESS - MIN_BRIGHTNESS);   <span class="c">// 亮度 ∝ Vi</span>
+    uint16_t duty = (uint16_t)(MAX_DUTY * k);
+    uint32_t q = total_steps / <span class="n">4</span>, s = breath_count % total_steps;
+    <span class="k">if</span> (s &lt; q)        epwm1 = s * duty / q;            <span class="c">// D1 灭→亮</span>
+    <span class="k">else if</span> (s &lt; 2*q) epwm1 = duty - (s - q) * duty / q; <span class="c">// D1 亮→灭</span>
+    <span class="c">// …… D2 同理，周期结束 cycle_count = (cycle_count + 1) % 10</span>
+    EPwm1Regs.CMPA.bit.CMPA = epwm1;
+}</pre>
+        </template>
+      </article>
+
+      <!-- 04 FPGA -->
+      <article class="work rv" data-cat="embedded" tabindex="0">
+        <div class="w-head"><span class="w-no">No.04</span><span class="w-cat">FPGA · Verilog</span><span class="w-state">课程设计</span></div>
+        <div class="w-fig pixel-bg">
+          <svg viewBox="0 0 320 200" class="fig" role="img" aria-label="像素贪吃蛇画面">
+            <defs>
+              <pattern id="checker" width="20" height="20" patternUnits="userSpaceOnUse">
+                <rect width="20" height="20" fill="#1b1b1b"/><rect width="10" height="10" fill="#262626"/><rect x="10" y="10" width="10" height="10" fill="#262626"/>
+              </pattern>
+            </defs>
+            <rect x="10" y="10" width="300" height="180" fill="url(#checker)"/>
+            <g fill="#3ddc84"><rect x="60" y="110" width="10" height="10"/><rect x="70" y="110" width="10" height="10"/><rect x="80" y="110" width="10" height="10"/><rect x="90" y="110" width="10" height="10"/><rect x="100" y="110" width="10" height="10"/><rect x="100" y="100" width="10" height="10"/><rect x="100" y="90" width="10" height="10"/><rect x="110" y="90" width="10" height="10"/><rect x="120" y="90" width="10" height="10"/><rect x="130" y="90" width="10" height="10"/></g>
+            <rect x="140" y="90" width="10" height="10" fill="#e5191c"/>
+            <g fill="#ffd400"><rect x="200" y="90" width="10" height="10"/><rect x="250" y="140" width="10" height="10"/><rect x="60" y="40" width="10" height="10"/><rect x="230" y="50" width="10" height="10"/></g>
+            <text x="300" y="30" text-anchor="end" class="px-text">SCORE 07</text>
+            <text x="20" y="182" class="px-text dim">640×480@60 · 128 SEG · SW[4:2]=4</text>
+          </svg>
+        </div>
+        <div class="w-body">
+          <span class="w-meta">DE2-115 · Cyclone IV E · ~2800 LE</span>
+          <h3>VGA 贪吃蛇 Pro Max</h3>
+          <p>无显存实时渲染，128 节寄存器蛇身，1–8 颗豆子可调，吃一颗长 4 节并自动加速。</p>
+          <span class="w-more">查看设定 →</span>
+        </div>
+        <template class="w-detail">
+          <p>基于 Altera DE2-115 的 VGA 贪吃蛇：25MHz 像素时钟驱动 640×480@60Hz，按扫描坐标逐像素决定颜色，不用显存。KEY0–3 控制方向，SW0 复位、SW1 暂停，SW[4:2] 实时设置 1–8 颗豆子；每吃一颗蛇身加 4 节，越长越快；复位后进入待机，按方向键才开局；撞墙后屏幕红白闪烁。</p>
+          <h4>设计要点</h4>
+          <ul>
+            <li>蛇身用寄存器数组 <code>snake_x/y[0:127]</code>，每个移动节拍从尾到头移位，再按方向更新蛇头。</li>
+            <li>渲染优先级：分数字符 &gt; 蛇头 &gt; 蛇身 &gt; 豆子 &gt; 棋盘格背景（<code>x[5] ^ y[5]</code>）。</li>
+            <li>高速计数器采样作伪随机坐标，并限制生成范围避开死角。</li>
+          </ul>
+          <h4>调试记录</h4>
+          <ul>
+            <li>黑屏：DE2-115 的 <code>VGA_BLANK_N</code> 未拉高，DAC 处于消隐 → 强制置 1。</li>
+            <li>噪点与虚影：128 次比较的组合路径过长 → RGB 输出加一级寄存器打拍。</li>
+            <li>开局即撞墙：增加 <code>game_started</code> 待机状态；豆子数闪烁：SW 输入锁存去抖。</li>
+          </ul>
+          <div class="tags"><span>Verilog</span><span>VGA</span><span>FSM</span><span>ModelSim</span></div>
+<pre><span class="k">parameter</span> H_ACTIVE=<span class="n">640</span>, H_FRONT=<span class="n">16</span>, H_SYNC=<span class="n">96</span>, H_TOTAL=<span class="n">800</span>;
+<span class="k">parameter</span> V_ACTIVE=<span class="n">480</span>, V_FRONT=<span class="n">10</span>, V_SYNC=<span class="n">2</span>,  V_TOTAL=<span class="n">525</span>;
+<span class="k">reg</span> [<span class="n">9</span>:<span class="n">0</span>] snake_x [<span class="n">0</span>:<span class="n">127</span>];
+<span class="k">reg</span> [<span class="n">9</span>:<span class="n">0</span>] snake_y [<span class="n">0</span>:<span class="n">127</span>];
+<span class="k">always</span> @(<span class="k">posedge</span> move_tick) <span class="k">begin</span>
+    <span class="k">for</span> (i = <span class="n">127</span>; i &gt; <span class="n">0</span>; i = i - <span class="n">1</span>) <span class="k">begin</span>
+        snake_x[i] &lt;= snake_x[i-<span class="n">1</span>];
+        snake_y[i] &lt;= snake_y[i-<span class="n">1</span>];
+    <span class="k">end</span>
+<span class="k">end</span>
+<span class="k">assign</span> VGA_BLANK_N = <span class="n">1'b1</span>;   <span class="c">// 不拉高就黑屏</span></pre>
+        </template>
+      </article>
+
+      <!-- 05 MCM -->
+      <article class="work rv" data-cat="other" tabindex="0">
+        <div class="w-head"><span class="w-no">No.05</span><span class="w-cat">Data · MCM 2024 C</span><span class="w-state">队长</span></div>
+        <div class="w-fig">
+          <svg viewBox="0 0 320 200" class="fig" role="img" aria-label="势头差 R 曲线与特征重要性">
+            <g class="wire thin"><path d="M24 80 H210"/><path d="M24 20 V140"/></g>
+            <path class="area-pos" d="M24 80 C40 60 52 40 70 46 C86 52 92 80 100 80 Z"/>
+            <path class="area-neg" d="M100 80 C110 96 124 122 140 118 C154 114 160 80 168 80 Z"/>
+            <path class="area-pos" d="M168 80 C176 66 190 50 210 58 L210 80 Z"/>
+            <path class="curve" d="M24 80 C40 60 52 40 70 46 C86 52 92 80 100 80 C110 96 124 122 140 118 C154 114 160 80 168 80 C176 66 190 50 210 58"/>
+            <text class="lbl strong" x="30" y="16">R = M(A) − M(B)</text>
+            <text class="lbl" x="24" y="156">point →</text>
+            <g transform="translate(226,24)" class="fi">
+              <text class="lbl" x="0" y="0">importance</text>
+              <rect y="10" width="80" height="12"/><rect y="30" width="62" height="12"/><rect y="50" width="46" height="12"/><rect y="70" width="34" height="12"/><rect y="90" width="22" height="12"/>
+              <text class="lbl" x="0" y="122">serve · ace …</text>
+            </g>
+          </svg>
+        </div>
+        <div class="w-body">
+          <span class="w-meta">MCM / ICM 2024 · Team 2410639 · 队长</span>
+          <h3>Using R as the Momentum</h3>
+          <p>定义带发球方权重的「势头分」，用双方势头差 R 复现比赛走势，再用随机森林预测波动并找出关键因素。</p>
+          <span class="w-more">查看设定 →</span>
+        </div>
+        <template class="w-detail">
+          <p>2024 美赛 C 题，以温网决赛为背景研究网球比赛中的「势头」。论文题为 <i>Using R as the Momentum of Tennis Matches</i>。</p>
+          <ul>
+            <li>问题一：基于时间序列定义势头分，考虑发球方更高的得分概率并给予额外权重；以双方势头分之差 R 刻画优势方转换，用趋势图复现比赛进程。</li>
+            <li>问题二：检验势头分与比赛结果、比赛波动与选手胜负之间的相关性。</li>
+            <li>问题三：以 R 为目标变量建立随机森林回归预测波动，按特征重要性找出最相关的因素。</li>
+            <li>问题四：对比实际波动与预测评估模型，引入新特征复算拟合优度，并讨论在其他比赛中的泛化性。</li>
+          </ul>
+          <p>我担任队长，负责探索性数据分析与预测建模，Python 代码整理为 1–5 的流水线。</p>
+          <div class="tags"><span>Python</span><span>Time Series</span><span>Random Forest</span><span>EDA</span></div>
+<pre><span class="k">from</span> sklearn.ensemble <span class="k">import</span> <span class="f">RandomForestRegressor</span>
+<span class="k">from</span> sklearn.model_selection <span class="k">import</span> train_test_split
+
+X_train, X_test, y_train, y_test = train_test_split(
+    X, R, test_size=<span class="n">0.2</span>, random_state=<span class="n">42</span>)   <span class="c"># 目标变量：势头差 R</span>
+model = <span class="f">RandomForestRegressor</span>(n_estimators=<span class="n">300</span>, max_depth=<span class="n">12</span>)
+model.<span class="f">fit</span>(X_train, y_train)
+ranking = <span class="f">sorted</span>(<span class="f">zip</span>(model.feature_importances_, X.columns), reverse=<span class="k">True</span>)</pre>
+        </template>
+      </article>
+
+      <!-- 06 PLC -->
+      <article class="work rv" data-cat="other" tabindex="0">
+        <div class="w-head"><span class="w-no">No.06</span><span class="w-cat">Industrial · PLC</span><span class="w-state">实习落地</span></div>
+        <div class="w-fig">
+          <svg viewBox="0 0 320 200" class="fig" role="img" aria-label="正反转互锁梯形图">
+            <g class="wire"><path d="M24 24 V176 M296 24 V176"/></g>
+            <g class="flow"><path d="M24 64 H60 M88 64 H120 M148 64 H196 M228 64 H296"/><path d="M24 136 H60 M88 136 H120 M148 136 H196 M228 136 H296"/></g>
+            <g class="contact"><path d="M60 50 V78 M88 50 V78"/><path d="M120 50 V78 M148 50 V78 M122 76 L146 52"/><path d="M60 122 V150 M88 122 V150"/><path d="M120 122 V150 M148 122 V150 M122 148 L146 124"/></g>
+            <circle class="part accent" cx="212" cy="64" r="16"/><circle class="part accent" cx="212" cy="136" r="16"/>
+            <text class="lbl strong" x="74" y="44" text-anchor="middle">X0 正转</text><text class="lbl strong" x="134" y="44" text-anchor="middle">Y1</text><text class="lbl inv" x="212" y="68" text-anchor="middle">Y0</text>
+            <text class="lbl strong" x="74" y="116" text-anchor="middle">X1 反转</text><text class="lbl strong" x="134" y="116" text-anchor="middle">Y0</text><text class="lbl inv" x="212" y="140" text-anchor="middle">Y1</text>
+            <text class="lbl" x="160" y="194" text-anchor="middle">常闭触点互锁 · 防止正反转同时得电</text>
+          </svg>
+        </div>
+        <div class="w-body">
+          <span class="w-meta">广汽埃安 · 智能制造实习</span>
+          <h3>三菱 Q 系列 PLC 产线程序</h3>
+          <p>独立编写 13 类产线程序，KUKA 机器人示教联调，并修复程序互锁 Bug。</p>
+          <span class="w-more">查看设定 →</span>
+        </div>
+        <template class="w-detail">
+          <p>在广汽埃安智能制造实习期间，独立编写 13 类产线程序（电机正反转、传送带分点控制等），参与 KUKA 机器人示教联调，并定位、修复了一处程序互锁 Bug。</p>
+          <div class="tags"><span>Mitsubishi Q</span><span>Ladder</span><span>KUKA</span></div>
+<pre><span class="c">; 正反转互锁：各自串入对方线圈的常闭触点</span>
+X0 正转 ──| |──|/ Y1|──( Y0 )
+X1 反转 ──| |──|/ Y0|──( Y1 )</pre>
+        </template>
+      </article>
+    </div>
+    </div>
+  </section>
+
+  <!-- ═════════ 04 COMPENDIUM · P3R velvet · Elizabeth ═════════ -->
+  <section class="sec compendium" id="compendium" data-theme="p3d" data-hud="Likes" data-game="P3R">
+    <figure class="chara left" aria-hidden="true"><img src="assets/chars/likes.webp" alt="" loading="lazy"><figcaption>AFTER SCHOOL</figcaption></figure>
+    <div class="sec-inner">
+      <header class="sec-head rv">
+        <span class="sec-num">04</span>
+        <h2 class="sec-title">Compendium <span class="sec-tag">全书 <i lang="ja">すきなもの</i></span></h2>
+        <p class="sec-lead">八张大阿卡纳，对应八样喜欢的东西。点一下牌就会翻过来，RANK 是自己打的分。</p>
+      </header>
+      <div class="cards">
+        <article class="arcana rv" style="--c:#34c6ff" tabindex="0" role="button" aria-pressed="false" aria-label="0 愚者 · 女神异闻录，点击翻面">
+          <div class="ar-flip">
+            <div class="ar-face"><img src="assets/tarot/fool.webp" alt="" loading="lazy" width="560" height="789"></div>
+            <div class="ar-back">
+              <span class="ar-num">0</span><span class="ar-name">THE FOOL</span>
+              <span class="ar-jp">愚者</span>
+              <h3>女神异闻录</h3>
+              <p>2024 年底先玩了 P5R，又补了 P3R。这个网站的配色、过场和点歌窗口，基本都是照着这两部做的。</p>
+              <span class="ar-rank">RANK <i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i> MAX</span>
+            </div>
+          </div>
+        </article>
+        <article class="arcana rv" style="--c:#ffe330" tabindex="0" role="button" aria-pressed="false" aria-label="I 魔术师 · 造东西，点击翻面">
+          <div class="ar-flip">
+            <div class="ar-face"><img src="assets/tarot/magician.webp" alt="" loading="lazy" width="560" height="789"></div>
+            <div class="ar-back">
+              <span class="ar-num">I</span><span class="ar-name">THE MAGICIAN</span>
+              <span class="ar-jp">魔术师</span>
+              <h3>造东西</h3>
+              <p>拓竹 3D 打印机、焊台、示波器，还有 Cursor 和本地大模型。能自己做出来的东西，一般就不买了。</p>
+              <span class="ar-rank">RANK <i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></span>
+            </div>
+          </div>
+        </article>
+        <article class="arcana rv" style="--c:#9fe9ff" tabindex="0" role="button" aria-pressed="false" aria-label="II 女教皇 · 网文与心学，点击翻面">
+          <div class="ar-flip">
+            <div class="ar-face"><img src="assets/tarot/priestess.webp" alt="" loading="lazy" width="560" height="789"></div>
+            <div class="ar-back">
+              <span class="ar-num">II</span><span class="ar-name">THE PRIESTESS</span>
+              <span class="ar-jp">女教皇</span>
+              <h3>网文与心学</h3>
+              <p>在看《轮回乐园》和《十日终焉》，也读王阳明。「极高明而道中庸」这句话，一直记着。</p>
+              <span class="ar-rank">RANK <i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></span>
+            </div>
+          </div>
+        </article>
+        <article class="arcana rv" style="--c:#ff7a00" tabindex="0" role="button" aria-pressed="false" aria-label="III 女帝 · 番与轻小说，点击翻面">
+          <div class="ar-flip">
+            <div class="ar-face"><img src="assets/tarot/empress.webp" alt="" loading="lazy" width="560" height="789"></div>
+            <div class="ar-back">
+              <span class="ar-num">III</span><span class="ar-name">THE EMPRESS</span>
+              <span class="ar-jp">女帝</span>
+              <h3>番与轻小说</h3>
+              <p>《青春猪头少年》大一看过一遍，现在又在重看。还有春物、MyGO!!!!!、少女乐队的呐喊、摇曳露营、芙莉莲。</p>
+              <span class="ar-rank">RANK <i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i> MAX</span>
+            </div>
+          </div>
+        </article>
+        <article class="arcana rv" style="--c:#7dffb4" tabindex="0" role="button" aria-pressed="false" aria-label="IV 皇帝 · 立直麻将，点击翻面">
+          <div class="ar-flip">
+            <div class="ar-face"><img src="assets/tarot/emperor.webp" alt="" loading="lazy" width="560" height="789"></div>
+            <div class="ar-back">
+              <span class="ar-num">IV</span><span class="ar-name">THE EMPEROR</span>
+              <span class="ar-jp">皇帝</span>
+              <h3>立直麻将</h3>
+              <p>牌效、防守、押引。喜欢这种信息不全、但还是得马上做决定的游戏。</p>
+              <span class="ar-rank">RANK <i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></span>
+            </div>
+          </div>
+        </article>
+        <article class="arcana rv" style="--c:#f3f0e9" tabindex="0" role="button" aria-pressed="false" aria-label="V 教皇 · 工业机器人，点击翻面">
+          <div class="ar-flip">
+            <div class="ar-face"><img src="assets/tarot/hierophant.webp" alt="" loading="lazy" width="560" height="789"></div>
+            <div class="ar-back">
+              <span class="ar-num">V</span><span class="ar-name">THE HIEROPHANT</span>
+              <span class="ar-jp">教皇</span>
+              <h3>工业机器人</h3>
+              <p>2026 年 1 月在广汽埃安实习，做过 KUKA 的示教联调，也让一台发那科拿笔写了「马到成功」。</p>
+              <span class="ar-rank">RANK <i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i></span>
+            </div>
+          </div>
+        </article>
+        <article class="arcana rv" style="--c:#c9a7ff" tabindex="0" role="button" aria-pressed="false" aria-label="VII 战车 · 在路上，点击翻面">
+          <div class="ar-flip">
+            <div class="ar-face"><img src="assets/tarot/chariot.webp" alt="" loading="lazy" width="560" height="789"></div>
+            <div class="ar-back">
+              <span class="ar-num">VII</span><span class="ar-name">THE CHARIOT</span>
+              <span class="ar-jp">战车</span>
+              <h3>在路上</h3>
+              <p>骑电动车在河西和河东之间来回，晚上去后湖散步。正在学吉他、网球、粤语和日语。</p>
+              <span class="ar-rank">RANK <i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i></span>
+            </div>
+          </div>
+        </article>
+        <article class="arcana rv" style="--c:#e5191c" tabindex="0" role="button" aria-pressed="false" aria-label="XIX 太阳 · 音乐，点击翻面">
+          <div class="ar-flip">
+            <div class="ar-face"><img src="assets/tarot/sun.webp" alt="" loading="lazy" width="560" height="789"></div>
+            <div class="ar-back">
+              <span class="ar-num">XIX</span><span class="ar-name">THE SUN</span>
+              <span class="ar-jp">太阳</span>
+              <h3>音乐</h3>
+              <p>Walkman 加 HiFi 耳机，出门必带。玩完 P 系列以后，开始听爵士和 City Pop。</p>
+              <span class="ar-rank">RANK <i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i> MAX</span>
+            </div>
+          </div>
+        </article>
+      </div>
+      <p class="ar-credit">牌面：ATLUS《女神异闻录3》 · 图源 小黑盒 @可燃冰ice</p>
+    </div>
+  </section>
+
+  <!-- ═════════ 06 TRAVEL · P3R light · Fuuka ═════════ -->
+  <section class="sec travel-sec" id="travel" data-theme="p3l" data-hud="Travel" data-game="P3R">
+    <figure class="chara right" aria-hidden="true"><img src="assets/chars/travel.webp" alt="" loading="lazy"><figcaption>DEPARTURE</figcaption></figure>
+    <div class="sec-inner">
+      <header class="sec-head rv">
+        <span class="sec-num">06</span>
+        <h2 class="sec-title">Travel <span class="sec-tag">旅途 <i lang="ja">たびじ</i></span></h2>
+        <p class="sec-lead">去过的地方。拖动地球，或者把鼠标放在右边的票根上。照片在<a class="inline" href="gallery.html">相册</a>。</p>
+      </header>
+      <div class="travel">
+        <div class="globe-wrap rv">
+          <canvas id="globe" aria-label="足迹地球，可拖拽旋转"></canvas>
+          <div class="globe-tip" id="globe-tip"></div>
+          <span class="globe-cap">DRAG TO ROTATE · 22 CITIES</span>
+        </div>
+        <ol class="trips">
+          <li class="rv" data-focus="103,5"><span class="tp-year">2016</span><span class="tp-code">SE ASIA</span><div><h4>新加坡 · 吉隆坡</h4><p>第一次出国。赤道边上的城市，空气里是潮湿的热。</p></div></li>
+          <li class="rv" data-focus="40,50"><span class="tp-year">2018</span><span class="tp-code">RUSSIA</span><div><h4>圣彼得堡 · 莫斯科</h4><p>北国俄罗斯，涅瓦河与红场。</p></div></li>
+          <li class="rv" data-focus="137,33"><span class="tp-year">2024</span><span class="tp-code">JAPAN</span><div><h4>东京 · 江之岛 · 京都 · 大阪</h4><p>两周，基本是巡礼：下北泽、御茶水、须贺神社的台阶、江之电和镰仓高校前；在横滨看了人生第一场烟火大会，然后去了京都和大阪。</p></div></li>
+          <li class="rv" data-focus="116,28"><span class="tp-year">2024</span><span class="tp-code">CN EAST</span><div><h4>上海 · 武汉 · 广州 · 深圳 · 香港</h4><p>五一上了上海之巅，暑假登了黄鹤楼；九月回上海，听了人生第一场演唱会。</p></div></li>
+          <li class="rv" data-focus="108,28"><span class="tp-year">2025</span><span class="tp-code">CN WEST</span><div><h4>重庆 · 厦门 · 广州</h4><p>一个人探索山城：坡道、轻轨与江边的夜色；又去厦门走了中山路和海边。</p></div></li>
+          <li class="rv" data-focus="114,26"><span class="tp-year">2026</span><span class="tp-code">GBA</span><div><h4>北京 · 惠州 · 东莞 · 广州 · 深圳 · 香港</h4><p>七月去了北京，八月在惠州实习；秋招路上在大湾区来回奔波，国庆在香港听了 TOGENASHI TOGEARI。</p></div></li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═════════ 07 WORDS · P4G · Rise ═════════ -->
+  <section class="sec words" id="words" data-theme="p4" data-hud="Words" data-game="P4G">
+    <div class="tv-stripe" aria-hidden="true"></div>
+    <figure class="chara left" aria-hidden="true"><img src="assets/chars/words.webp" alt="" loading="lazy"><figcaption>墨 · INK</figcaption></figure>
+    <div class="sec-inner">
+      <header class="sec-head rv">
+        <span class="sec-num">07</span>
+        <h2 class="sec-title">Words <span class="sec-tag">文字 <i lang="ja">ことば</i></span></h2>
+        <p class="sec-lead">从碎碎念和长文里摘出来的句子。它们大多写在深夜，或是在路上。</p>
+      </header>
+      <div class="dialog rv" id="dialog" tabindex="0" role="button" aria-label="下一句">
+        <span class="dl-name">Colorai</span>
+        <div class="dl-box">
+          <p class="dl-text" id="dl-text" aria-live="polite"></p>
+          <span class="dl-src" id="dl-src"></span>
+          <span class="dl-next" aria-hidden="true">▼</span>
+        </div>
+        <span class="dl-count" id="dl-count"></span>
+      </div>
+      <p class="dl-hint rv">点击对话框 / 按 → 继续</p>
+      <div class="essays rv">
+        <span class="es-k">Recent Essays</span>
+        <ul>
+          <li><b>《唯一性·不灭性·前进性》</b><span>2026.11 · 在一切都在变化的时候，我究竟是什么</span></li>
+          <li><b>《Colorai-2025》</b><span>2026.02 · 一场向内的成年礼</span></li>
+          <li><b>《再看青猪闲谈》</b><span>大四重看青猪，找回大一时的感受</span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═════════ 08 CONTACT · P5R ═════════ -->
+  <section class="sec contact-sec" id="contact" data-theme="p5" data-hud="Contact" data-game="P5R">
+    <div class="sec-inner">
+      <header class="sec-head rv">
+        <span class="sec-num">08</span>
+        <h2 class="sec-title">Contact <span class="sec-tag">联系 <i lang="ja">れんらく</i></span></h2>
+      </header>
+      <div class="ct">
+        <div class="cc-card rv">
+          <span class="cc-k">予告状 · CALLING CARD</span>
+          <div class="cc-title" aria-label="Say Hello">
+            <span class="rn r1">S</span><span class="rn r2">A</span><span class="rn r3">Y</span><span class="gap"></span><span class="rn r4">H</span><span class="rn r5">E</span><span class="rn r6">L</span><span class="rn r7">L</span><span class="rn r2">O</span>
+          </div>
+          <p class="cc-body">致看到这里的你：<br>聊电力电子和硬件、聊电网，也聊 Atlus 的歌、青猪和立直麻将。我会认真回每一封邮件。</p>
+          <span class="cc-sign">— Colorai</span>
+        </div>
+
+        <div class="phone rv" aria-label="聊天示意">
+          <div class="ph-head"><span class="ph-dot"></span><b>Colorai</b><i>ONLINE · 长沙</i></div>
+          <ol class="ph-chat">
+            <li class="in"><b>你</b>你好，想聊聊电力电子 / 电赛？</li>
+            <li class="out">当然！三相逆变、PWM 整流、驱动和 EMI 板都踩过坑，欢迎来问。</li>
+            <li class="in"><b>你</b>那番剧和音乐呢？</li>
+            <li class="out">青猪、MyGO、少女乐队的呐喊……Atlus 的歌单可以从左下角点开 ♪</li>
+            <li class="in"><b>你</b>怎么找你最快？</li>
+            <li class="out">发邮件吧，看到就回。</li>
+          </ol>
+          <div class="ph-input"><span>colorai@hnu.edu.cn</span><a data-mail>发送 →</a></div>
+        </div>
+
+        <div class="ct-side">
+          <div class="cc-links rv">
+            <a class="cc-link" data-mail><span>Email</span><b data-email-text></b><i>→</i></a>
+            <button class="cc-link" type="button" data-copy-email><span>Copy</span><b>复制邮箱地址</b><i>⧉</i></button>
+            <a class="cc-link" href="https://github.com/wuzhangyu" target="_blank" rel="noopener"><span>GitHub</span><b>@wuzhangyu</b><i>↗</i></a>
+            <div class="cc-link static"><span>Base</span><b>长沙 → 广东</b><i>◎</i></div>
+          </div>
+          <ul class="topics rv" aria-label="可以聊的话题">
+            <li>电力电子</li><li>硬件 / PCB</li><li>电网</li><li>Atlus 音乐</li><li>番剧 · 轻小说</li><li>立直麻将</li><li>日语</li>
+          </ul>
+          <figure class="ct-cat" aria-hidden="true"><img src="assets/chars/cat.webp" alt="" loading="lazy"><figcaption class="bubble">邮件最快，<br>别让我等太久喵！</figcaption></figure>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="foot" data-theme="p3d">
+  <span>© <span id="year">2026</span> Colorai · 木纹刀 / 岉雨</span>
+  <span class="foot-links"><a href="posts/index.html">随记</a><a href="gallery.html">相册</a><a href="friends.html">友链</a><a href="log.html">日志</a><a href="guestbook.html">留言</a><a data-mail>写信</a></span>
+  <span class="foot-note">Persona 系列与首页像素画版权归 ATLUS 所有。这是一个非商业的个人站。</span>
+  <button type="button" class="foot-btn" id="replay">↻ Replay intro</button>
+</footer>
+<dialog class="modal" id="modal" data-theme="p5" aria-labelledby="modal-title">
+  <div class="modal-panel">
+    <div class="modal-head">
+      <span class="modal-no" id="modal-no"></span>
+      <span class="modal-cat" id="modal-cat"></span>
+      <button class="modal-x" type="button" id="modal-x" aria-label="关闭">✕</button>
+    </div>
+    <h3 class="modal-title" id="modal-title"></h3>
+    <div class="modal-body" id="modal-body"></div>
+    <a class="modal-mail" data-mail>邮件索取详情 →</a>
+  </div>
+</dialog>
+
+
+
+<aside class="player" id="player" data-game="P3R" aria-label="点歌窗口">
+  <button class="pl-mini" type="button" id="pl-mini" aria-expanded="false" aria-controls="pl-panel">
+    <span class="pl-disc"></span>
+    <span class="pl-mini-t"><i id="pl-mini-game">REQUEST</i><b id="pl-mini-title">点歌 · P-Series</b></span>
+    <span class="eq"><i></i><i></i><i></i><i></i></span>
+  </button>
+  <div class="pl-panel" id="pl-panel" hidden>
+    <div class="pl-head" title="按住拖动">
+      <span class="pl-grip" aria-hidden="true">⠿</span><span class="pl-k">♪ REQUEST <i lang="ja">リクエスト</i></span>
+      <button class="pl-x" type="button" id="pl-x" aria-label="收起">—</button>
+    </div>
+    <div class="pl-now">
+      <span class="pl-game" id="pl-game">P3R</span>
+      <b class="pl-title" id="pl-title">选一首歌</b>
+      <span class="pl-artist" id="pl-artist">Persona Series · ATLUS</span>
+      <div class="pl-bar" id="pl-bar"><span id="pl-fill"></span></div>
+      <div class="pl-time"><span id="pl-cur">0:00</span><span id="pl-dur">0:00</span></div>
+      <div class="pl-ctrl">
+        <button type="button" id="pl-prev" aria-label="上一首">⏮</button>
+        <button type="button" class="pl-play" id="pl-play" aria-label="播放">▶</button>
+        <button type="button" id="pl-next" aria-label="下一首">⏭</button>
+        <input type="range" id="pl-vol" min="0" max="1" step="0.05" value="0.7" aria-label="音量">
+      </div>
+    </div>
+    <div class="pl-tabs" role="tablist">
+      <button type="button" class="on" data-game="P3R">P3R</button>
+      <button type="button" data-game="P4G">P4G</button>
+      <button type="button" data-game="P5R">P5R</button>
+    </div>
+    <ol class="pl-list" id="pl-list"></ol>
+    <p class="pl-note">音源：网易云音乐外链 · 版权归 ATLUS 及原作者</p>
+  </div>
+</aside>
+
+<div class="toast" id="toast" role="status"></div>
+</body>
+</html>
