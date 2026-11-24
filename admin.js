@@ -39,6 +39,45 @@
   };
   const el = (html) => { const t = document.createElement("template"); t.innerHTML = html.trim(); return t.content.firstElementChild; };
 
+  /* ───── passkeys (WebAuthn): sign-in stores a "pk_…" session token in place of the admin key ───── */
+  const PASSKEY = !!(window.PublicKeyCredential && navigator.credentials);
+  const b64u = (buf) => btoa(String.fromCharCode(...new Uint8Array(buf))).replace(/\+/g, "-").replace(/\//g, "_").replace(/=+$/, "");
+  const unb64u = (s) => Uint8Array.from(atob(s.replace(/-/g, "+").replace(/_/g, "/") + "===".slice((s.length + 3) % 4)), (c) => c.charCodeAt(0));
+  const pk = (body) => api("/api/admin/passkey", { method: "POST", body: JSON.stringify(body) });
+  const pkError = (err) => err?.name === "NotAllowedError" ? "已取消，或者这台设备上没有可用的通行密钥。"
+    : err?.name === "InvalidStateError" ? "这台设备已经添加过通行密钥了。" : err?.message || "出错了";
+  async function passkeyLogin() {
+    const o = await pk({ action: "options", kind: "get" });
+    const cred = await navigator.credentials.get({ publicKey: { challenge: unb64u(o.challenge), rpId: o.rpId, userVerification: "required", timeout: 60e3 } });
+    const r = cred.response;
+    const d = await pk({ action: "login", id: cred.id, clientDataJSON: b64u(r.clientDataJSON), authenticatorData: b64u(r.authenticatorData), signature: b64u(r.signature) });
+    localStorage.setItem(ADM, d.token);
+    return d;
+  }
+  const deviceName = () => {
+    const u = navigator.userAgent;
+    const os = /iPhone/.test(u) ? "iPhone" : /iPad/.test(u) ? "iPad" : /Android/.test(u) ? "Android" : /Mac OS/.test(u) ? "Mac" : /Windows/.test(u) ? "Windows" : /Linux/.test(u) ? "Linux" : "设备";
+    const br = /Edg\//.test(u) ? "Edge" : /Firefox\//.test(u) ? "Firefox" : /Chrome\//.test(u) ? "Chrome" : /Safari\//.test(u) ? "Safari" : "";
+    return [os, br].filter(Boolean).join(" · ");
+  };
+  async function passkeyAdd(name) {
+    const o = await pk({ action: "options", kind: "create" });
+    const cred = await navigator.credentials.create({ publicKey: {
+      challenge: unb64u(o.challenge), rp: { id: o.rpId, name: "Colorai 管理面板" },
+      user: { id: unb64u(o.userId), name: "colorai-admin", displayName: "Colorai 站长" },
+      pubKeyCredParams: [{ type: "public-key", alg: -7 }, { type: "public-key", alg: -257 }],
+      authenticatorSelection: { residentKey: "required", requireResidentKey: true, userVerification: "required" },
+      excludeCredentials: (o.exclude || []).map((id) => ({ type: "public-key", id: unb64u(id) })),
+      attestation: "none", timeout: 60e3,
+    } });
+    const r = cred.response;
+    if (!r.getPublicKey || !r.getAuthenticatorData) throw new Error("这个浏览器版本太旧，不能添加通行密钥，换个新版浏览器试试。");
+    const spki = r.getPublicKey();
+    if (!spki) throw new Error("这台设备的密钥类型不支持。");
+    return pk({ action: "register", id: cred.id, name, alg: r.getPublicKeyAlgorithm(),
+      clientDataJSON: b64u(r.clientDataJSON), authenticatorData: b64u(r.getAuthenticatorData()), publicKey: b64u(spki) });
+  }
+
   // Plain text of an element as the editor shows it: <br> and block breaks become \n, source indentation collapses.
   function textOf(node) {
     let s = "";
@@ -86,9 +125,10 @@
       try {
         const d = await api("/api/content");
         if (!d.admin) {
+          const was = key();
           localStorage.removeItem(ADM);
           sessionStorage.removeItem(OK);
-          toast("管理密码不对，已退出管理");
+          toast(was.startsWith("pk_") ? "通行密钥登录已过期，请重新登录" : "管理密码不对，已退出管理");
           return false;
         }
         storeContent(d.content || {});
@@ -290,7 +330,8 @@
       main.hidden = true;
       login.hidden = false;
       $(".adm-login-msg", login).textContent = text || "";
-      setTimeout(() => login.elements.key.focus(), 50);
+      $(".adm-pk", login).hidden = !PASSKEY;
+      setTimeout(() => (PASSKEY ? $(".adm-pk", login) : login.elements.key).focus(), 50);
     }
     async function enter() {
       say("");
@@ -298,11 +339,16 @@
         stats = await api("/api/admin/stats", { signal: pageAC.signal });
       } catch (err) {
         if (err.name === "AbortError") return;
-        if (err.status === 403) { localStorage.removeItem(ADM); sessionStorage.removeItem(OK); toolbar(); return showLogin("管理密码不对。"); }
+        if (err.status === 403) {
+          const was = key();
+          localStorage.removeItem(ADM); sessionStorage.removeItem(OK); toolbar();
+          return showLogin(was.startsWith("pk_") ? "通行密钥登录已过期，请重新验证。" : "管理密码不对。");
+        }
         if (!key()) return showLogin();
         return showLogin(err.message);
       }
       sessionStorage.setItem(OK, "1");
+      loaded.clear();
       login.hidden = true;
       main.hidden = false;
       toolbar();
@@ -317,7 +363,16 @@
       login.elements.key.value = "";
       enter();
     });
+    on($(".adm-pk", login), "click", async (e) => {
+      const b = e.currentTarget;
+      b.disabled = true;
+      $(".adm-login-msg", login).textContent = "等待指纹 / 面容 / PIN 验证…";
+      try { await passkeyLogin(); enter(); }
+      catch (err) { $(".adm-login-msg", login).textContent = pkError(err); }
+      finally { b.disabled = false; }
+    });
     on($(".adm-logout", box), "click", () => {
+      if (key().startsWith("pk_")) pk({ action: "logout" }).catch(() => {});
       localStorage.removeItem(ADM);
       sessionStorage.removeItem(OK);
       sessionStorage.removeItem(MODE);
@@ -687,6 +742,41 @@
             `<li><b>24 小时新留言（访客）</b><span>${a.posts ?? 0}</span><em>每人 10 分钟最多 5 条</em></li></ul>` +
             `<p class="adm-note">额度写在 cloudflare/functions/api/ask.js；助手知道的站长资料（SITE 提示词）也在那里，改它需要改代码再发布。计数按滑动 24 小时窗口，不是自然日。</p>`;
         } catch (err) { fail(p, err); }
+      },
+
+      async keys(p) {
+        p.innerHTML = head("通行密钥", "PASSKEYS") + `<div class="adm-body"><p class="adm-empty">读取中…</p></div>`;
+        const body = p.querySelector(".adm-body");
+        let d;
+        try { d = await pk({ action: "list" }); } catch (err) { return fail(p, err); }
+        const list = d.passkeys || [];
+        const rows = list.map((x) =>
+          `<tr><td><b>${escHTML(x.name || "通行密钥")}</b></td><td>${when(x.created)}</td><td>${x.used ? ago(x.used) : "还没用过"}</td>` +
+          `<td>${x.sessions || 0}</td><td><button type="button" class="adm-link danger" data-pk-del="${escHTML(x.id)}">删除</button></td></tr>`).join("");
+        body.innerHTML =
+          `<div class="adm-pk-add"><button type="button" class="adm-btn" data-pk-add${PASSKEY ? "" : " disabled"}>＋ 给这台设备添加通行密钥</button>` +
+          `<span class="adm-pk-msg" role="status">${PASSKEY ? (key().startsWith("pk_") ? "你现在是用通行密钥登录的。" : "") : "这个浏览器不支持通行密钥。"}</span></div>` +
+          (rows ? `<table class="adm-table"><thead><tr><th>名字</th><th>添加时间</th><th>上次登录</th><th>登录中的浏览器</th><th></th></tr></thead><tbody>${rows}</tbody></table>`
+            : `<p class="adm-empty">还没有通行密钥。</p>`) +
+          `<p class="adm-note">通行密钥存在你的设备或密码管理器里（Windows Hello、iCloud 钥匙串、Google 密码管理器等），登录时用指纹、面容或开机 PIN 验证，不用记密码。` +
+          `每台常用设备添加一次即可；iPhone 和 Mac 用同一个 Apple ID 会自动同步。用通行密钥登录后 ${90} 天内不用再验证。<br>` +
+          `管理密码仍然有效，是丢了设备时的备用，请另外保存好。删除一个通行密钥，用它登录着的浏览器也会一起退出。</p>`;
+        const msg = $(".adm-pk-msg", body);
+        on(body, "click", async (e) => {
+          const add = e.target.closest("[data-pk-add]"), del = e.target.closest("[data-pk-del]");
+          if (add) {
+            const name = prompt("给这个通行密钥起个名字（方便以后认出是哪台设备）", deviceName());
+            if (name === null) return;
+            add.disabled = true;
+            msg.textContent = "等待指纹 / 面容 / PIN 验证…";
+            try { await passkeyAdd(name.trim() || deviceName()); toast("通行密钥已添加"); RENDER.keys(p); }
+            catch (err) { msg.textContent = pkError(err); add.disabled = false; }
+          } else if (del) {
+            if (!confirm("删除这个通行密钥？用它登录的浏览器也会退出。")) return;
+            try { await pk({ action: "delete", id: del.dataset.pkDel }); toast("已删除"); RENDER.keys(p); }
+            catch (err) { if (err.status === 403) { localStorage.removeItem(ADM); toolbar(); return showLogin("已退出。"); } msg.textContent = err.message; }
+          }
+        });
       },
     };
 

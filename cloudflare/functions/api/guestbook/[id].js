@@ -6,7 +6,7 @@ async function load(request, env, params) {
   if (!Number.isInteger(id)) return { err: json({ error: "没有这条留言" }, 404) };
   const row = await env.DB.prepare("SELECT * FROM messages WHERE id = ?").bind(id).first();
   if (!row) return { err: json({ error: "没有这条留言" }, 404) };
-  const admin = isAdmin(request, env);
+  const admin = await isAdmin(request, env);
   const token = request.headers.get("X-Token") || "";
   const owner = token && (await sha(token)) === row.token;
   if (!admin && !owner) return { err: json({ error: "没有权限" }, 403) };

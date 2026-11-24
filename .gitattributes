@@ -1,0 +1,5 @@
+*.sh eol=lf
+*.command eol=lf
+*.py eol=lf
+*.mjs eol=lf
+*.bat eol=crlf

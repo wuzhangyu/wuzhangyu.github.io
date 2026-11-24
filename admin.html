@@ -44,13 +44,15 @@
     <header class="sec-head">
       <span class="sec-num">99</span>
       <h1 class="sec-title">Admin <span class="sec-tag">管理面板 <i lang="ja">かんり</i></span></h1>
-      <p class="sec-lead">只有输过管理密码的浏览器能用。改过的文字存在 Cloudflare D1 里，覆盖网页上的原文；还原就回到 HTML 里写的内容。</p>
+      <p class="sec-lead">只有用通行密钥或管理密码登录过的浏览器能用。改过的文字存在 Cloudflare D1 里，覆盖网页上的原文；还原就回到 HTML 里写的内容。</p>
     </header>
     <div class="adm" data-admin>
       <form class="adm-login" hidden>
-        <label><span>管理密码 · ADMIN KEY</span><input type="password" name="key" autocomplete="current-password" required></label>
+        <button type="button" class="adm-pk" hidden>◆ 用通行密钥登录 <small>指纹 / 面容 / Windows Hello</small></button>
+        <label><span>或者输入管理密码 · ADMIN KEY</span><input type="password" name="key" autocomplete="current-password" required></label>
         <button type="submit">进入 ▶</button>
         <p class="adm-login-msg" role="status"></p>
+        <p class="adm-login-tip">还没有通行密钥：先用管理密码进来，在「06 密钥」里添加，以后就不用输密码了。</p>
       </form>
       <div class="adm-main" hidden>
         <nav class="adm-tabs" role="tablist" aria-label="管理分区">
@@ -59,6 +61,7 @@
           <button type="button" role="tab" data-tab="guestbook" aria-selected="false"><i>03</i>留言</button>
           <button type="button" role="tab" data-tab="content" aria-selected="false"><i>04</i>内容</button>
           <button type="button" role="tab" data-tab="ask" aria-selected="false"><i>05</i>问 AI</button>
+          <button type="button" role="tab" data-tab="keys" aria-selected="false"><i>06</i>密钥</button>
           <button type="button" class="adm-logout">退出管理</button>
         </nav>
         <section class="adm-panel" data-panel="dash" role="tabpanel"></section>
@@ -66,6 +69,7 @@
         <section class="adm-panel" data-panel="guestbook" role="tabpanel" hidden></section>
         <section class="adm-panel" data-panel="content" role="tabpanel" hidden></section>
         <section class="adm-panel" data-panel="ask" role="tabpanel" hidden></section>
+        <section class="adm-panel" data-panel="keys" role="tabpanel" hidden></section>
       </div>
       <p class="adm-msg" hidden></p>
       <noscript><p class="adm-msg">管理面板需要 JavaScript。</p></noscript>

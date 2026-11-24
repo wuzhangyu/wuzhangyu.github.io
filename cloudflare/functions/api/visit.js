@@ -44,7 +44,7 @@ export async function onRequestPost({ request, env }) {
 // Only the admin can read the log. Visitors are identified by the salted hash alone; `name` is the latest guestbook
 // name posted from the same hash (messages.ip holds the same visitor() value), if any.
 export async function onRequestGet({ request, env }) {
-  if (!isAdmin(request, env)) return json({ error: "仅站长可见" }, 403);
+  if (!(await isAdmin(request, env))) return json({ error: "仅站长可见" }, 403);
   await setup(env);
   const vid = clean(new URL(request.url).searchParams.get("vid"), 24);
   if (vid) {

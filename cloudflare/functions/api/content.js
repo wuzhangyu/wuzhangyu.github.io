@@ -100,7 +100,7 @@ const decode = (key, value) => {
 };
 
 export async function onRequestGet({ request, env }) {
-  const admin = isAdmin(request, env);
+  const admin = await isAdmin(request, env);
   await setup(env);
   const { results } = await env.DB.prepare("SELECT key, value, updated FROM content").all();
   const content = {}, updated = {};
@@ -120,7 +120,7 @@ export async function onRequestGet({ request, env }) {
 }
 
 export async function onRequestPut({ request, env }) {
-  if (!isAdmin(request, env)) return json({ error: "没有权限" }, 403);
+  if (!(await isAdmin(request, env))) return json({ error: "没有权限" }, 403);
   let body;
   try { body = await request.json(); } catch { return json({ error: "格式不对" }, 400); }
   const key = String(body?.key ?? "");
@@ -139,7 +139,7 @@ export async function onRequestPut({ request, env }) {
 }
 
 export async function onRequestDelete({ request, env }) {
-  if (!isAdmin(request, env)) return json({ error: "没有权限" }, 403);
+  if (!(await isAdmin(request, env))) return json({ error: "没有权限" }, 403);
   const key = clean(new URL(request.url).searchParams.get("key"), 100);
   if (!key) return json({ error: "缺少 key" }, 400);
   await setup(env);

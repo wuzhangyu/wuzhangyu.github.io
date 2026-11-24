@@ -8,7 +8,7 @@ const first = async (stmt) => { try { return await stmt.first(); } catch { retur
 const all = async (stmt) => { try { return (await stmt.all()).results; } catch { return []; } };
 
 export async function onRequestGet({ request, env }) {
-  if (!isAdmin(request, env)) return json({ error: "仅站长可见" }, 403);
+  if (!(await isAdmin(request, env))) return json({ error: "仅站长可见" }, 403);
   const db = env.DB;
   const now = Date.now(), day = now - 864e5, hour = now - 36e5;
   const today = Math.floor((now + 8 * 36e5) / 864e5) * 864e5 - 8 * 36e5; // midnight, China time

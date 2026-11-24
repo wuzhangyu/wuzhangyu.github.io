@@ -9,18 +9,25 @@ export async function sha(s) {
   return [...new Uint8Array(buf)].map((b) => b.toString(16).padStart(2, "0")).join("");
 }
 
-// Visitor IPs are never stored in the clear, only a salted hash.
+// Visitor IPs are never stored in the clear, only a salted hash. VISITOR_SALT stays fixed so changing ADMIN_KEY keeps visitor IDs.
 export async function visitor(request, env) {
   const ip = request.headers.get("CF-Connecting-IP") || "0.0.0.0";
-  return (await sha(`${env.ADMIN_KEY || "colorai"}|${ip}`)).slice(0, 24);
+  return (await sha(`${env.VISITOR_SALT || env.ADMIN_KEY || "colorai"}|${ip}`)).slice(0, 24);
 }
 
-export function isAdmin(request, env) {
+// X-Admin-Key is either ADMIN_KEY itself or a session token ("pk_…") handed out after a passkey sign-in (see api/admin/passkey.js).
+export async function isAdmin(request, env) {
   const key = request.headers.get("X-Admin-Key") || "";
-  if (!env.ADMIN_KEY || key.length !== env.ADMIN_KEY.length) return false;
-  let diff = 0;
-  for (let i = 0; i < key.length; i++) diff |= key.charCodeAt(i) ^ env.ADMIN_KEY.charCodeAt(i);
-  return diff === 0;
+  if (!key) return false;
+  if (env.ADMIN_KEY && key.length === env.ADMIN_KEY.length) {
+    let diff = 0;
+    for (let i = 0; i < key.length; i++) diff |= key.charCodeAt(i) ^ env.ADMIN_KEY.charCodeAt(i);
+    if (diff === 0) return true;
+  }
+  if (!key.startsWith("pk_") || !env.DB) return false;
+  try {
+    return !!(await env.DB.prepare("SELECT 1 AS ok FROM admin_sessions WHERE hash = ? AND expires > ?").bind(await sha(key), Date.now()).first());
+  } catch { return false; }
 }
 
 // Sliding-window limits kept in D1: returns false once `who` has used `max` hits of `kind` within `sec` seconds.

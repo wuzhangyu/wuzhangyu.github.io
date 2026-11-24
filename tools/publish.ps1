@@ -1,4 +1,4 @@
-# Publish the site.
+﻿# Publish the site.
 #   1. Upload to Cloudflare Pages: https://coloraiyu.pages.dev/  (needs `npx wrangler login`, once)
 #   2. Push a backup copy to GitHub wuzhangyu/wuzhangyu.github.io (needs `gh auth login`, once; skip with -NoGitHub)
 # Only the working tree is uploaded; local git history stays on this machine.
@@ -14,7 +14,7 @@ $dist = Join-Path $env:TEMP "colorai-dist"
 if (Test-Path $dist) { Remove-Item $dist -Recurse -Force }
 $public = Join-Path $dist "public"
 New-Item -ItemType Directory $public | Out-Null
-Get-ChildItem $src -Force | Where-Object { $_.Name -notin ($skip + "tools", "cloudflare", "启动本地网站.bat", "修改指南.md") } | Copy-Item -Destination $public -Recurse -Force
+Get-ChildItem $src -Force | Where-Object { $_.Name -notin ($skip + "tools", "cloudflare", "修改指南.md", "怎么打开.txt", ".gitattributes") -and $_.Name -notlike "启动本地网站*" -and $_.Name -notlike "打开线上版*" } | Copy-Item -Destination $public -Recurse -Force
 Get-ChildItem (Join-Path $src "cloudflare") | Where-Object { $_.Name -ne "schema.sql" } | Copy-Item -Destination $dist -Recurse -Force
 Push-Location $dist
 try {

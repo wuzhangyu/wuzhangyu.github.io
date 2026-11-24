@@ -15,7 +15,7 @@ const view = (r, admin) => ({
 
 export async function onRequestGet({ request, env }) {
   await setup(env);
-  const admin = isAdmin(request, env);
+  const admin = await isAdmin(request, env);
   const { results } = await env.DB.prepare(
     `SELECT * FROM messages ${admin ? "" : "WHERE hidden = 0"} ORDER BY created DESC LIMIT 300`
   ).all();
@@ -32,7 +32,7 @@ export async function onRequestPost({ request, env }) {
   if ((text.match(/https?:\/\//g) || []).length > 2) return json({ error: "链接太多了" }, 400);
 
   await setup(env);
-  const admin = isAdmin(request, env);
+  const admin = await isAdmin(request, env);
   const who = await visitor(request, env);
   if (!admin && !(await allow(env, who, "post", 5, 600))) return json({ error: "写得太快了，过几分钟再来" }, 429);
 

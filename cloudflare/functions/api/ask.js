@@ -43,7 +43,7 @@ export async function onRequestPost({ request, env }) {
   }
 
   const messages = [{ role: "system", content: SITE }, ...history];
-  const debug = isAdmin(request, env) && body.debug;
+  const debug = await isAdmin(request, env) && body.debug;
   let upstream, lastErr;
   for (const model of debug && body.model ? [body.model] : models) {
     try {
