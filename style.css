@@ -1263,3 +1263,4 @@ body[data-page="friends"] .bar:not(.solid) { --fg: #fff; --panel: #fff; --panel-
 .gb-box { margin-top: 34px; padding: 26px 28px; min-height: 220px; background: rgba(5, 12, 38, 0.55); border: 1.5px solid rgba(159, 233, 255, 0.35); outline: 1px solid rgba(159, 233, 255, 0.14); outline-offset: -7px; }
 .gb-wait { font-size: 15px; line-height: 1.8; color: rgba(234, 246, 255, 0.72); }
 .gb-wait a { color: var(--ice); text-decoration: underline; text-underline-offset: 3px; cursor: pointer; }
+.gb-box:has(iframe.giscus-frame) .gb-wait { display: none; }

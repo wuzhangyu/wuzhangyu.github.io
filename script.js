@@ -66,7 +66,7 @@ const CITIES = [
 const HOME = "长沙";
 
 // Guestbook (giscus.app). Fill these in after the repo has Discussions enabled; empty repoId keeps the board closed.
-const GISCUS = { repo: "", repoId: "", category: "Guestbook", categoryId: "" };
+const GISCUS = { repo: "wuzhangyu/wuzhangyu.github.io", repoId: "R_kgDOVgSPUQ", category: "Announcements", categoryId: "DIC_kwDOVgSPUc4DL2hd" };
 
 // Posts: add a new file under posts/ and one line here. date "YYYY" or "YYYY.MM" or "YYYY.MM.DD".
 const POSTS = [
@@ -1123,7 +1123,11 @@ function initPage() {
     };
     for (const [k, v] of Object.entries(attrs)) s.setAttribute(k, v);
     s.async = true;
-    box.replaceChildren(s);
+    const wait = document.createElement("p");
+    wait.className = "gb-wait";
+    wait.innerHTML = "留言板加载中……如果一直出不来，多半是连不上 GitHub，可以改成 <a data-mail>写信</a>。";
+    wait.querySelector("a").href = `mailto:${EMAIL}`;
+    box.replaceChildren(wait, s);
   })();
   /* ───── compendium: tap a card to flip it ───── */
   (function arcana() {
