@@ -93,10 +93,11 @@ const POSTS = [
   { id: "tokyo-2024", title: "东京，巡礼的一周", date: "2024.08.02", tags: ["旅行", "日本", "巡礼"], desc: "池袋、御茶水、下北泽，还有须贺神社的台阶。" },
 ];
 
-// Friend links: [name, url, one-line description, two-letter badge, colour]
+// Friend links: [name, url, one-line description, two-letter badge, colour, category]. The friends page groups by category.
 const FRIENDS = [
-  ["Rain Chen", "https://congjyu.github.io/blog/", "Rain Chen's Blog", "RC", "#8fb8ff"],
-  ["木球小屋", "https://alpha-3.u1307221.nyat.app:15408/", "Jupiter's Lodge", "木", "#6f8fd8"],
+  ["Rain Chen", "https://congjyu.github.io/blog/", "Rain Chen's Blog", "RC", "#8fb8ff", "Central HK"],
+  ["木球小屋", "https://jupiterkwan.github.io/", "Jupiter's Lodge", "木", "#6f8fd8", "Central HK"],
+  ["BBBNicolas", "https://dingbangliu.codeberg.page/", "Embrace life and what you are", "BN", "#5bb7a5", "Central HK"],
 ];
 
 const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -527,6 +528,14 @@ document.addEventListener("click", async (e) => {
   await pixels.reveal(520);
 });
 
+// A click on blank space that only closes a floating panel shouldn't also turn the page.
+function eatBlankClick(e) {
+  if (e.target.closest("a, button, input, textarea, select, label, [role=button], [tabindex]")) return;
+  const eat = (c) => { c.stopPropagation(); c.preventDefault(); };
+  document.addEventListener("click", eat, { capture: true, once: true });
+  setTimeout(() => document.removeEventListener("click", eat, true), 800);
+}
+
 /* ───── song request player ───── */
 const player = (function player() {
   const root = $("#player"), panel = $("#pl-panel"), mini = $("#pl-mini"), list = $("#pl-list");
@@ -652,6 +661,11 @@ const player = (function player() {
     audio.currentTime = ((e.clientX - r.left) / r.width) * audio.duration;
   });
   document.addEventListener("keydown", (e) => { if (e.key === "Escape" && !panel.hidden) open(false); });
+  document.addEventListener("pointerdown", (e) => {
+    if (panel.hidden || root.contains(e.target) || e.target.closest("[data-open-player], [data-play]")) return;
+    open(false);
+    eatBlankClick(e);
+  }, true);
 
   audio.addEventListener("play", () => { root.classList.add("playing"); $("#pl-play").textContent = "❚❚"; $("#pl-play").setAttribute("aria-label", "暂停"); });
   audio.addEventListener("pause", () => { root.classList.remove("playing"); $("#pl-play").textContent = "▶"; $("#pl-play").setAttribute("aria-label", "播放"); });
@@ -804,6 +818,7 @@ const player = (function player() {
   input.addEventListener("keydown", (e) => { if (e.key === "Enter" && !e.shiftKey && !e.isComposing) { e.preventDefault(); form.requestSubmit(); } });
   input.addEventListener("input", () => { input.style.height = ""; input.style.height = `${Math.min(input.scrollHeight, 120)}px`; });
   document.addEventListener("keydown", (e) => { if (e.key === "Escape" && !panel.hidden) open(false); });
+  document.addEventListener("pointerdown", (e) => { if (!panel.hidden && !root.contains(e.target)) { open(false); eatBlankClick(e); } }, true);
   render();
 })();
 
@@ -1427,10 +1442,18 @@ function initPage() {
   })();
   /* ───── friend links ───── */
   (function friends() {
+    const card = ([name, url, desc, badge, color, cat], tag) =>
+      `<a class="fr-card" href="${url}" target="_blank" rel="noopener" style="--fc:${color}"><span class="fr-av">${badge}</span><b>${name}</b><span>${desc}</span><i>↗</i>${tag && cat ? `<em class="fr-tag">${cat}</em>` : ""}</a>`;
     $$("[data-friends]").forEach((box) => {
-      box.innerHTML = FRIENDS.map(([name, url, desc, badge, color]) =>
-        `<a class="fr-card" href="${url}" target="_blank" rel="noopener" style="--fc:${color}"><span class="fr-av">${badge}</span><b>${name}</b><span>${desc}</span><i>↗</i></a>`
-      ).join("") + (box.dataset.friends === "more" ? `<a class="fr-card more" href="${ROOT}friends.html"><span class="fr-av">+</span><b>交换友链</b><span>写信给我</span><i>→</i></a>` : "");
+      if (box.dataset.friends === "more") {
+        box.innerHTML = FRIENDS.map((f) => card(f, true)).join("") +
+          `<a class="fr-card more" href="${ROOT}friends.html"><span class="fr-av">+</span><b>交换友链</b><span>写信给我</span><i>→</i></a>`;
+        return;
+      }
+      const cats = [...new Set(FRIENDS.map((f) => f[5] || "其他"))];
+      box.innerHTML = cats.map((c) =>
+        `<h3 class="fr-cat"><span>${c}</span></h3>` + FRIENDS.filter((f) => (f[5] || "其他") === c).map((f) => card(f, false)).join("")
+      ).join("");
     });
   })();
 }

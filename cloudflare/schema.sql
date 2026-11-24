@@ -17,3 +17,17 @@ CREATE TABLE IF NOT EXISTS hits (
   ts INTEGER NOT NULL
 );
 CREATE INDEX IF NOT EXISTS hits_lookup ON hits (kind, ip, ts);
+
+CREATE TABLE IF NOT EXISTS visits (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  ts INTEGER NOT NULL,
+  vid TEXT NOT NULL,
+  path TEXT NOT NULL,
+  title TEXT,
+  country TEXT,
+  region TEXT,
+  city TEXT,
+  device TEXT
+);
+CREATE INDEX IF NOT EXISTS visits_ts ON visits (ts DESC);
+CREATE INDEX IF NOT EXISTS visits_vid ON visits (vid, path, ts);
