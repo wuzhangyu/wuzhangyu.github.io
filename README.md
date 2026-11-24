@@ -54,5 +54,4 @@ Persona 系列、首页和友链页的像素画、点歌窗口里的音乐，版
 
 ## 部署
 
-- GitHub Pages：推到仓库后，在 Settings → Pages 选择 `main` 分支根目录。
-- Cloudflare Pages / Vercel / Netlify：选择该仓库，构建命令留空，输出目录为根目录。
+线上：https://colorai-7w3.pages.dev/ （Cloudflare Pages）。运行 `tools\publish.ps1` 上传，同时推一份到 GitHub 仓库备份。留言板用 giscus，数据在本仓库的 Discussions。
